@@ -8,17 +8,14 @@ const Match = (props) => {
     const round = props.round.replace(`Regular Season -`, `Date: ${date} Matchday:`)
     return(
         <Space direction="vertical">
-            <Card title={round} className={style.item} hoverable={true}>
+            <Card title={round} className={style.item} hoverable>
                 {(!props.isPostponed && props.date*1000 < Date.now()) && <p><b>Match Postponed</b></p>}
-                <p><img src={props.homeTeamLogo} alt={'teamlogo'} style={{height: '30px'} }/>
+                <p><img src={props.homeTeamLogo} alt={'teamLogo'} className={style.teamLogo}/>
                     {props.homeTeam} <span className={style.score}>{props.goalsHome}</span></p>
-                <p><img src={props.awayTeamLogo} alt={'teamlogo'} style={{height: '30px'}} />
+                <p><img src={props.awayTeamLogo} alt={'teamLogo'} className={style.teamLogo} />
                     {props.awayTeam} <span className={style.score}>{props.goalsAway}</span></p>
             </Card>
         </Space>
-
-
-
     )
 }
 

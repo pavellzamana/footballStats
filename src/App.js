@@ -3,6 +3,7 @@ import './App.css';
 import 'antd/dist/antd.css';
 import ResultsContainer from "./components/results/ResultsContainer";
 import { Layout, Menu } from 'antd';
+import style from './App.module.css'
 
 const { Header, Content, Footer } = Layout;
 const App = () => {
@@ -16,8 +17,8 @@ const App = () => {
                     <Menu.Item key="3">nav 3</Menu.Item>
                 </Menu>
             </Header>
-            <Content style={{ margin: '0 auto' }}>
-                <div className="site-layout-content"><ResultsContainer /></div>
+            <Content className={style.contentItem}>
+                <ResultsContainer />
             </Content>
             <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
         </Layout>

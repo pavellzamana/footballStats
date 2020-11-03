@@ -5,8 +5,7 @@ import Preloader from "../../common/preloader/preloader";
 import styles from './Results.module.css'
 
 
-let Results = (props) => {
-    console.log(props.state)
+const Results = (props) => {
     let resultList;
     resultList = props.state.matches.map((item, i) =>
         <Match referee={item.referee}
@@ -22,7 +21,7 @@ let Results = (props) => {
                key={i}/>)
     return (
         <div className={styles.item}>
-            {resultList.length === 0 ? <Preloader /> : resultList}
+            {!resultList.length ? <Preloader /> : resultList}
         </div>
     )
 }

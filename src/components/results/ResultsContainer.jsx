@@ -17,9 +17,7 @@ class ResultsContainer extends React.Component {
         this.getMatches()
     }
 
-
     render() {
-        console.log('rendered')
         return (
             <Results state={this.state} />
         )
