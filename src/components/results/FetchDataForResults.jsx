@@ -2,7 +2,7 @@ import React from 'react';
 import Results from "./Results";
 import {matchesApi} from "../Api/Api";
 
-class ResultsContainer extends React.Component {
+class FetchDataForResults extends React.Component {
     constructor(props) {
         super(props);
         this.matches = []
@@ -19,9 +19,9 @@ class ResultsContainer extends React.Component {
 
     render() {
         return (
-            <Results state={this.state} />
+            <Results matchInfo={this.state} />
         )
     }
 }
 
-export default ResultsContainer
+export default FetchDataForResults

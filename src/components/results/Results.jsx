@@ -7,7 +7,7 @@ import styles from './Results.module.css'
 
 const Results = (props) => {
     let resultList;
-    resultList = props.state.matches.map((item, i) =>
+    resultList = props.matchInfo.matches.map((item, i) =>
         <Match referee={item.referee}
                homeTeam={item.homeTeam.team_name}
                homeTeamLogo={item.homeTeam.logo}

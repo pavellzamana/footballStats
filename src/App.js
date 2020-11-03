@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import 'antd/dist/antd.css';
-import ResultsContainer from "./components/results/ResultsContainer";
+import FetchDataForResults from "./components/results/FetchDataForResults";
 import { Layout, Menu } from 'antd';
 import style from './App.module.css'
 
@@ -18,7 +18,7 @@ const App = () => {
                 </Menu>
             </Header>
             <Content className={style.contentItem}>
-                <ResultsContainer />
+                <FetchDataForResults />
             </Content>
             <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
         </Layout>
