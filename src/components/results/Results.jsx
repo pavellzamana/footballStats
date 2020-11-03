@@ -21,7 +21,7 @@ const Results = (props) => {
                key={i}/>)
     return (
         <div className={styles.item}>
-            {!resultList.length ? <Preloader /> : resultList}
+            {resultList.length ? resultList : <Preloader />}
         </div>
     )
 }
