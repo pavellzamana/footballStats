@@ -1,14 +1,9 @@
-type AwayTeam = {
+type Team = {
     team_id: number
     team_name: string
     logo: string
 }
 
-type HomeTeam = {
-    team_id: number
-    team_name: string
-    logo: string
-}
 
 type League = {
     name: "Premier League"
@@ -25,7 +20,7 @@ type Score = {
 }
 
 export interface IMatches {
-    awayTeam: AwayTeam
+    awayTeam: Team
     elapsed: number
     eventDate: string
     event_timestamp: number
@@ -33,7 +28,7 @@ export interface IMatches {
     fixture_id: number
     goalsAwayTeam: number
     goalsHomeTeam: number
-    homeTeam: HomeTeam
+    homeTeam: Team
     league: League
     league_id: number
     referee: string
