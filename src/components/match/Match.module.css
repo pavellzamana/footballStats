@@ -1,0 +1,15 @@
+.item {
+  border-radius: 10px;
+  margin: 4px;
+  width: 300px;
+}
+.item:hover {
+  background-color: #cecece;
+}
+.score {
+  float: right;
+}
+.teamLogo {
+  height: 30px;
+}
+/*# sourceMappingURL=Match.module.css.map */

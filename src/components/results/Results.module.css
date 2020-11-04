@@ -1,0 +1,9 @@
+.item {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 15px;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+/*# sourceMappingURL=Results.module.css.map */
