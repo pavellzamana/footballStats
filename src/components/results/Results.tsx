@@ -5,9 +5,9 @@ import Preloader from "../../common/preloader/preloader";
 import styles from './Results.module.css'
 
 
-const Results = (props) => {
+const Results = (props: any) => {
     let resultList;
-    resultList = props.matchInfo.matches.map((item, i) =>
+    resultList = props.matchInfo.matches.map((item:any, i:number) =>
         <Match referee={item.referee}
                homeTeam={item.homeTeam.team_name}
                homeTeamLogo={item.homeTeam.logo}
