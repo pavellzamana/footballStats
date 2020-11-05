@@ -3,22 +3,6 @@ type Team = {
     team_name: string
     logo: string
 }
-
-
-type League = {
-    name: "Premier League"
-    country: "England"
-    logo: "https://media.api-sports.io/football/leagues/39.png"
-    flag: "https://media.api-sports.io/flags/gb.svg"
-}
-
-type Score = {
-    halftime: string
-    fulltime: string
-    extratime: null
-    penalty: null
-}
-
 export interface IMatches {
     awayTeam: Team
     elapsed: number
@@ -29,11 +13,19 @@ export interface IMatches {
     goalsAwayTeam: number
     goalsHomeTeam: number
     homeTeam: Team
-    league: League
+    league: {
+        name: "Premier League"
+        country: "England"
+        logo: "https://media.api-sports.io/football/leagues/39.png"
+        flag: "https://media.api-sports.io/flags/gb.svg"
+    }
     league_id: number
     referee: string
     round: string
-    score: Score
+    score: {halftime: string
+            fulltime: string
+            extratime: null
+            penalty: null}
     secondHalfStart: number
     status: string
     statusShort: string
