@@ -26,3 +26,10 @@ yarn-error.log*
 # less files
 **/*.css.map
 **/*.less
+
+# idea folder
+/.idea
+
+#types for bootstrapped app
+
+/src/react-app-env.d.ts

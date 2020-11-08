@@ -10,9 +10,9 @@ const instance = axios.create ({
 })
 
 export const matchesApi = {
-    getMatches() {
+    getMatches(sss:any) {
         instance.get(`fixtures/league/2790`).then(responce => {
-            this.setState({matches: responce.data.api.fixtures})
+            sss({matches: responce.data.api.fixtures})
         })
     }
 }

@@ -25,7 +25,8 @@ class FetchDataForResults extends React.Component {
         instance.get(`fixtures/league/2790`).then(responce => {
             this.setState({matches: responce.data.api.fixtures})
         })
-        // matchesApi.getMatches(this.setState)
+        // debugger
+        // matchesApi.getMatches(this.setState.bind(this.setState))
     }
 
     render() {

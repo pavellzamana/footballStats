@@ -1,9 +1,9 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import Match from "../match/Match";
-import Preloader from "../../common/preloader/preloader";
+import Preloader from "../common/preloader/preloader";
 import styles from './Results.module.css'
-import {IMatches} from "../../common/types/type";
+import {IMatches} from "../common/types/type";
 
 
 const Results = (props: any) => {
