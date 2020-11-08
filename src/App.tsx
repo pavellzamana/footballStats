@@ -1,22 +1,19 @@
 import React from 'react';
-import 'antd/dist/antd.css';
-import FetchDataForResults from "./components/results/FetchDataForResults";
 import { Layout } from 'antd';
-import style from './App.module.css'
+import Menu from "./Menu";
 
-const { Header, Content, Footer } = Layout;
-const App = () => {
+import 'antd/dist/antd.css';
+
+const { Header, Footer } = Layout;
+const App: React.FC = () => {
     return (
         <Layout>
             <Header>
             </Header>
-            <Content className={style.contentItem}>
-                <FetchDataForResults />
-            </Content>
+            <Menu />
             <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
         </Layout>
     )
-
 }
 
 export default App;

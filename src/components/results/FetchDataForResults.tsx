@@ -1,7 +1,7 @@
 import React from 'react';
 import Results from "./Results";
 import axios from "axios";
-import {matchesApi} from "../Api/Api";
+import {matchesApi} from "../../Api/Api";
 
 
 

@@ -27,8 +27,6 @@ yarn-error.log*
 **/*.css.map
 **/*.less
 
-# idea folder
-/.idea
 
 #types for bootstrapped app
 
