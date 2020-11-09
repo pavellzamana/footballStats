@@ -8,7 +8,7 @@ import Results from "./components/results/Results";
 const {Content} = Layout;
 const Menu: React.FC = () => {
     return (
-        <Content className={style.contentItem}>
+        <Content className={style.content_item}>
             <Results/>
         </Content>
     )

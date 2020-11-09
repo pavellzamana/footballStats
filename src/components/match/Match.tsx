@@ -26,9 +26,9 @@ const Match: React.FC<MatchProps> = (props) => {
         <Space direction="vertical">
             <Card title={round} className={style.item} hoverable>
                 {(!props.isPostponed && date < moment()) && <p><b>Match Postponed</b></p>}
-                <p><img src={props.homeTeamLogo} alt={'teamLogo'} className={style.teamLogo}/>
+                <p><img src={props.homeTeamLogo} alt={'teamLogo'} className={style.team_logo}/>
                     {props.homeTeam} <span className={style.score}>{props.goalsHome}</span></p>
-                <p><img src={props.awayTeamLogo} alt={'teamLogo'} className={style.teamLogo} />
+                <p><img src={props.awayTeamLogo} alt={'teamLogo'} className={style.team_logo} />
                     {props.awayTeam} <span className={style.score}>{props.goalsAway}</span></p>
             </Card>
         </Space>

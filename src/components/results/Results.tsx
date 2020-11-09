@@ -32,7 +32,6 @@ const Results: React.FC = () => {
 
     return (
         <div>
-            <button>RUN</button>
             <div className={styles.item}>
                 {match}
             </div>
