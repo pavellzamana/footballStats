@@ -5,7 +5,6 @@ import moment, {Moment} from "moment";
 import style from './Match.module.css'
 
 type MatchProps = {
-    referee: string
     homeTeam: string
     homeTeamLogo: any
     goalsHome: number

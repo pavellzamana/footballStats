@@ -1,5 +1,4 @@
 import axios, {AxiosInstance} from "axios";
-import {IMatches} from "../components/common/types/type";
 
 const instance: AxiosInstance = axios.create({
     headers: {
@@ -9,8 +8,8 @@ const instance: AxiosInstance = axios.create({
     baseURL: 'https://api-football-v1.p.rapidapi.com/v2/'
 
 })
-export const getMatches: (state: Array<IMatches>) => Promise<void> = async (state) => {
-    let response = await instance.get(`fixtures/league/2790`)
-    state.push(response.data.api.fixtures)
-    console.log(response.data.api)
+
+
+export const getMatches: () => Promise<any> = async () => {
+    return await instance.get(`fixtures/league/2790`)
 }
