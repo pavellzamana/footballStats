@@ -1,4 +1,4 @@
-type Team = {
+interface Team  {
     team_id: number
     team_name: string
     logo: string
@@ -22,10 +22,12 @@ export interface IMatches {
     league_id: number
     referee: string
     round: string
-    score: {halftime: string
-            fulltime: string
-            extratime?: string
-            penalty?: string}
+    score: {
+        halftime: string
+        fulltime: string
+        extratime?: string
+        penalty?: string
+    }
     secondHalfStart: number
     status: string
     statusShort: string

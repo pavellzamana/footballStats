@@ -10,6 +10,10 @@ const instance: AxiosInstance = axios.create({
 })
 
 
-export const getMatches: () => Promise<any> = async () => {
-    return await instance.get(`fixtures/league/2790`)
+export const getMatches = () => {
+    return instance.get(`fixtures/league/2790`).then(
+        result => {
+            return result.data.api.fixtures
+        }
+    )
 }
