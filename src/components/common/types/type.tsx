@@ -23,7 +23,9 @@ export interface IMatches {
     referee: string
     round: string
     score: {halftime: string
-            fulltime: string}
+            fulltime: string
+            extratime?: string
+            penalty?: string}
     secondHalfStart: number
     status: string
     statusShort: string
