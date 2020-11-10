@@ -12,8 +12,6 @@ const instance: AxiosInstance = axios.create({
 
 export const getMatches = () => {
     return instance.get(`fixtures/league/2790`).then(
-        result => {
-            return result.data.api.fixtures
-        }
+        result => result.data.api.fixtures
     )
 }

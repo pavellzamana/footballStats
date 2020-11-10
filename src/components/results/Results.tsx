@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {ReactElement, useEffect, useState} from 'react';
 import Match from "../match/Match";
 import {getMatches} from "../../api/Api";
 import {IMatches} from "../common/types/Type";
@@ -7,31 +7,32 @@ import 'antd/dist/antd.css';
 import styles from './Results.module.css'
 
 const Results: React.FC = () => {
-    const [match, setMatch] = useState([])
+    const [match, setMatch] = useState<IMatches[]>([])
     useEffect(() => {
         getMatches().then(result => {
-            let state = result.map(
-                ((item: IMatches, i: number) =>
-                    <Match
-                        homeTeam={item.homeTeam.team_name}
-                        homeTeamLogo={item.homeTeam.logo}
-                        goalsHome={item.goalsHomeTeam}
-                        awayTeam={item.awayTeam.team_name}
-                        awayTeamLogo={item.awayTeam.logo}
-                        goalsAway={item.goalsAwayTeam}
-                        date={item.event_timestamp}
-                        round={item.round}
-                        isPostponed={item.firstHalfStart}
-                        key={i}/>)
-            )
-            setMatch(state)
+            setMatch(result)
         })
     }, [])
+
+    const resultCards: Array<ReactElement> = match.map(
+        ((item: IMatches, i: number) =>
+            <Match
+                homeTeam={item.homeTeam.team_name}
+                homeTeamLogo={item.homeTeam.logo}
+                goalsHome={item.goalsHomeTeam}
+                awayTeam={item.awayTeam.team_name}
+                awayTeamLogo={item.awayTeam.logo}
+                goalsAway={item.goalsAwayTeam}
+                date={item.event_timestamp}
+                round={item.round}
+                isPostponed={item.firstHalfStart}
+                key={i}/>)
+    )
 
     return (
         <div>
             <div className={styles.item}>
-                {match}
+                {resultCards}
             </div>
         </div>
     )
