@@ -1,4 +1,4 @@
-import React, {ReactElement, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Match from "../match/Match";
 import {getMatches} from "../../api/Api";
 import {IMatches} from "../common/types/Type";
@@ -14,25 +14,23 @@ const Results: React.FC = () => {
         })
     }, [])
 
-    const resultCards: Array<ReactElement> = match.map(
-        ((item: IMatches, i: number) =>
-            <Match
-                homeTeam={item.homeTeam.team_name}
-                homeTeamLogo={item.homeTeam.logo}
-                goalsHome={item.goalsHomeTeam}
-                awayTeam={item.awayTeam.team_name}
-                awayTeamLogo={item.awayTeam.logo}
-                goalsAway={item.goalsAwayTeam}
-                date={item.event_timestamp}
-                round={item.round}
-                isPostponed={item.firstHalfStart}
-                key={i}/>)
-    )
-
     return (
         <div>
             <div className={styles.item}>
-                {resultCards}
+                {match.map(
+                    ((item: IMatches, i: number) =>
+                        <Match
+                            homeTeam={item.homeTeam.team_name}
+                            homeTeamLogo={item.homeTeam.logo}
+                            goalsHome={item.goalsHomeTeam}
+                            awayTeam={item.awayTeam.team_name}
+                            awayTeamLogo={item.awayTeam.logo}
+                            goalsAway={item.goalsAwayTeam}
+                            date={item.event_timestamp}
+                            round={item.round}
+                            isPostponed={item.firstHalfStart}
+                            key={i}/>)
+                )}
             </div>
         </div>
     )

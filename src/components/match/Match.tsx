@@ -18,14 +18,15 @@ type MatchProps = {
 }
 
 
-const Match: React.FC<MatchProps> = ({
-                                         homeTeam, homeTeamLogo,
-                                         goalsAway, goalsHome,
-                                         awayTeam, awayTeamLogo,
-                                         date, round, isPostponed
-                                     }) => {
-    const dateEvent: Moment = moment.unix(date)
-    const roundNo: string = round.replace(`Regular Season -`,
+const Match: React.FC<MatchProps> = (props) => {
+    const {
+        homeTeam, homeTeamLogo,
+        goalsAway, goalsHome,
+        awayTeam, awayTeamLogo,
+        date, round, isPostponed
+    } = props,
+        dateEvent: Moment = moment.unix(date),
+        roundNo: string = round.replace(`Regular Season -`,
         `Date: ${dateEvent.format("MMM Do YYYY")} Matchday:`)
     return(
         <Space direction="vertical">
