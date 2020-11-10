@@ -8,9 +8,11 @@ import Results from "./components/results/Results";
 const {Content} = Layout;
 const Menu: React.FC = () => {
     return (
-        <Content className={style.content_item}>
-            <Results/>
-        </Content>
+        <Layout>
+            <Content className={style.content_item}>
+                <Results/>
+            </Content>
+        </Layout>
     )
 }
 
