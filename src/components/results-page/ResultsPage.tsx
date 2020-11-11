@@ -7,13 +7,12 @@ const { TreeNode } = TreeSelect;
 
 export default class TreeSelector extends React.Component {
     state = {
-        value: 2,
+        value: undefined
     };
 
     onChange = (value: number) => {
         this.setState({ value });
     };
-
 
     render() {
         return (
