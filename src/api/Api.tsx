@@ -15,3 +15,10 @@ export const getMatches = (league: number = 2790) => {
         result => result.data.api.fixtures
     )
 }
+
+
+export const getSeasons = (leagueId: number) => {
+    return instance.get(`leagues/seasonsAvailable/${leagueId}`).then(
+        result => result.data.api.leagues
+    )
+}

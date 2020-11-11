@@ -6,7 +6,11 @@ import {IMatches} from "../common/types/Type";
 import 'antd/dist/antd.css';
 import styles from './Results.module.css'
 
-const Results: React.FC<any> = ({leagueID}) => {
+interface LeagueProps {
+    leagueID: number
+}
+
+const Results: React.FC<LeagueProps> = ({leagueID}) => {
     const [match, setMatch] = useState<IMatches[]>([])
     useEffect(() => {
         getMatches(leagueID).then(result => {
