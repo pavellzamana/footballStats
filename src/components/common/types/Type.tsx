@@ -37,5 +37,7 @@ export interface IMatches {
 export interface ISeasons {
     league_id: number
     season: number
+    country: string
+    name: string
 }
 
