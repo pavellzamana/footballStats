@@ -1,0 +1,10 @@
+.main {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 15px;
+}
+.main .selector {
+  width: 30%;
+}
+/*# sourceMappingURL=ResultsPage.module.css.map */
