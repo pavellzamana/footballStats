@@ -37,7 +37,7 @@ const TreeSelector: React.FC = () => {
                         .sort((a, b) => (a.season > b.season) ? 1 : -1)
                         .map((item: ISeasons) =>
                         <TreeNode value={item.league_id}
-                                  title={`country: ${item.country} season ${item.season} - ${item.season + 1}`}/>
+                                  title={`season ${item.season} - ${item.season + 1}`}/>
                     )}
                 </TreeNode>
                 <TreeNode value="parent 1-1" title="Italian Serie A" disabled>
@@ -45,7 +45,7 @@ const TreeSelector: React.FC = () => {
                         .sort((a, b) => (a.season > b.season) ? 1 : -1)
                         .map((item: ISeasons) =>
                         <TreeNode value={item.league_id}
-                                  title={`country: ${item.country} season ${item.season} - ${item.season + 1}`}/>
+                                  title={`season ${item.season} - ${item.season + 1}`}/>
                     )}
                 </TreeNode>
                 <TreeNode value="parent 1-2" title="Spanish Primera" disabled>
@@ -53,7 +53,7 @@ const TreeSelector: React.FC = () => {
                         .sort((a, b) => (a.season > b.season) ? 1 : -1)
                         .map((item: ISeasons) =>
                         <TreeNode value={item.league_id}
-                                  title={`country: ${item.country} season ${item.season} - ${item.season + 1}`}/>
+                                  title={`season ${item.season} - ${item.season + 1}`}/>
                     )}
                 </TreeNode>
             </TreeSelect>
