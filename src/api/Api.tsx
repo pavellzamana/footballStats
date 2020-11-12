@@ -17,8 +17,14 @@ export const getMatches = (league: number = 2790) => {
 }
 
 
-export const getSeasons = () => {
-    return instance.get(`leagues/`).then(
+export const getSeasons = (league: number) => {
+    return instance.get(`leagues/seasonsAvailable/${league}`).then(
+        result => result.data.api.leagues
+    )
+}
+
+export const getCountries = () => {
+    return instance.get('leagues/current/').then(
         result => result.data.api.leagues
     )
 }
