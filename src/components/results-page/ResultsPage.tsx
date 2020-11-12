@@ -1,9 +1,10 @@
 import { TreeSelect } from 'antd';
 import React, {useEffect, useState} from "react";
 import Results from "../results/Results";
-import style from './ResultsPage.module.css'
 import {getCountries, getSeasons} from "../../api/Api";
 import {ICountry, ISeasons} from "../common/types/Type";
+
+import style from './ResultsPage.module.css'
 
 const { TreeNode } = TreeSelect;
 
