@@ -6,4 +6,12 @@
   padding-left: 5%;
   padding-right: 5%;
 }
+.menu {
+  margin-left: 10%;
+  color: cornflowerblue;
+  width: 10%;
+}
+.menu:hover {
+  cursor: pointer;
+}
 /*# sourceMappingURL=Results.module.css.map */

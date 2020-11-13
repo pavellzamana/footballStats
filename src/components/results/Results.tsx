@@ -4,7 +4,6 @@ import {getMatches} from "../../api/Api";
 import {IMatches} from "../common/types/Type";
 import { Menu, Dropdown } from 'antd';
 
-import { DownOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import styles from './Results.module.css'
 
@@ -14,14 +13,14 @@ interface LeagueProps {
 
 const Results: React.FC<LeagueProps> = ({leagueID}) => {
     const [match, setMatch] = useState<IMatches[]>([])
-    const [count, setCount] = useState<string>('')
+    const [sort, setSort] = useState<string>('Sort by date')
 
-    const inc = () => {
-        setCount('ascended')
+    const sortByDateAsc = () => {
+        setSort('Sort by date: Ascended')
         setMatch(match.sort((a, b) => (a.event_timestamp > b.event_timestamp) ? -1 : 1))
     }
-    const dec = () => {
-        setCount('descended')
+    const sortByDateDesc = () => {
+        setSort('Sort by date: Descended')
         setMatch(match.sort((a, b) => (a.event_timestamp < b.event_timestamp) ? -1 : 1))
     }
 
@@ -31,31 +30,19 @@ const Results: React.FC<LeagueProps> = ({leagueID}) => {
         })
     }, [leagueID])
 
-    const menu = (
-        <Menu>
-            <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
-                    1st menu item
-                </a>
-            </Menu.Item>
-            <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
-                    2nd menu item
-                </a>
-            </Menu.Item>
-        </Menu>
-    );
 
     return (
         <div>
-          <Dropdown overlay={menu}>
-                <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                    Hover me <DownOutlined />
-                </a>
+          <Dropdown overlay={<Menu>
+              <Menu.Item onClick={sortByDateDesc}>
+                  Descending
+              </Menu.Item>
+              <Menu.Item onClick={sortByDateAsc}>
+                  Ascending
+              </Menu.Item>
+          </Menu>}>
+              <div className={styles.menu}>{sort}</div>
             </Dropdown>
-
-            <button onClick={inc}>+</button>
-            <button onClick={dec}>-</button>
 
             <div className={styles.item}>
                 {match.map(
