@@ -10,8 +10,21 @@ const instance: AxiosInstance = axios.create({
 })
 
 
-export const getMatches = () => {
-    return instance.get(`fixtures/league/2790`).then(
+export const getMatches = (league: number = 2790) => {
+    return instance.get(`fixtures/league/${league}`).then(
         result => result.data.api.fixtures
+    )
+}
+
+
+export const getSeasons = (league: number) => {
+    return instance.get(`leagues/seasonsAvailable/${league}`).then(
+        result => result.data.api.leagues
+    )
+}
+
+export const getCountries = () => {
+    return instance.get('leagues/current/').then(
+        result => result.data.api.leagues
     )
 }

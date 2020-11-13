@@ -3,14 +3,14 @@ import 'antd/dist/antd.css';
 import { Layout } from 'antd';
 
 import style from './Menu.module.css'
-import Results from "./components/results/Results";
+import TreeSelector from "./components/results-page/ResultsPage";
 
 const {Content} = Layout;
 const Menu: React.FC = () => {
     return (
         <Layout>
             <Content className={style.content_item}>
-                <Results/>
+                <TreeSelector/>
             </Content>
         </Layout>
     )

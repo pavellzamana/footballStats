@@ -34,3 +34,16 @@ export interface IMatches {
     venue: string
 }
 
+export interface ISeasons {
+    league_id: number
+    season: number
+    country: string
+    name: string
+}
+
+export interface ICountry {
+    league_id: number
+    name: string
+    country: string
+    type: string
+}
