@@ -19,7 +19,7 @@ const TreeSelector: React.FC = () => {
                 return item.season > 2015
             }));
         });
-    }, [id])
+    }, [id]);
 
     useEffect(() => {
         getCountries().then(response => {
