@@ -9,28 +9,28 @@ import style from './ResultsPage.module.css'
 const { TreeNode } = TreeSelect;
 
 const TreeSelector: React.FC = () => {
-    const [id, setId] = useState<number>(2790)
-    const [seasons, setSeasons] = useState<ISeasons[]>([])
-    const [country, setCountry] = useState<ICountry[]>([])
+    const [id, setId] = useState<number>(2790);
+    const [seasons, setSeasons] = useState<ISeasons[]>([]);
+    const [country, setCountry] = useState<ICountry[]>([]);
 
     useEffect(() => {
         getSeasons(id).then(response => {
             setSeasons(response.filter((item: ISeasons) => {
                 return item.season > 2015
-            }))
-        })
+            }));
+        });
     }, [id])
 
     useEffect(() => {
         getCountries().then(response => {
             setCountry(response.filter((item: ICountry) => {
                 return item.type === 'League'
-            }))
-        })
-    }, [id])
+            }));
+        });
+    }, [id]);
 
     const changeID = (value: number) => {
-        setId(value)
+        setId(value);
     }
 
     return (
@@ -71,4 +71,4 @@ const TreeSelector: React.FC = () => {
     );
 
 }
-export default TreeSelector
+export default TreeSelector;

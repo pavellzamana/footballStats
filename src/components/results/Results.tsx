@@ -17,14 +17,15 @@ const Results: React.FC<LeagueProps> = ({leagueID}) => {
 
     const sortByDate = (sortField: string, sortType: boolean) => {
         setSortASC(sortType);
-        setMatch(match.sort((a, b) => sortType ? a[sortField] - b[sortField] : b[sortField] - a[sortField]))
+        setMatch(match.sort((a, b) => sortType ? a[sortField] - b[sortField]
+                                                                 : b[sortField] - a[sortField]));
     }
 
     useEffect(() => {
         getMatches(leagueID).then(result => {
-            setMatch(result)
+            setMatch(result);
         })
-    }, [leagueID])
+    }, [leagueID]);
 
     return (
         <div>
@@ -58,7 +59,7 @@ const Results: React.FC<LeagueProps> = ({leagueID}) => {
         </div>
     )
 }
-export default Results
+export default Results;
 
 
 

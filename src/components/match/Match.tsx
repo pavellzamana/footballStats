@@ -27,7 +27,7 @@ const Match: React.FC<MatchProps> = (props) => {
     } = props,
         dateEvent: Moment = moment.unix(date),
         roundNo: string = round.replace(`Regular Season -`,
-        `Date: ${dateEvent.format("MMM Do YYYY")} Matchday:`)
+        `Date: ${dateEvent.format("MMM Do YYYY")} Matchday:`);
     return(
         <Space direction="vertical">
             <Card title={roundNo} className={style.item} hoverable>
@@ -44,4 +44,4 @@ const Match: React.FC<MatchProps> = (props) => {
 }
 
 
-export default Match
+export default Match;
