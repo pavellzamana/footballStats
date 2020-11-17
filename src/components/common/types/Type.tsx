@@ -4,6 +4,7 @@ interface Team  {
     logo: string
 }
 export interface IMatches {
+    field: Boolean;
     awayTeam: Team
     elapsed: number
     eventDate: string

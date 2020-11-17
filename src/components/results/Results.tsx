@@ -10,18 +10,21 @@ import styles from './Results.module.css'
 interface LeagueProps {
     leagueID: number
 }
+const compare = (field: string, order: boolean) => {
+
+    return order ?
+        ((a: any, b: any) => (a[field] < b[field] && 1) || (a[field] > b[field] && -1) || 0) :
+        ((a: any, b: any) => (a[field] < b[field] && -1) || (a[field] > b[field] && 1) || 0);
+}
+
 
 const Results: React.FC<LeagueProps> = ({leagueID}) => {
     const [match, setMatch] = useState<IMatches[]>([])
-    const [sort, setSort] = useState<string>('Sort by date')
+    const [sort, setSort] = useState<boolean>()
 
-    const sortByDateAsc = () => {
-        setSort('Sort by date: Ascended')
-        setMatch(match.sort((a, b) => (a.event_timestamp > b.event_timestamp) ? -1 : 1))
-    }
-    const sortByDateDesc = () => {
-        setSort('Sort by date: Descended')
-        setMatch(match.sort((a, b) => (a.event_timestamp < b.event_timestamp) ? -1 : 1))
+    const sortByDate = (array: Array<IMatches>, sortType: boolean) => {
+        setSort(sortType)
+        setMatch(array.sort(compare('event_timestamp', sortType)))
     }
 
     useEffect(() => {
@@ -30,18 +33,17 @@ const Results: React.FC<LeagueProps> = ({leagueID}) => {
         })
     }, [leagueID])
 
-
     return (
         <div>
           <Dropdown overlay={<Menu>
-              <Menu.Item onClick={sortByDateDesc}>
-                  Descending
+              <Menu.Item onClick={() => sortByDate(match, true)}>
+                  Date {'\u2191'}
               </Menu.Item>
-              <Menu.Item onClick={sortByDateAsc}>
-                  Ascending
+              <Menu.Item onClick={() => sortByDate(match, false)}>
+                  Date {'\u2193'}
               </Menu.Item>
           </Menu>}>
-              <div className={styles.menu}>{sort}</div>
+              <div className={styles.menu}>Sort by date:  {sort ? '\u2191' : '\u2193'}</div>
             </Dropdown>
 
             <div className={styles.item}>
