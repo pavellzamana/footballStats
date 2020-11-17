@@ -8,22 +8,16 @@ import 'antd/dist/antd.css';
 import styles from './Results.module.css'
 
 interface LeagueProps {
-    leagueID: number
-}
-const compare = (field: string, order: boolean): (obj1: any, obj2: any) => number  => {
-
-    return order ?
-        ((a, b) => (a[field] < b[field] && 1) || (a[field] > b[field] && -1) || 0) :
-        ((a, b) => (a[field] < b[field] && -1) || (a[field] > b[field] && 1) || 0);
+    leagueID: number;
 }
 
 const Results: React.FC<LeagueProps> = ({leagueID}) => {
-    const [match, setMatch] = useState<IMatches[]>([])
-    const [sort, setSort] = useState<boolean>()
+    const [match, setMatch] = useState<IMatches[]>([]);
+    const [sortASC, setSortASC] = useState<boolean>();
 
-    const sortByDate = (array: Array<IMatches>, sortType: boolean) => {
-        setSort(sortType)
-        setMatch(array.sort(compare('event_timestamp', sortType)))
+    const sortByDate = (sortField: string, sortType: boolean) => {
+        setSortASC(sortType);
+        setMatch(match.sort((a, b) => sortType ? a[sortField] - b[sortField] : b[sortField] - a[sortField]))
     }
 
     useEffect(() => {
@@ -35,14 +29,14 @@ const Results: React.FC<LeagueProps> = ({leagueID}) => {
     return (
         <div>
           <Dropdown overlay={<Menu>
-              <Menu.Item onClick={() => sortByDate(match, true)}>
+              <Menu.Item onClick={() => sortByDate('event_timestamp', true)}>
                   Date {'\u2191'}
               </Menu.Item>
-              <Menu.Item onClick={() => sortByDate(match, false)}>
+              <Menu.Item onClick={() => sortByDate('event_timestamp', false)}>
                   Date {'\u2193'}
               </Menu.Item>
           </Menu>}>
-              <div className={styles.menu}>Sort by date:  {sort ? '\u2191' : '\u2193'}</div>
+              <div className={styles.menu}>Sort by date:  {sortASC ? '\u2191' : '\u2193'}</div>
             </Dropdown>
 
             <div className={styles.item}>
