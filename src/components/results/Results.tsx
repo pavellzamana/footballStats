@@ -10,13 +10,12 @@ import styles from './Results.module.css'
 interface LeagueProps {
     leagueID: number
 }
-const compare = (field: string, order: boolean) => {
+const compare = (field: string, order: boolean): (obj1: any, obj2: any) => number  => {
 
     return order ?
-        ((a: any, b: any) => (a[field] < b[field] && 1) || (a[field] > b[field] && -1) || 0) :
-        ((a: any, b: any) => (a[field] < b[field] && -1) || (a[field] > b[field] && 1) || 0);
+        ((a, b) => (a[field] < b[field] && 1) || (a[field] > b[field] && -1) || 0) :
+        ((a, b) => (a[field] < b[field] && -1) || (a[field] > b[field] && 1) || 0);
 }
-
 
 const Results: React.FC<LeagueProps> = ({leagueID}) => {
     const [match, setMatch] = useState<IMatches[]>([])
