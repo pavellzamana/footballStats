@@ -59,7 +59,7 @@ const Results: React.FC<LeagueProps> = ({leagueID}) => {
         </div>
     )
 }
-export default Results;
+export default Results
 
 
 
