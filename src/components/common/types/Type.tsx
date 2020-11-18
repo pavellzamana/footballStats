@@ -3,7 +3,10 @@ interface Team  {
     team_name: string
     logo: string
 }
-export interface IMatches {
+
+
+export interface IMatches{
+    [key: string]: any
     awayTeam: Team
     elapsed: number
     eventDate: string

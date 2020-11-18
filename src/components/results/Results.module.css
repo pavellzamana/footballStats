@@ -6,4 +6,17 @@
   padding-left: 5%;
   padding-right: 5%;
 }
+.menu {
+  color: cornflowerblue;
+  width: 5%;
+  background-color: whitesmoke;
+  border: 1px solid darkgray;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  left: 85%;
+}
+.menu:hover {
+  cursor: pointer;
+}
 /*# sourceMappingURL=Results.module.css.map */
