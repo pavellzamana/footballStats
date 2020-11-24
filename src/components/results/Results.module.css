@@ -1,3 +1,14 @@
+.common {
+  color: cornflowerblue;
+  background-color: whitesmoke;
+  border: 1px solid darkgray;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+}
+.common:hover {
+  cursor: pointer;
+}
 .item {
   display: flex;
   justify-content: center;
@@ -8,20 +19,28 @@
 }
 .menu {
   color: cornflowerblue;
-  width: 5%;
   background-color: whitesmoke;
   border: 1px solid darkgray;
   border-radius: 10px;
   text-align: center;
   position: relative;
-  left: 85%;
+  left: 75%;
+  width: 5%;
 }
 .menu:hover {
   cursor: pointer;
 }
 .calendar {
+  color: cornflowerblue;
+  background-color: whitesmoke;
+  border: 1px solid darkgray;
+  border-radius: 10px;
+  text-align: center;
   position: relative;
-  left: 7%;
-  top: 27px;
+  left: 10%;
+  width: 10%;
+}
+.calendar:hover {
+  cursor: pointer;
 }
 /*# sourceMappingURL=Results.module.css.map */
