@@ -71,4 +71,4 @@ const TreeSelector: React.FC = () => {
     );
 
 }
-export default TreeSelector
+export default TreeSelector;

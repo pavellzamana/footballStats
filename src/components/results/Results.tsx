@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import Match from "../match/Match";
 import {getMatches} from "../../api/Api";
 import {IMatches} from "../common/types/Type";
-import { Menu, Dropdown } from 'antd';
+import { Menu, Dropdown, DatePicker } from 'antd';
+import moment, {Moment} from "moment";
 
 import 'antd/dist/antd.css';
 import styles from './Results.module.css'
@@ -11,9 +12,12 @@ interface LeagueProps {
     leagueID: number;
 }
 
+const { RangePicker } = DatePicker;
+
 const Results: React.FC<LeagueProps> = ({leagueID}) => {
     const [match, setMatch] = useState<IMatches[]>([]);
     const [sortASC, setSortASC] = useState<boolean>();
+    const [fullList, setFullList] = useState<IMatches[]>([])
 
     const sortByDate = (sortField: string, sortType: boolean) => {
         setSortASC(sortType);
@@ -21,14 +25,30 @@ const Results: React.FC<LeagueProps> = ({leagueID}) => {
                                                                  : b[sortField] - a[sortField]));
     }
 
+    const dateFilter = (date: any, dateString: [string, string]) => {
+        setMatch(date ? match.filter(val => {
+            return val.event_timestamp > Number(moment(dateString[0]).format('X'))
+                && val.event_timestamp < Number(moment(dateString[1]).format('X'))
+        }) : fullList)
+    }
+
     useEffect(() => {
         getMatches(leagueID).then(result => {
             setMatch(result);
+            setFullList(result);
         })
     }, [leagueID]);
 
     return (
         <div>
+            <RangePicker
+                className={styles.calendar}
+                onChange={(date, dateString) => {
+                    dateFilter(date, dateString)
+                }}
+                format={"MM-DD-YYYY"}
+            />
+
           <Dropdown overlay={<Menu>
               <Menu.Item onClick={() => sortByDate('event_timestamp', true)}>
                   Date {'\u2191'}
@@ -59,7 +79,13 @@ const Results: React.FC<LeagueProps> = ({leagueID}) => {
         </div>
     )
 }
-export default Results
+export default Results;
+
+
+
+
+
+
 
 
 
