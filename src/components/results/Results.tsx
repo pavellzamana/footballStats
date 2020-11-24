@@ -80,12 +80,3 @@ const Results: React.FC<LeagueProps> = ({leagueID}) => {
     )
 }
 export default Results;
-
-
-
-
-
-
-
-
-
