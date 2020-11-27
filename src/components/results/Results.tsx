@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Match from "../match/Match";
 import {getMatches} from "../../api/Api";
 import {IMatches} from "../common/types/Type";
-import { DatePicker, Button } from 'antd';
+import { DatePicker, Button, Layout } from 'antd';
 import moment from "moment";
 import 'antd/dist/antd.css';
 import styles from './Results.module.css'
@@ -12,6 +12,7 @@ interface LeagueProps {
 }
 
 const { RangePicker } = DatePicker;
+const { Header } = Layout;
 
 const Results: React.FC<LeagueProps> = ({leagueID}) => {
     const [match, setMatch] = useState<IMatches[]>([]);
@@ -41,6 +42,7 @@ const Results: React.FC<LeagueProps> = ({leagueID}) => {
 
     return (
         <div>
+            <Header>
             <RangePicker
                 className={styles.calendar}
                 onChange={(date, dateString) => {
@@ -51,7 +53,7 @@ const Results: React.FC<LeagueProps> = ({leagueID}) => {
 
             <Button className={styles.menu} onClick={() => sortByDate('event_timestamp', !sortASC)}>Sort by
                 Date: {sortASC ? '\u2193' : '\u2191'}</Button>
-
+            </Header>
             <div className={styles.item}>
                 {match.map(
                     ((item: IMatches, i: number) =>
@@ -68,6 +70,7 @@ const Results: React.FC<LeagueProps> = ({leagueID}) => {
                             key={i}/>)
                 )}
             </div>
+
         </div>
     )
 }
