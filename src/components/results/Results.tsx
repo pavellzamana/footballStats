@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import Match from "../match/Match";
 import {getMatches} from "../../api/Api";
 import {IMatches} from "../common/types/Type";
-import { Menu, Dropdown } from 'antd';
-
+import { DatePicker, Button, Layout } from 'antd';
+import moment from "moment";
 import 'antd/dist/antd.css';
 import styles from './Results.module.css'
 
@@ -11,9 +11,13 @@ interface LeagueProps {
     leagueID: number;
 }
 
+const { RangePicker } = DatePicker;
+const { Header } = Layout;
+
 const Results: React.FC<LeagueProps> = ({leagueID}) => {
     const [match, setMatch] = useState<IMatches[]>([]);
-    const [sortASC, setSortASC] = useState<boolean>();
+    const [sortASC, setSortASC] = useState<boolean>(true);
+    const [matchesFullList, setMatchesFullList] = useState<IMatches[]>([])
 
     const sortByDate = (sortField: string, sortType: boolean) => {
         setSortASC(sortType);
@@ -21,25 +25,35 @@ const Results: React.FC<LeagueProps> = ({leagueID}) => {
                                                                  : b[sortField] - a[sortField]));
     }
 
+    const dateFilter = (date: any, dateString: [string, string]) => {
+        const allMatchesDeepCopy: Array<IMatches> = JSON.parse(JSON.stringify(matchesFullList))
+        setMatch(date ? allMatchesDeepCopy.filter(val => {
+            return val.event_timestamp > Number(moment(dateString[0]).format('X'))
+                && val.event_timestamp < Number(moment(dateString[1]).add(1, 'days').format('X'))
+        }) : matchesFullList);
+    }
+
     useEffect(() => {
         getMatches(leagueID).then(result => {
             setMatch(result);
+            setMatchesFullList(result);
         })
     }, [leagueID]);
 
     return (
         <div>
-          <Dropdown overlay={<Menu>
-              <Menu.Item onClick={() => sortByDate('event_timestamp', true)}>
-                  Date {'\u2191'}
-              </Menu.Item>
-              <Menu.Item onClick={() => sortByDate('event_timestamp', false)}>
-                  Date {'\u2193'}
-              </Menu.Item>
-          </Menu>}>
-              <div className={styles.menu}>Sort by date:  {sortASC ? '\u2191' : '\u2193'}</div>
-            </Dropdown>
+            <Header>
+            <RangePicker
+                className={styles.calendar}
+                onChange={(date, dateString) => {
+                    dateFilter(date, dateString)
+                }}
+                format={"MM-DD-YYYY"}
+            />
 
+            <Button className={styles.menu} onClick={() => sortByDate('event_timestamp', !sortASC)}>Sort by
+                Date: {sortASC ? '\u2193' : '\u2191'}</Button>
+            </Header>
             <div className={styles.item}>
                 {match.map(
                     ((item: IMatches, i: number) =>
@@ -56,10 +70,8 @@ const Results: React.FC<LeagueProps> = ({leagueID}) => {
                             key={i}/>)
                 )}
             </div>
+
         </div>
     )
 }
-export default Results
-
-
-
+export default Results;

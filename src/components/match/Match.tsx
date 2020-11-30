@@ -44,4 +44,4 @@ const Match: React.FC<MatchProps> = (props) => {
 }
 
 
-export default Match
+export default Match;
