@@ -25,8 +25,8 @@
   border-radius: 10px;
   text-align: center;
   position: relative;
-  left: 75%;
-  width: 5%;
+  left: 70%;
+  width: 10%;
 }
 .menu:hover {
   cursor: pointer;

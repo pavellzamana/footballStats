@@ -3,24 +3,28 @@ import React, {useEffect, useState} from "react";
 import Results from "../results/Results";
 import {getCountries, getSeasons} from "../../api/Api";
 import {ICountry, ISeasons} from "../common/types/Type";
+import {setLeagueID} from "../../redux/actions";
+import {connect, useDispatch} from "react-redux";
+import {AppStateType} from "../../redux/rootReducer";
+import {leagueType} from "../../redux/leagueReducer";
 
 import style from './ResultsPage.module.css'
 
 const { TreeNode } = TreeSelect;
 const { Header } = Layout;
 
-const TreeSelector: React.FC = () => {
-    const [id, setId] = useState<number>(2790);
+const TreeSelector: React.FC<leagueType> = ({leagueID}) => {
     const [seasons, setSeasons] = useState<ISeasons[]>([]);
     const [country, setCountry] = useState<ICountry[]>([]);
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        getSeasons(id).then(response => {
+        getSeasons(leagueID).then(response => {
             setSeasons(response.filter((item: ISeasons) => {
                 return item.season > 2015
             }));
         });
-    }, [id]);
+    }, [leagueID]);
 
     useEffect(() => {
         getCountries().then(response => {
@@ -28,10 +32,10 @@ const TreeSelector: React.FC = () => {
                 return item.type === 'League'
             }));
         });
-    }, [id]);
+    }, [leagueID]);
 
     const changeID = (value: number) => {
-        setId(value);
+        dispatch(setLeagueID(value))
     }
 
     return (
@@ -40,7 +44,7 @@ const TreeSelector: React.FC = () => {
                 <div className={style.main}>
                     <TreeSelect
                         className={style.selector}
-                        value={id}
+                        value={leagueID}
                         treeDefaultExpandAll
                         onChange={changeID}
                     >
@@ -56,7 +60,7 @@ const TreeSelector: React.FC = () => {
 
                     <TreeSelect
                         className={style.selector}
-                        value={id}
+                        value={leagueID}
                         treeDefaultExpandAll
                         onChange={changeID}
                     >
@@ -71,9 +75,16 @@ const TreeSelector: React.FC = () => {
                     </TreeSelect>
                 </div>
             </Header>
-            <Results leagueID={id}/>
+            <Results />
         </div>
     );
 
 }
-export default TreeSelector;
+
+const mapStateToProps = (state: AppStateType) => {
+    return {
+        leagueID: state.league.leagueID
+    }
+}
+
+export default connect(mapStateToProps, null)(TreeSelector);

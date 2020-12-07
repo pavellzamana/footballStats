@@ -4,17 +4,18 @@ import {getMatches} from "../../api/Api";
 import {IMatches} from "../common/types/Type";
 import { DatePicker, Button, Layout } from 'antd';
 import moment from "moment";
+import {connect} from "react-redux";
+import {AppStateType} from "../../redux/rootReducer";
+import {leagueType} from "../../redux/leagueReducer";
+
 import 'antd/dist/antd.css';
 import styles from './Results.module.css'
 
-interface LeagueProps {
-    leagueID: number;
-}
 
 const { RangePicker } = DatePicker;
 const { Header } = Layout;
 
-const Results: React.FC<LeagueProps> = ({leagueID}) => {
+const Results: React.FC<leagueType> = ({leagueID}) => {
     const [match, setMatch] = useState<IMatches[]>([]);
     const [sortASC, setSortASC] = useState<boolean>(true);
     const [matchesFullList, setMatchesFullList] = useState<IMatches[]>([])
@@ -74,4 +75,13 @@ const Results: React.FC<LeagueProps> = ({leagueID}) => {
         </div>
     )
 }
-export default Results;
+
+const mapStateToProps = (state: AppStateType) => {
+    return {
+        leagueID: state.league.leagueID
+    }
+}
+
+export default connect(mapStateToProps, null)(Results);
+
+
