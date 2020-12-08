@@ -33,7 +33,7 @@ const TreeSelector: React.FC<leagueType> = () => {
                 <div className={style.main}>
                     <TreeSelect
                         className={style.selector}
-                        value={leagueID}
+                        placeholder={'Countries and Leagues Available'}
                         treeDefaultExpandAll
                         onChange={changeID}
                     >
@@ -49,7 +49,7 @@ const TreeSelector: React.FC<leagueType> = () => {
 
                     <TreeSelect
                         className={style.selector}
-                        value={leagueID}
+                        placeholder={'Seasons Available'}
                         treeDefaultExpandAll
                         onChange={changeID}
                     >
