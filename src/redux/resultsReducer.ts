@@ -3,13 +3,12 @@ import {IMatches} from "../components/common/types/Type";
 
 let resultsInitialState = {
     matches: [],
-    matchesFullList: []
 }
 
 export const resultsReducer = (state = resultsInitialState, action: any) => {
     switch (action.type) {
         case GET_RESULTS:
-            return {...state, matches: action.payload, matchesFullList: action.payload}
+            return {...state, matches: action.payload}
         default:
             return state
     }

@@ -40,8 +40,8 @@ const Results: React.FC<leagueType> = () => {
     useEffect(() => {
         getMatches(leagueID).then(result => {
             setMatch(result);
+            dispatch(getResults(result))
         })
-        dispatch(getResults(leagueID))
     }, [leagueID]);
 
     return (

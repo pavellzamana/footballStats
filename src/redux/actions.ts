@@ -35,13 +35,14 @@ export const getSeasonsList = (leagueID: number): ThunkAction<void, {}, {}, AnyA
         })
     }
 
-export const getResults = (leagueID: number): ThunkAction<void, {}, {}, AnyAction> =>
-    async (dispatch) => {
-        const payload = await getMatches(leagueID)
-        dispatch({
-            type: GET_RESULTS,
-            payload
-        })
+
+export const getResults = (payload: any) => {
+    console.log(payload)
+    return {
+        type: GET_RESULTS,
+        payload
     }
+}
+
 
 
