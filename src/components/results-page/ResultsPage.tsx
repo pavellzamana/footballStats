@@ -21,7 +21,7 @@ const TreeSelector: React.FC<leagueType> = () => {
     // @ts-ignore
     useEffect(() => dispatch(getCountriesList()), [])
     // @ts-ignore
-    useEffect(() => dispatch(getSeasonsList(leagueID)), [])
+    useEffect(() => dispatch(getSeasonsList(leagueID)), [leagueID])
 
     const changeID = (value: number) => {
         dispatch(setLeagueID(value))
