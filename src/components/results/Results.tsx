@@ -4,41 +4,44 @@ import {getMatches} from "../../api/Api";
 import {IMatches} from "../common/types/Type";
 import { DatePicker, Button, Layout } from 'antd';
 import moment from "moment";
-import {connect} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/rootReducer";
 import {leagueType} from "../../redux/leagueReducer";
 
 import 'antd/dist/antd.css';
 import styles from './Results.module.css'
+import {getResults} from "../../redux/actions";
 
 
 const { RangePicker } = DatePicker;
 const { Header } = Layout;
 
-const Results: React.FC<leagueType> = ({leagueID}) => {
+const Results: React.FC<leagueType> = () => {
     const [match, setMatch] = useState<IMatches[]>([]);
     const [sortASC, setSortASC] = useState<boolean>(true);
-    const [matchesFullList, setMatchesFullList] = useState<IMatches[]>([])
+    const dispatch = useDispatch()
+    const leagueID = useSelector((state: AppStateType) => state.league.leagueID)
+    const resultsList = useSelector((state: AppStateType) => state.results.matches)
 
     const sortByDate = (sortField: string, sortType: boolean) => {
         setSortASC(sortType);
-        setMatch(match.sort((a, b) => sortType ? a[sortField] - b[sortField]
+        setMatch(resultsList.sort((a: IMatches, b: IMatches) => sortType ? a[sortField] - b[sortField]
                                                                  : b[sortField] - a[sortField]));
     }
 
     const dateFilter = (date: any, dateString: [string, string]) => {
-        const allMatchesDeepCopy: Array<IMatches> = JSON.parse(JSON.stringify(matchesFullList))
+        const allMatchesDeepCopy: Array<IMatches> = JSON.parse(JSON.stringify(resultsList))
         setMatch(date ? allMatchesDeepCopy.filter(val => {
             return val.event_timestamp > Number(moment(dateString[0]).format('X'))
                 && val.event_timestamp < Number(moment(dateString[1]).add(1, 'days').format('X'))
-        }) : matchesFullList);
+        }) : resultsList);
     }
 
     useEffect(() => {
         getMatches(leagueID).then(result => {
             setMatch(result);
-            setMatchesFullList(result);
         })
+        dispatch(getResults(leagueID))
     }, [leagueID]);
 
     return (
@@ -76,12 +79,7 @@ const Results: React.FC<leagueType> = ({leagueID}) => {
     )
 }
 
-const mapStateToProps = (state: AppStateType) => {
-    return {
-        leagueID: state.league.leagueID
-    }
-}
 
-export default connect(mapStateToProps, null)(Results);
+export default Results;
 
 

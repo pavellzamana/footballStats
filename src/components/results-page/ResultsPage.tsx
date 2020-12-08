@@ -70,6 +70,4 @@ const TreeSelector: React.FC<leagueType> = () => {
 
 }
 
-
-
 export default TreeSelector;

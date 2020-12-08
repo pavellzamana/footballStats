@@ -1,10 +1,10 @@
-import {GET_COUNTRIES, GET_SEASONS, SET_LEAGUEID} from "./types";
+import {GET_COUNTRIES, GET_RESULTS, GET_SEASONS, SET_LEAGUEID} from "./types";
 import {ICountry, ISeasons} from "../components/common/types/Type";
 import {ThunkAction} from "redux-thunk";
-import {getCountries, getSeasons} from "../api/Api";
+import {getCountries, getMatches, getSeasons} from "../api/Api";
 import {AnyAction} from "redux";
 
-export function setLeagueID(id: number) {
+export const setLeagueID = (id: number) => {
     return {
         type: SET_LEAGUEID,
         id
@@ -23,7 +23,6 @@ export const getCountriesList = (): ThunkAction<void, {}, {}, AnyAction> =>
         })
     }
 
-
 export const getSeasonsList = (leagueID: number): ThunkAction<void, {}, {}, AnyAction> =>
     async (dispatch) => {
         const response = await getSeasons(leagueID)
@@ -35,3 +34,14 @@ export const getSeasonsList = (leagueID: number): ThunkAction<void, {}, {}, AnyA
             seasonsList
         })
     }
+
+export const getResults = (leagueID: number): ThunkAction<void, {}, {}, AnyAction> =>
+    async (dispatch) => {
+        const payload = await getMatches(leagueID)
+        dispatch({
+            type: GET_RESULTS,
+            payload
+        })
+    }
+
+
