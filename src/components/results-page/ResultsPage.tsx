@@ -18,10 +18,10 @@ const TreeSelector: React.FC<leagueType> = () => {
     const leagueID = useSelector((state: AppStateType) => state.league.leagueID)
     const seasons = useSelector((state: AppStateType) => state.league.seasons)
 
-    // @ts-ignore
-    useEffect(() => dispatch(getCountriesList()), [])
-    // @ts-ignore
-    useEffect(() => dispatch(getSeasonsList(leagueID)), [leagueID])
+    useEffect(() => {
+        dispatch(getCountriesList())
+        dispatch(getSeasonsList(leagueID))
+    }, [leagueID])
 
     const changeID = (value: number) => {
         dispatch(setLeagueID(value))
@@ -33,7 +33,7 @@ const TreeSelector: React.FC<leagueType> = () => {
                 <div className={style.main}>
                     <TreeSelect
                         className={style.selector}
-                        placeholder={'Countries and Leagues Available'}
+                        placeholder='Countries and Leagues Available'
                         treeDefaultExpandAll
                         onChange={changeID}
                     >
@@ -49,7 +49,7 @@ const TreeSelector: React.FC<leagueType> = () => {
 
                     <TreeSelect
                         className={style.selector}
-                        placeholder={'Seasons Available'}
+                        placeholder='Seasons Available'
                         treeDefaultExpandAll
                         onChange={changeID}
                     >

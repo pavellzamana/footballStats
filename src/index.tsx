@@ -8,10 +8,8 @@ import thunk from "redux-thunk";
 
 import './index.css';
 
-
 export const store = createStore(rootReducer, compose(
-    applyMiddleware(thunk),
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+    applyMiddleware(thunk)
 ));
 
 const app = (

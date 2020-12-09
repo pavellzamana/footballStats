@@ -17,7 +17,7 @@ export const getMatches = (league: number = 2790) => {
 }
 
 
-export const getSeasons = (league: number | undefined) => {
+export const getSeasons = (league?: number) => {
     return instance.get(`leagues/seasonsAvailable/${league}`).then(
         result => result.data.api.leagues
     )

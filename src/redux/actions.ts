@@ -37,7 +37,6 @@ export const getSeasonsList = (leagueID: number): ThunkAction<void, {}, {}, AnyA
 
 
 export const getResults = (payload: any) => {
-    console.log(payload)
     return {
         type: GET_RESULTS,
         payload
