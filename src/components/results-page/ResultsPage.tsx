@@ -1,37 +1,30 @@
 import {Layout, TreeSelect} from 'antd';
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import Results from "../results/Results";
-import {getCountries, getSeasons} from "../../api/Api";
 import {ICountry, ISeasons} from "../common/types/Type";
+import {getCountriesList, getSeasonsList, setLeagueID} from "../../redux/actions";
+import {useDispatch, useSelector} from "react-redux";
+import {AppStateType} from "../../redux/rootReducer";
+import {leagueType} from "../../redux/leagueReducer";
 
 import style from './ResultsPage.module.css'
 
 const { TreeNode } = TreeSelect;
 const { Header } = Layout;
 
-const TreeSelector: React.FC = () => {
-    const [id, setId] = useState<number>(2790);
-    const [seasons, setSeasons] = useState<ISeasons[]>([]);
-    const [country, setCountry] = useState<ICountry[]>([]);
+const TreeSelector: React.FC<leagueType> = () => {
+    const dispatch = useDispatch()
+    const countiesList = useSelector((state: AppStateType) => state.league.countries)
+    const leagueID = useSelector((state: AppStateType) => state.league.leagueID)
+    const seasons = useSelector((state: AppStateType) => state.league.seasons)
 
     useEffect(() => {
-        getSeasons(id).then(response => {
-            setSeasons(response.filter((item: ISeasons) => {
-                return item.season > 2015
-            }));
-        });
-    }, [id]);
-
-    useEffect(() => {
-        getCountries().then(response => {
-            setCountry(response.filter((item: ICountry) => {
-                return item.type === 'League'
-            }));
-        });
-    }, [id]);
+        dispatch(getCountriesList())
+        dispatch(getSeasonsList(leagueID))
+    }, [leagueID])
 
     const changeID = (value: number) => {
-        setId(value);
+        dispatch(setLeagueID(value))
     }
 
     return (
@@ -40,13 +33,13 @@ const TreeSelector: React.FC = () => {
                 <div className={style.main}>
                     <TreeSelect
                         className={style.selector}
-                        value={id}
+                        placeholder='Countries and Leagues Available'
                         treeDefaultExpandAll
                         onChange={changeID}
                     >
                         <TreeNode value="parent 1-0" title="Countries and Leagues Available" disabled>
-                            {country
-                                .sort((a, b) => (a.country > b.country) ? 1 : -1)
+                            {countiesList && countiesList
+                                .sort((a: ICountry, b: ICountry) => (a.country > b.country) ? 1 : -1)
                                 .map((item: ICountry) =>
                                     <TreeNode value={item.league_id}
                                               title={`${item.country}: ${item.name}`}/>
@@ -56,13 +49,13 @@ const TreeSelector: React.FC = () => {
 
                     <TreeSelect
                         className={style.selector}
-                        value={id}
+                        placeholder='Seasons Available'
                         treeDefaultExpandAll
                         onChange={changeID}
                     >
                         <TreeNode value="parent 1-0" title="Seasons Available" disabled>
                             {seasons
-                                .sort((a, b) => (a.season > b.season) ? 1 : -1)
+                                .sort((a: ISeasons, b: ISeasons) => (a.season > b.season) ? 1 : -1)
                                 .map((item: ISeasons) =>
                                     <TreeNode value={item.league_id}
                                               title={`season ${item.season} - ${item.season + 1}`}/>
@@ -71,9 +64,10 @@ const TreeSelector: React.FC = () => {
                     </TreeSelect>
                 </div>
             </Header>
-            <Results leagueID={id}/>
+            <Results />
         </div>
     );
 
 }
+
 export default TreeSelector;
