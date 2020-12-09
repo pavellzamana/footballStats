@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {applyMiddleware, compose, createStore} from "redux";
+import {applyMiddleware, createStore} from "redux";
 import {rootReducer} from "./redux/rootReducer";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import './index.css';
 
-export const store = createStore(rootReducer, compose(
-    applyMiddleware(thunk)
-));
+const middleware = [thunk];
+const applied = composeWithDevTools ( applyMiddleware(...middleware) );
+const store = createStore(rootReducer, applied);
 
 const app = (
     <Provider store={store}>
