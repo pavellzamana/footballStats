@@ -71,6 +71,7 @@ const Results: React.FC<leagueType> = () => {
                             date={item.event_timestamp}
                             round={item.round}
                             isPostponed={item.firstHalfStart}
+                            fixtureID={item.fixture_id}
                             key={i}/>)
                 )}
             </div>

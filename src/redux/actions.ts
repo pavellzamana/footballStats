@@ -1,7 +1,7 @@
-import {GET_COUNTRIES, GET_RESULTS, GET_SEASONS, SET_LEAGUEID} from "./types";
+import {GET_COUNTRIES, GET_RESULTS, GET_SEASONS, SET_DETAILS, SET_LEAGUEID} from "./types";
 import {ICountry, ISeasons} from "../components/common/types/Type";
 import {ThunkAction} from "redux-thunk";
-import {getCountries, getMatches, getSeasons} from "../api/Api";
+import {getCountries, getFixtureDetails, getSeasons} from "../api/Api";
 import {AnyAction} from "redux";
 
 export const setLeagueID = (id: number) => {
@@ -35,13 +35,26 @@ export const getSeasonsList = (leagueID: number): ThunkAction<void, {}, {}, AnyA
         })
     }
 
-
 export const getResults = (payload: any) => {
     return {
         type: GET_RESULTS,
         payload
     }
 }
+
+
+
+export const setFixtureData = (fixture_id: number, eventDate: string): ThunkAction<void, {}, {}, AnyAction> =>
+    async (dispatch) => {
+    const fixture = await getFixtureDetails(fixture_id)
+        dispatch({
+            type: SET_DETAILS,
+            fixture_id,
+            fixture,
+            eventDate
+        })
+    }
+
 
 
 

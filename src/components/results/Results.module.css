@@ -25,7 +25,7 @@
   border-radius: 10px;
   text-align: center;
   position: relative;
-  left: 70%;
+  left: 65%;
   width: 10%;
 }
 .menu:hover {
@@ -39,7 +39,7 @@
   text-align: center;
   position: relative;
   left: 10%;
-  width: 10%;
+  width: 15%;
 }
 .calendar:hover {
   cursor: pointer;
