@@ -9,20 +9,6 @@ interface TeamResults {
     away: string
 }
 
-interface IEvents {
-    elapsed: number
-    elapsed_plus?: number
-    team_id: number
-    teamName: string
-    player_id: number
-    player: string
-    assist_id?: number
-    assist: string
-    type: string
-    detail: string
-    comments?: string
-}
-
 export interface IMatches{
     [key: string]: any
     awayTeam: Team
@@ -98,8 +84,34 @@ export interface IDetails {
         extratime?: string
         penalty?: string
     }
-    events: Array<IEvents>
+    events: {
+        elapsed: number
+        elapsed_plus?: number
+        team_id: number
+        teamName: string
+        player_id: number
+        player: string
+        assist_id?: number
+        assist: string
+        type: string
+        detail: string
+        comments?: string
+    }
     lineups: {}
     statistics: {}
     players: Array<any>
+}
+
+export interface IEvents {
+    elapsed: number
+    elapsed_plus?: number
+    team_id: number
+    teamName: string
+    player_id: number
+    player: string
+    assist_id?: number
+    assist: string
+    type: string
+    detail: string
+    comments?: string
 }

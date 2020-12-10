@@ -1,4 +1,4 @@
-import {SET_DETAILS} from "./types";
+import {SET_DETAILS, SET_FIXTURE_DETAILS} from "./types";
 
 let initialState = {
     fixture_id: null,
@@ -9,13 +9,15 @@ let initialState = {
 export const detailsReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case SET_DETAILS:
-            return {...state, fixture: action.fixture, fixture_id: action.fixtureID, eventDate: action.eventDate}
+            return {...state, fixture_id: action.fixture_id, eventDate: action.eventDate}
+        case SET_FIXTURE_DETAILS: {
+            return {...state, fixture: action.fixture}
+        }
         default:
             return state
     }
 }
-
-export interface leagueType {
+export interface detailsType {
     fixture_id?: number,
     fixture?: [],
     eventDate?: string
