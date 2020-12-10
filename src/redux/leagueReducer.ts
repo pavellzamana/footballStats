@@ -1,4 +1,4 @@
-import {GET_COUNTRIES, GET_SEASONS, SET_LEAGUEID} from "./types";
+import {GET_COUNTRIES, GET_SEASONS, SET_FIXTURE_DETAILS, SET_LEAGUEID} from "./types";
 import {ICountry, ISeasons} from "../components/common/types/Type";
 
 let initialState = {
@@ -15,6 +15,9 @@ export const leagueReducer = (state = initialState, action: any) => {
             return {...state, countries: action.countriesList}
         case GET_SEASONS:
             return {...state, seasons: action.seasonsList}
+        case SET_FIXTURE_DETAILS: {
+            return {...state, leagueID: action.league_id}
+        }
         default:
             return state
     }

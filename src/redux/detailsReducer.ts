@@ -1,4 +1,4 @@
-import {SET_DETAILS, SET_FIXTURE_DETAILS} from "./types";
+import {SET_DETAILS, SET_FIXTURE_DETAILS, SET_FIXTURE_ID} from "./types";
 
 let initialState = {
     fixture_id: null,
@@ -11,7 +11,10 @@ export const detailsReducer = (state = initialState, action: any) => {
         case SET_DETAILS:
             return {...state, fixture_id: action.fixture_id, eventDate: action.eventDate}
         case SET_FIXTURE_DETAILS: {
-            return {...state, fixture: action.fixture}
+            return {...state, fixture_id: action.fixture_id, fixture: action.fixture, eventDate: action.eventDate}
+        }
+        case SET_FIXTURE_ID: {
+            return {...state, fixture_id: action.fixture_id}
         }
         default:
             return state

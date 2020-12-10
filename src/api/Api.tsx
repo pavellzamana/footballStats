@@ -30,6 +30,6 @@ export const getCountries = () => {
 
 export const getFixtureDetails = (fixtureID: number) => {
     return instance.get(`fixtures/id/${fixtureID}`).then(
-        result => result.data.api.fixtures
+        result => result.data.api.fixtures[0]
     )
 }
