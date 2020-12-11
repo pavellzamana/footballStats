@@ -1,20 +1,27 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/rootReducer";
-import {Card, Row, Col} from "antd";
-import {detailsType} from "../../redux/detailsReducer";
+import {Card, Row, Col, Layout, Button} from "antd";
 import Preloader from "../common/preloader/Preloader";
-import {setFixture, setFixtureData, setFixtureID, setLeagueID} from "../../redux/actions";
-import style from "./Details.module.css"
-import { IEvents} from "../common/types/Type";
-import { withRouter } from "react-router-dom"
+import {setFeaturedResults, setFixture, setFixtureID} from "../../redux/actions";
+import {IDetails, IEvents} from "../common/types/Type";
+import {withRouter, useHistory, NavLink} from "react-router-dom"
 
-const DetailsWithrouter: React.FC<any> = (props) => {
+import style from "./Details.module.css"
+import moment from "moment";
+
+const { Header } = Layout
+
+const DetailsWithRouter: React.FC<any> = (props) => {
+    const featuredResults = useSelector((state: AppStateType) => state.details.featuredResults)
     const fixtureDetails = useSelector((state: AppStateType) => state.details.fixture)
+    const fixtureDate = useSelector((state: AppStateType) => state.details.eventDate)
+    const results = useSelector((state: AppStateType) => state.results.matches)
     const dispatch = useDispatch()
-    const fixID = props.location.pathname.replace('/details/', '')
-    let homeEvents;
-    let awayEvents;
+    const history = useHistory()
+    const fixID: number = props.location.pathname.replace('/details/', '')
+    let homeEvents: Array<IEvents>;
+    let awayEvents: Array<IEvents>;
 
     const icon = (event: IEvents) => {
         switch (event.type) {
@@ -35,21 +42,30 @@ const DetailsWithrouter: React.FC<any> = (props) => {
     if (fixtureDetails.events) {
         homeEvents = fixtureDetails.events.filter((event: IEvents) => event.team_id === fixtureDetails.homeTeam.team_id)
         awayEvents = fixtureDetails.events.filter((event: IEvents) => event.team_id === fixtureDetails.awayTeam.team_id)
+
     } else {
         dispatch(setFixture(fixID))
     }
 
     useEffect(() => {
         dispatch(setFixtureID(fixID))
-    }, [])
+        dispatch(setFeaturedResults(results.filter((item: IDetails) =>
+            moment.unix(item.event_timestamp).format("MMM Do YYYY") === fixtureDate)))
+    })
 
     return (
-        <div className={style.container}>
-            {fixtureDetails.events ?
-                <Card
-                    title={`Match details for ${fixtureDetails.homeTeam.team_name} - ${fixtureDetails.awayTeam.team_name}`}
-                    headStyle={{textAlign: "center"}} className={style.card+ ' ' +style.items}>
+        <>
+            <Header className={style.head}>
+                <Button className={style.button} onClick={() => history.push('/')} >‹ Back to results page</Button>
+            </Header>
+            <div className={style.container}>
+
+                {fixtureDetails.events ?
+                    <Card
+                        title={`Match details for ${fixtureDetails.homeTeam.team_name} - ${fixtureDetails.awayTeam.team_name}`}
+                        headStyle={{textAlign: "center"}} className={style.card + ' ' + style.items}>
                         <div className={style.info + ' ' + style.content}>
+                            {fixID}
                             <Row justify='space-between'>
                                 <Col span={12}><b>{fixtureDetails.homeTeam.team_name}</b></Col>
                                 <Col span={12}><b>{fixtureDetails.awayTeam.team_name}</b></Col>
@@ -66,21 +82,38 @@ const DetailsWithrouter: React.FC<any> = (props) => {
                             </Row>
                         </div>
                         <div className={style.away}>
-                            <div>{homeEvents.map((event: IEvents) =>
+                            <div>{homeEvents!.map((event: IEvents) =>
                                 <Col span={24}>{event.elapsed}. {icon(event)} {event.type === 'subst' ?
-                                event.player+ '>' +event.assist : event.player}</Col>
+                                    event.player + '>' + event.assist : event.player}</Col>
                             )}</div>
-                            <div>{awayEvents.map((event: IEvents) =>
+                            <div>{awayEvents!.map((event: IEvents) =>
                                 <Col span={24}>{event.elapsed}. {icon(event)} {event.type === 'subst' ?
-                                    event.player+ '>' +event.assist : event.player}</Col>
+                                    event.player + '>' + event.assist : event.player}</Col>
                             )}</div>
                         </div>
-                </Card> :
-                <Preloader/>}
-        </div>
+                    </Card> :
+                    <Preloader/>}
+                <Card
+                    title={`Featured Results`}
+                    headStyle={{textAlign: "center"}} className={style.card}>
+                    {featuredResults.map((item: IDetails) =>
+                        <>
+                            <NavLink to={'/details/' + item.fixture_id}>
+                                <Card className={style.featured} hoverable onClick={() => dispatch(setFixture(item.fixture_id))}>
+                                    <p className={style.info}><img src={item.homeTeam.logo} alt={'teamLogo'}
+                                                                   className={style.logo}/><span>
+                                    {item.homeTeam.team_name} {item.goalsHomeTeam}</span> -  <span>{item.goalsAwayTeam} {item.awayTeam.team_name}
+                                </span><img src={item.awayTeam.logo} alt={'teamLogo'} className={style.logo} /></p>
+                                </Card>
+                            </NavLink>
+                        </>
+                    )}
+                </Card>
+            </div>
+        </>
     )
 }
 
-const Details = withRouter(DetailsWithrouter)
+const Details = withRouter(DetailsWithRouter)
 
 export default Details

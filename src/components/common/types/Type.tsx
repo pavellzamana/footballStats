@@ -84,19 +84,7 @@ export interface IDetails {
         extratime?: string
         penalty?: string
     }
-    events: {
-        elapsed: number
-        elapsed_plus?: number
-        team_id: number
-        teamName: string
-        player_id: number
-        player: string
-        assist_id?: number
-        assist: string
-        type: string
-        detail: string
-        comments?: string
-    }
+    events: IEvents
     lineups: {}
     statistics: {}
     players: Array<any>

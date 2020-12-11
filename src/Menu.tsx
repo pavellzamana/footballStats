@@ -7,6 +7,7 @@ import Details from "./components/details/Details";
 import style from './Menu.module.css'
 import TreeSelector from "./components/results-page/ResultsPage";
 
+
 const {Content} = Layout;
 const Menu: React.FC = () => {
     return (

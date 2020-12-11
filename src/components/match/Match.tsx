@@ -5,7 +5,7 @@ import {NavLink} from 'react-router-dom'
 import {useDispatch} from "react-redux";
 
 import style from './Match.module.css'
-import {setFixtureData} from "../../redux/actions";
+import {setFixture} from "../../redux/actions";
 
 type MatchProps = {
     homeTeam: string
@@ -38,7 +38,7 @@ const Match: React.FC<MatchProps> = (props) => {
     return(
         <Space direction="vertical">
             <NavLink to={'/details/' + fixtureID}>
-                <Card title={roundNo} className={style.item} hoverable onClick={() => dispatch(setFixtureData(fixtureID, dateString))}>
+                <Card title={roundNo} className={style.item} hoverable onClick={() => dispatch(setFixture(fixtureID))}>
                     <div className={style.container}>
                         {(!isPostponed && dateEvent < moment()) && <p className={style.postpone }><b>Match Postponed</b></p>}
                         <p><img src={homeTeamLogo} alt={'teamLogo'} className={style.team_logo}/>

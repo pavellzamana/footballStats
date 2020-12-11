@@ -2,11 +2,11 @@ import {
     GET_COUNTRIES,
     GET_RESULTS,
     GET_SEASONS,
-    SET_DETAILS,
+    SET_FEATURED_RESULTS,
     SET_FIXTURE_DETAILS, SET_FIXTURE_ID,
     SET_LEAGUEID
 } from "./types";
-import {ICountry, ISeasons} from "../components/common/types/Type";
+import {ICountry, IMatches, ISeasons} from "../components/common/types/Type";
 import {ThunkAction} from "redux-thunk";
 import {getCountries, getFixtureDetails, getSeasons} from "../api/Api";
 import {AnyAction} from "redux";
@@ -50,14 +50,6 @@ export const getResults = (payload: any) => {
     }
 }
 
-export const setFixtureData = (fixture_id: number, eventDate: string) => {
-    return {
-        type: SET_DETAILS,
-        fixture_id,
-        eventDate
-    }
-}
-
 export const setFixtureID = (fixture_id: number) => {
     return {
         type: SET_FIXTURE_ID,
@@ -75,6 +67,13 @@ export const setFixture = (fixture_id: number): ThunkAction<void, {}, {}, AnyAct
             eventDate: moment.unix(fixture.event_timestamp).format("MMM Do YYYY"),
             league_id: fixture.league_id
         })
+    }
+
+    export const setFeaturedResults = (featuredResults: Array<IMatches>) => {
+        return {
+            type: SET_FEATURED_RESULTS,
+            featuredResults
+        }
     }
 
 
