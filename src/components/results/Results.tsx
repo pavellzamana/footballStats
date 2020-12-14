@@ -77,7 +77,7 @@ const Results: React.FC<leagueType> = () => {
                 )}
             </div>
         </div>
-    )
+    );
 }
 
 

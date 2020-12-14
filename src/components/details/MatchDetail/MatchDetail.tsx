@@ -87,7 +87,7 @@ const MatchDetail: React.FC = () => {
                 )}
             </Card>
         </>
-    )
+    );
 }
 
 export default MatchDetail;

@@ -40,14 +40,10 @@ const DetailsWithRouter: React.FC<any> = (props) => {
                 <Button className={style.button} onClick={() => history.push('/')} >‹ Back to results page</Button>
             </Header>
             <div className={style.container}>
-                {fixtureDetails.event_date ? <>
-                        <MatchDetail />
-                    </>
-                : <Preloader/>}
-
+                {fixtureDetails.event_date ? <MatchDetail /> : <Preloader/>}
             </div>
         </>
-    )
+    );
 }
 
 const Details = withRouter(DetailsWithRouter);

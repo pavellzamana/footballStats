@@ -48,7 +48,7 @@ const Match: React.FC<MatchProps> = (props) => {
                 </Card>
             </NavLink>
         </Space>
-    )
+    );
 }
 
 
