@@ -8,7 +8,7 @@ import {
 } from "./types";
 import {ICountry, IMatches, ISeasons} from "../components/common/types/Type";
 import {ThunkAction} from "redux-thunk";
-import {getCountries, getFixtureDetails, getSeasons} from "../api/Api";
+import {getCountries, getFixtureDetails, getMatches, getSeasons} from "../api/Api";
 import {AnyAction} from "redux";
 import moment from "moment";
 
@@ -18,6 +18,7 @@ export const setLeagueID = (id: number) => {
         id
     }
 }
+
 
 export const getCountriesList = (): ThunkAction<void, {}, {}, AnyAction> =>
     async (dispatch) => {
@@ -34,6 +35,7 @@ export const getCountriesList = (): ThunkAction<void, {}, {}, AnyAction> =>
 export const getSeasonsList = (leagueID: number): ThunkAction<void, {}, {}, AnyAction> =>
     async (dispatch) => {
         const response = await getSeasons(leagueID)
+
         const seasonsList = response.filter((item: ISeasons) => {
             return item.season > 2015
         })
@@ -60,12 +62,18 @@ export const setFixtureID = (fixture_id: number) => {
 export const setFixture = (fixture_id: number): ThunkAction<void, {}, {}, AnyAction> =>
     async (dispatch) => {
         const fixture = await getFixtureDetails(fixture_id)
+        const matches = await getMatches(fixture.league_id)
         dispatch({
             type: SET_FIXTURE_DETAILS,
             fixture: fixture,
             fixture_id: fixture.fixture_id,
             eventDate: moment.unix(fixture.event_timestamp).format("MMM Do YYYY"),
-            league_id: fixture.league_id
+            league_id: fixture.league_id,
+            featuredResults: fixture
+        })
+        dispatch({
+            type: GET_RESULTS,
+            payload: matches
         })
     }
 

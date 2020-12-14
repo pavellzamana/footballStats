@@ -7,10 +7,11 @@ import moment from "moment";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/rootReducer";
 import {leagueType} from "../../redux/leagueReducer";
+import {getResults} from "../../redux/actions";
 
 import 'antd/dist/antd.css';
 import styles from './Results.module.css'
-import {getResults} from "../../redux/actions";
+
 
 
 const { RangePicker } = DatePicker;
