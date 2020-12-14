@@ -21,7 +21,6 @@ type MatchProps = {
     key: number
 }
 
-
 const Match: React.FC<MatchProps> = (props) => {
     const {
         homeTeam, homeTeamLogo,
@@ -33,7 +32,7 @@ const Match: React.FC<MatchProps> = (props) => {
         dateString: string = dateEvent.format("MMM Do YYYY"),
         roundNo: string = round.replace(`Regular Season -`,
         `Date: ${dateString} Matchday:`);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     return(
         <Space direction="vertical">

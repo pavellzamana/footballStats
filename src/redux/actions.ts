@@ -12,6 +12,7 @@ import {getCountries, getFixtureDetails, getMatches, getSeasons} from "../api/Ap
 import {AnyAction} from "redux";
 import moment from "moment";
 
+
 export const setLeagueID = (id: number) => {
     return {
         type: SET_LEAGUEID,
@@ -19,30 +20,28 @@ export const setLeagueID = (id: number) => {
     }
 }
 
-
 export const getCountriesList = (): ThunkAction<void, {}, {}, AnyAction> =>
     async (dispatch) => {
-        const response = await getCountries()
+        const response = await getCountries();
         const countriesList = response.filter((item: ICountry) => {
             return item.type === 'League'
-        })
+        });
         dispatch({
             type: GET_COUNTRIES,
             countriesList
-        })
+        });
     }
 
 export const getSeasonsList = (leagueID: number): ThunkAction<void, {}, {}, AnyAction> =>
     async (dispatch) => {
-        const response = await getSeasons(leagueID)
-
+        const response = await getSeasons(leagueID);
         const seasonsList = response.filter((item: ISeasons) => {
             return item.season > 2015
-        })
+        });
         dispatch({
             type: GET_SEASONS,
             seasonsList
-        })
+        });
     }
 
 export const getResults = (payload: any) => {
@@ -61,8 +60,8 @@ export const setFixtureID = (fixture_id: number) => {
 
 export const setFixture = (fixture_id: number): ThunkAction<void, {}, {}, AnyAction> =>
     async (dispatch) => {
-        const fixture = await getFixtureDetails(fixture_id)
-        const matches = await getMatches(fixture.league_id)
+        const fixture = await getFixtureDetails(fixture_id);
+        const matches = await getMatches(fixture.league_id);
         dispatch({
             type: SET_FIXTURE_DETAILS,
             fixture: fixture,
@@ -70,11 +69,11 @@ export const setFixture = (fixture_id: number): ThunkAction<void, {}, {}, AnyAct
             eventDate: moment.unix(fixture.event_timestamp).format("MMM Do YYYY"),
             league_id: fixture.league_id,
             featuredResults: fixture
-        })
+        });
         dispatch({
             type: GET_RESULTS,
             payload: matches
-        })
+        });
     }
 
     export const setFeaturedResults = (featuredResults: Array<IMatches>) => {

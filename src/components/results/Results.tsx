@@ -10,7 +10,7 @@ import {leagueType} from "../../redux/leagueReducer";
 import {getResults} from "../../redux/actions";
 
 import 'antd/dist/antd.css';
-import styles from './Results.module.css'
+import styles from './Results.module.css';
 
 
 
@@ -20,9 +20,9 @@ const { Header } = Layout;
 const Results: React.FC<leagueType> = () => {
     const [match, setMatch] = useState<IMatches[]>([]);
     const [sortASC, setSortASC] = useState<boolean>(true);
-    const dispatch = useDispatch()
-    const leagueID = useSelector((state: AppStateType) => state.league.leagueID)
-    const resultsList = useSelector((state: AppStateType) => state.results.matches)
+    const dispatch = useDispatch();
+    const leagueID = useSelector((state: AppStateType) => state.league.leagueID);
+    const resultsList = useSelector((state: AppStateType) => state.results.matches);
 
     const sortByDate = (sortField: string, sortType: boolean) => {
         setSortASC(sortType);
@@ -41,7 +41,7 @@ const Results: React.FC<leagueType> = () => {
     useEffect(() => {
         getMatches(leagueID).then(result => {
             setMatch(result);
-            dispatch(getResults(result))
+            dispatch(getResults(result));
         })
     }, [leagueID]);
 
@@ -76,7 +76,6 @@ const Results: React.FC<leagueType> = () => {
                             key={i}/>)
                 )}
             </div>
-
         </div>
     )
 }

@@ -4,9 +4,8 @@ import { Layout } from 'antd';
 import { Route, Switch } from "react-router-dom";
 import Details from "./components/details/Details";
 
-import style from './Menu.module.css'
+import style from './Menu.module.css';
 import TreeSelector from "./components/results-page/ResultsPage";
-
 
 const {Content} = Layout;
 const Menu: React.FC = () => {

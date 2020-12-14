@@ -1,7 +1,7 @@
 import {combineReducers} from "redux";
 import {leagueReducer} from "./leagueReducer";
 import {resultsReducer} from "./resultsReducer";
-import {detailsReducer} from "./detailsReducer"
+import {detailsReducer} from "./detailsReducer";
 
 export const rootReducer = combineReducers({
     league: leagueReducer,
