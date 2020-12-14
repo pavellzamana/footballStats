@@ -59,13 +59,11 @@ const DetailsWithRouter: React.FC<any> = (props) => {
                 <Button className={style.button} onClick={() => history.push('/')} >‹ Back to results page</Button>
             </Header>
             <div className={style.container}>
-
                 {fixtureDetails.events ?
                     <Card
                         title={`Match details for ${fixtureDetails.homeTeam.team_name} - ${fixtureDetails.awayTeam.team_name}`}
                         headStyle={{textAlign: "center"}} className={style.card + ' ' + style.items}>
                         <div className={style.info + ' ' + style.content}>
-                            {fixID}
                             <Row justify='space-between'>
                                 <Col span={12}><b>{fixtureDetails.homeTeam.team_name}</b></Col>
                                 <Col span={12}><b>{fixtureDetails.awayTeam.team_name}</b></Col>
