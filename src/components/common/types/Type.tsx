@@ -4,6 +4,10 @@ interface Team  {
     logo: string
 }
 
+interface TeamResults {
+    home: string
+    away: string
+}
 
 export interface IMatches{
     [key: string]: any
@@ -49,4 +53,53 @@ export interface ICountry {
     name: string
     country: string
     type: string
+}
+
+export interface IDetails {
+    fixture_id: number
+    league_id: number
+    league: {
+        name: string
+        country: string
+        logo: string
+        flag: string
+    }
+    event_date: string
+    event_timestamp: number
+    firstHalfStart: number
+    secondHalfStart: number
+    round: string
+    status: string
+    statusShort: string
+    elapsed: number
+    venue: string
+    referee: string
+    homeTeam: Team
+    awayTeam: Team
+    goalsHomeTeam: number
+    goalsAwayTeam: number
+    score: {
+        halftime: string
+        fulltime: string
+        extratime?: string
+        penalty?: string
+    }
+    events: IEvents
+    lineups: {}
+    statistics: {}
+    players: Array<any>
+}
+
+export interface IEvents {
+    elapsed: number
+    elapsed_plus?: number
+    team_id: number
+    teamName: string
+    player_id: number
+    player: string
+    assist_id?: number
+    assist: string
+    type: string
+    detail: string
+    comments?: string
 }

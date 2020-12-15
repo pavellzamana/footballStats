@@ -7,24 +7,24 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/rootReducer";
 import {leagueType} from "../../redux/leagueReducer";
 
-import style from './ResultsPage.module.css'
+import style from './ResultsPage.module.css';
 
 const { TreeNode } = TreeSelect;
 const { Header } = Layout;
 
 const TreeSelector: React.FC<leagueType> = () => {
-    const dispatch = useDispatch()
-    const countiesList = useSelector((state: AppStateType) => state.league.countries)
-    const leagueID = useSelector((state: AppStateType) => state.league.leagueID)
-    const seasons = useSelector((state: AppStateType) => state.league.seasons)
+    const dispatch = useDispatch();
+    const countiesList = useSelector<AppStateType, ICountry[]>((state: AppStateType) => state.league.countries);
+    const leagueID = useSelector<AppStateType, number>((state) => state.league.leagueID);
+    const seasons = useSelector<AppStateType, ISeasons[]>((state: AppStateType) => state.league.seasons);
 
     useEffect(() => {
-        dispatch(getCountriesList())
-        dispatch(getSeasonsList(leagueID))
-    }, [leagueID])
+        dispatch(getCountriesList());
+        dispatch(getSeasonsList(leagueID));
+    }, [leagueID]);
 
     const changeID = (value: number) => {
-        dispatch(setLeagueID(value))
+        dispatch(setLeagueID(value));
     }
 
     return (

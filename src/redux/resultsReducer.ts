@@ -1,7 +1,7 @@
 import {GET_RESULTS} from "./types";
 import {IMatches} from "../components/common/types/Type";
 
-let resultsInitialState = {
+let resultsInitialState: resultsType = {
     matches: [],
 }
 
@@ -16,5 +16,4 @@ export const resultsReducer = (state = resultsInitialState, action: any) => {
 
 export interface resultsType {
     matches?: Array<IMatches>
-    matchesFullList?: Array<IMatches>
 }

@@ -7,24 +7,29 @@ const instance: AxiosInstance = axios.create({
     },
     baseURL: 'https://api-football-v1.p.rapidapi.com/v2/'
 
-})
+});
 
 
 export const getMatches = (league: number = 2790) => {
     return instance.get(`fixtures/league/${league}`).then(
         result => result.data.api.fixtures
-    )
+    );
 }
-
 
 export const getSeasons = (league?: number) => {
     return instance.get(`leagues/seasonsAvailable/${league}`).then(
         result => result.data.api.leagues
-    )
+    );
 }
 
 export const getCountries = () => {
     return instance.get('leagues/current/').then(
         result => result.data.api.leagues
-    )
+    );
+}
+
+export const getFixtureDetails = (fixtureID: number) => {
+    return instance.get(`fixtures/id/${fixtureID}`).then(
+        result => result.data.api.fixtures[0]
+    );
 }

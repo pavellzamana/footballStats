@@ -7,11 +7,10 @@ import moment from "moment";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/rootReducer";
 import {leagueType} from "../../redux/leagueReducer";
-
-import 'antd/dist/antd.css';
-import styles from './Results.module.css'
 import {getResults} from "../../redux/actions";
 
+import 'antd/dist/antd.css';
+import styles from './Results.module.css';
 
 const { RangePicker } = DatePicker;
 const { Header } = Layout;
@@ -19,9 +18,9 @@ const { Header } = Layout;
 const Results: React.FC<leagueType> = () => {
     const [match, setMatch] = useState<IMatches[]>([]);
     const [sortASC, setSortASC] = useState<boolean>(true);
-    const dispatch = useDispatch()
-    const leagueID = useSelector((state: AppStateType) => state.league.leagueID)
-    const resultsList = useSelector((state: AppStateType) => state.results.matches)
+    const dispatch = useDispatch();
+    const leagueID = useSelector((state: AppStateType) => state.league.leagueID);
+    const resultsList = useSelector((state: AppStateType) => state.results.matches);
 
     const sortByDate = (sortField: string, sortType: boolean) => {
         setSortASC(sortType);
@@ -40,7 +39,7 @@ const Results: React.FC<leagueType> = () => {
     useEffect(() => {
         getMatches(leagueID).then(result => {
             setMatch(result);
-            dispatch(getResults(result))
+            dispatch(getResults(result));
         })
     }, [leagueID]);
 
@@ -71,12 +70,12 @@ const Results: React.FC<leagueType> = () => {
                             date={item.event_timestamp}
                             round={item.round}
                             isPostponed={item.firstHalfStart}
+                            fixtureID={item.fixture_id}
                             key={i}/>)
                 )}
             </div>
-
         </div>
-    )
+    );
 }
 
 
