@@ -19,8 +19,8 @@ const Results: React.FC<leagueType> = () => {
     const [match, setMatch] = useState<IMatches[]>([]);
     const [sortASC, setSortASC] = useState<boolean>(true);
     const dispatch = useDispatch();
-    const leagueID = useSelector((state: AppStateType) => state.league.leagueID);
-    const resultsList = useSelector((state: AppStateType) => state.results.matches);
+    const leagueID = useSelector<AppStateType, number>((state) => state.league.leagueID);
+    const resultsList = useSelector<AppStateType, IMatches[]>((state: AppStateType) => state.results.matches);
 
     const sortByDate = (sortField: string, sortType: boolean) => {
         setSortASC(sortType);
