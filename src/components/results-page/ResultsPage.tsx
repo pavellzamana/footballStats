@@ -14,9 +14,9 @@ const { Header } = Layout;
 
 const TreeSelector: React.FC<leagueType> = () => {
     const dispatch = useDispatch();
-    const countiesList = useSelector((state: AppStateType) => state.league.countries);
-    const leagueID = useSelector((state: AppStateType) => state.league.leagueID);
-    const seasons = useSelector((state: AppStateType) => state.league.seasons);
+    const countiesList = useSelector<AppStateType, ICountry[]>((state: AppStateType) => state.league.countries);
+    const leagueID = useSelector<AppStateType, number>((state) => state.league.leagueID);
+    const seasons = useSelector<AppStateType, ISeasons[]>((state: AppStateType) => state.league.seasons);
 
     useEffect(() => {
         dispatch(getCountriesList());

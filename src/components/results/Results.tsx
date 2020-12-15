@@ -12,8 +12,6 @@ import {getResults} from "../../redux/actions";
 import 'antd/dist/antd.css';
 import styles from './Results.module.css';
 
-
-
 const { RangePicker } = DatePicker;
 const { Header } = Layout;
 

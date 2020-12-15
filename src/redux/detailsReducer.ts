@@ -1,7 +1,7 @@
 import {SET_DETAILS, SET_FEATURED_RESULTS, SET_FIXTURE_DETAILS, SET_FIXTURE_ID} from "./types";
 
 
-let initialState = {
+let initialState: detailsType = {
     fixture_id: null,
     fixture: [],
     eventDate: '',
@@ -27,7 +27,7 @@ export const detailsReducer = (state = initialState, action: any) => {
     }
 }
 export interface detailsType {
-    fixture_id?: number,
+    fixture_id?: number | null,
     fixture?: [],
     eventDate?: string,
     featuredResults?: []
