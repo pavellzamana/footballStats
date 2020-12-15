@@ -46,6 +46,6 @@ const DetailsWithRouter: React.FC<any> = (props) => {
     );
 }
 
-const Details = withRouter(DetailsWithRouter);
+const MatchDetails = withRouter(DetailsWithRouter);
 
-export default Details;
+export default MatchDetails;

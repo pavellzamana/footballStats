@@ -20,6 +20,7 @@
   height: 100%;
   margin: 0 auto;
   text-align: center;
+  background-color: #dcdfe2;
 }
 .content {
   text-align: center;
@@ -37,7 +38,7 @@
   margin: 0 auto;
 }
 .button {
-  background-color: #001529;
+  background-color: #131722;
   border: none;
   font-size: 2em;
   height: 80%;
@@ -62,5 +63,10 @@
   width: 80%;
   height: 30px;
   border-radius: 30px;
+  background-color: #dcdfe2;
+  border-color: #646e7e;
+}
+.head {
+  background-color: #131722;
 }
 /*# sourceMappingURL=Details.module.css.map */

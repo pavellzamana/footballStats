@@ -40,7 +40,7 @@ const MatchDetail: React.FC = () => {
     return (
         <>
         <Card
-            title={`Match details for ${fixtureDetails.homeTeam.team_name} - ${fixtureDetails.awayTeam.team_name}`}
+            title={'Match details for ' +fixtureDetails.homeTeam.team_name+ ' - ' +fixtureDetails.awayTeam.team_name}
             className={style.card}>
             <div className={style.info + ' ' + style.content}>
                 <Row justify='space-between'>

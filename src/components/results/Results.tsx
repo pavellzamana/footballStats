@@ -7,7 +7,7 @@ import moment from "moment";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/rootReducer";
 import {leagueType} from "../../redux/leagueReducer";
-import {getResults} from "../../redux/actions";
+import {getFullResults, getResults, setSort} from "../../redux/actions";
 
 import 'antd/dist/antd.css';
 import styles from './Results.module.css';
@@ -16,36 +16,37 @@ const { RangePicker } = DatePicker;
 const { Header } = Layout;
 
 const Results: React.FC<leagueType> = () => {
-    const [match, setMatch] = useState<IMatches[]>([]);
     const [sortASC, setSortASC] = useState<boolean>(true);
     const dispatch = useDispatch();
+    const match = useSelector((state: AppStateType) => state.results.sortedMatches)
     const leagueID = useSelector<AppStateType, number>((state) => state.league.leagueID);
     const resultsList = useSelector<AppStateType, IMatches[]>((state: AppStateType) => state.results.matches);
 
     const sortByDate = (sortField: string, sortType: boolean) => {
         setSortASC(sortType);
-        setMatch(resultsList.sort((a: IMatches, b: IMatches) => sortType ? a[sortField] - b[sortField]
-                                                                 : b[sortField] - a[sortField]));
+        dispatch(setSort(resultsList.sort((a: IMatches, b: IMatches) => sortType ? a[sortField] - b[sortField]
+            : b[sortField] - a[sortField])))
     }
 
     const dateFilter = (date: any, dateString: [string, string]) => {
         const allMatchesDeepCopy: Array<IMatches> = JSON.parse(JSON.stringify(resultsList))
-        setMatch(date ? allMatchesDeepCopy.filter(val => {
+        dispatch(setSort(date ? allMatchesDeepCopy.filter(val => {
             return val.event_timestamp > Number(moment(dateString[0]).format('X'))
                 && val.event_timestamp < Number(moment(dateString[1]).add(1, 'days').format('X'))
-        }) : resultsList);
+        }) : resultsList))
     }
 
-    useEffect(() => {
+    if (resultsList.length === 0) {
         getMatches(leagueID).then(result => {
-            setMatch(result);
             dispatch(getResults(result));
         })
-    }, [leagueID]);
+    } else {
+        dispatch(setSort(resultsList))
+    }
 
     return (
         <div>
-            <Header>
+            <Header className={styles.header}>
             <RangePicker
                 className={styles.calendar}
                 onChange={(date, dateString) => {

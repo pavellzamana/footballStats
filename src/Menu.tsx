@@ -2,10 +2,10 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { Layout } from 'antd';
 import { Route, Switch } from "react-router-dom";
-import Details from "./components/details/Details";
+import MatchDetails from "./components/details/Details";
 
 import style from './Menu.module.css';
-import TreeSelector from "./components/results-page/ResultsPage";
+import ResultsPage from "./components/results-page/ResultsPage";
 
 const {Content} = Layout;
 const Menu: React.FC = () => {
@@ -14,13 +14,13 @@ const Menu: React.FC = () => {
             <Content className={style.content_item}>
                 <Switch>
                     <Route exact path='/'
-                           render={() => <TreeSelector/> }/>
+                           render={() => <ResultsPage/> }/>
                     <Route path='/details'
-                           render={() => <Details /> }/>
+                           render={() => <MatchDetails /> }/>
                 </Switch>
             </Content>
         </Layout>
-    )
+    );
 }
 
 export default Menu;

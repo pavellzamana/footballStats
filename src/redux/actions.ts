@@ -4,7 +4,7 @@ import {
     GET_SEASONS,
     SET_FEATURED_RESULTS,
     SET_FIXTURE_DETAILS, SET_FIXTURE_ID,
-    SET_LEAGUEID
+    SET_LEAGUE_ID, SET_SORT_RESULTS
 } from "./types";
 import {ICountry, IMatches, ISeasons} from "../components/common/types/Type";
 import {ThunkAction} from "redux-thunk";
@@ -15,7 +15,7 @@ import moment from "moment";
 
 export const setLeagueID = (id: number) => {
     return {
-        type: SET_LEAGUEID,
+        type: SET_LEAGUE_ID,
         id
     }
 }
@@ -50,6 +50,23 @@ export const getResults = (payload: any) => {
         payload
     }
 }
+
+export const setSort = (payload: any) => {
+    return {
+        type: SET_SORT_RESULTS,
+        payload
+    }
+}
+export const getFullResults = (leagueID: number): ThunkAction<void, {}, {}, AnyAction> =>
+    async (dispatch) => {
+        const payload = await getMatches(leagueID);
+        console.log(payload)
+        dispatch({
+            type: GET_RESULTS,
+            payload
+        });
+    }
+
 
 export const setFixtureID = (fixture_id: number) => {
     return {

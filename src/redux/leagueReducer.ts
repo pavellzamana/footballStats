@@ -1,4 +1,4 @@
-import {GET_COUNTRIES, GET_SEASONS, SET_FIXTURE_DETAILS, SET_LEAGUEID} from "./types";
+import {GET_COUNTRIES, GET_SEASONS, SET_FIXTURE_DETAILS, SET_LEAGUE_ID} from "./types";
 import {ICountry, ISeasons} from "../components/common/types/Type";
 
 let initialState: leagueType = {
@@ -9,7 +9,7 @@ let initialState: leagueType = {
 
 export const leagueReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case SET_LEAGUEID:
+        case SET_LEAGUE_ID:
             return {...state, leagueID: action.id}
         case GET_COUNTRIES:
             return {...state, countries: action.countriesList}
