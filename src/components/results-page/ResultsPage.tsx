@@ -1,7 +1,7 @@
 import {Button, DatePicker, Layout, TreeSelect} from 'antd';
 import React, {useEffect, useState} from "react";
 import {ICountry, IMatches, ISeasons} from "../common/types/Type";
-import {getCountriesList, getFullResults, getResults, getSeasonsList, setLeagueID, setSort} from "../../redux/actions";
+import {getCountriesList, getResults, getSeasonsList, setLeagueID, setSort} from "../../redux/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/rootReducer";
 import {leagueType} from "../../redux/leagueReducer";

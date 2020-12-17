@@ -57,16 +57,6 @@ export const setSort = (payload: any) => {
         payload
     }
 }
-export const getFullResults = (leagueID: number): ThunkAction<void, {}, {}, AnyAction> =>
-    async (dispatch) => {
-        const payload = await getMatches(leagueID);
-        console.log(payload)
-        dispatch({
-            type: GET_RESULTS,
-            payload
-        });
-    }
-
 
 export const setFixtureID = (fixture_id: number) => {
     return {
