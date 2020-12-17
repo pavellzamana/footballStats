@@ -14,7 +14,7 @@ const Menu: React.FC = () => {
             <Content className={style.content_item}>
                 <Switch>
                     <Route exact path='/'
-                           render={() => <ResultsPage/> }/>
+                           render={() => <ResultsPage /> }/>
                     <Route path='/details'
                            render={() => <MatchDetails /> }/>
                 </Switch>
