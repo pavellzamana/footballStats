@@ -1,9 +1,10 @@
-import {GET_RESULTS, SET_SORT_RESULTS} from "./types";
+import {GET_RESULTS, SET_SORT_ASC, SET_SORT_RESULTS} from "./types";
 import {IMatches} from "../components/common/types/Type";
 
 let resultsInitialState: resultsType = {
     matches: [],
-    sortedMatches: []
+    sortedMatches: [],
+    sortASC: true
 }
 
 export const resultsReducer = (state = resultsInitialState, action: any) => {
@@ -13,6 +14,9 @@ export const resultsReducer = (state = resultsInitialState, action: any) => {
         case SET_SORT_RESULTS: {
             return {...state, sortedMatches: action.payload}
         }
+        case SET_SORT_ASC: {
+            return {...state, sortASC: !state.sortASC}
+        }
         default:
             return state
     }
@@ -21,4 +25,5 @@ export const resultsReducer = (state = resultsInitialState, action: any) => {
 export interface resultsType {
     matches?: Array<IMatches>
     sortedMatches?: Array<IMatches>
+    sortASC?: boolean
 }

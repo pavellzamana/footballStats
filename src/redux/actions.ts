@@ -4,7 +4,7 @@ import {
     GET_SEASONS,
     SET_FEATURED_RESULTS,
     SET_FIXTURE_DETAILS, SET_FIXTURE_ID,
-    SET_LEAGUE_ID, SET_SORT_RESULTS
+    SET_LEAGUE_ID, SET_SORT_ASC, SET_SORT_RESULTS
 } from "./types";
 import {ICountry, IMatches, ISeasons} from "../components/common/types/Type";
 import {ThunkAction} from "redux-thunk";
@@ -55,6 +55,12 @@ export const setSort = (payload: any) => {
     return {
         type: SET_SORT_RESULTS,
         payload
+    }
+}
+
+export const setSortASC = () => {
+    return {
+        type: SET_SORT_ASC
     }
 }
 

@@ -6,10 +6,13 @@
   height: 15px;
   width: 15px;
 }
+.page {
+  height: 100vh;
+  display: flex;
+}
 .container {
   width: 80%;
-  opacity: 0.97;
-  margin: 50px 100px 50px;
+  margin: 85px 100px 50px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -17,7 +20,6 @@
 .card {
   border-radius: 30px;
   width: 45%;
-  height: 100%;
   margin: 0 auto;
   text-align: center;
   background-color: #dcdfe2;
@@ -67,6 +69,11 @@
   border-color: #646e7e;
 }
 .head {
+  height: 9vh;
+  padding-top: 10px;
   background-color: #131722;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
 }
 /*# sourceMappingURL=Details.module.css.map */
