@@ -42,10 +42,12 @@ const ResultsPage: React.FC<leagueType> = () => {
         if (countiesList.length === 0) {
             dispatch(getCountriesList());
         }
-        dispatch(getSeasonsList(leagueID));
-        getMatches(leagueID).then(result => {
-            dispatch(getResults(result));
-        });
+        if (!leagueID) {
+            getMatches(leagueID).then(result => {
+                dispatch(getResults(result));
+            });
+            dispatch(getSeasonsList(leagueID));
+        }
     }, [leagueID]);
 
     const changeID = (value: number) => {

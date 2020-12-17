@@ -2,7 +2,7 @@ import {GET_COUNTRIES, GET_SEASONS, SET_FIXTURE_DETAILS, SET_LEAGUE_ID} from "./
 import {ICountry, ISeasons} from "../components/common/types/Type";
 
 let initialState: leagueType = {
-    leagueID: 2790,
+    leagueID: undefined,
     countries: [],
     seasons: []
 }
