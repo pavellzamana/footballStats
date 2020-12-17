@@ -1,18 +1,71 @@
-.main {
+.selector {
+  width: 20%;
+  position: relative;
+  margin: 0 25px 30px 0;
+}
+.col {
+  color: yellow;
+  background-color: yellow;
+}
+.header {
+  height: 60px;
+  background-color: #131722;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   padding-top: 14px;
 }
-.main .selector {
-  width: 20%;
-  position: relative;
-  left: 35px;
-  margin: 0 25px 30px 0;
-}
-.header {
-  height: 1px;
-  padding-top: 10px;
+.common {
   background-color: #131722;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  color: cornflowerblue;
+  border: 1px solid cornflowerblue;
+}
+.common:hover {
+  cursor: pointer;
+  background-color: #dcdfe2;
+}
+.item {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 15px;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-left: 10px;
+}
+.order {
+  background-color: #131722;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  color: cornflowerblue;
+  border: 1px solid cornflowerblue;
+  width: 10%;
+  left: 10%;
+}
+.order:hover {
+  cursor: pointer;
+  background-color: #dcdfe2;
+}
+.calendar {
+  background-color: #131722;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  color: cornflowerblue;
+  border: 1px solid cornflowerblue;
+  width: 15%;
+  height: 70%;
+  right: 10%;
+}
+.calendar:hover {
+  cursor: pointer;
+  background-color: #dcdfe2;
 }
 /*# sourceMappingURL=ResultsPage.module.css.map */
