@@ -62,6 +62,11 @@ const ResultsPage: React.FC<leagueType> = () => {
                     format={"MM-DD-YYYY"}
                 />
                 <TreeSelect
+                    showSearch
+                    filterTreeNode={(search, item) => {
+                        // @ts-ignore
+                        return item.title!.toLowerCase().indexOf(search.toLowerCase()) >= 0;
+                    }}
                     className={style.selector}
                     placeholder='Countries and Leagues Available'
                     treeDefaultExpandAll
