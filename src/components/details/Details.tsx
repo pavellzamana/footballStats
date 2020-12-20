@@ -35,17 +35,17 @@ const DetailsWithRouter: React.FC<any> = (props) => {
     }, [results]);
 
     return (
-        <>
+        <div className={style.page}>
             <Header className={style.head}>
                 <Button className={style.button} onClick={() => history.push('/')} >‹ Back to results page</Button>
             </Header>
             <div className={style.container}>
                 {fixtureDetails.event_date ? <MatchDetail /> : <Preloader/>}
             </div>
-        </>
+        </div>
     );
 }
 
-const Details = withRouter(DetailsWithRouter);
+const MatchDetails = withRouter(DetailsWithRouter);
 
-export default Details;
+export default MatchDetails;

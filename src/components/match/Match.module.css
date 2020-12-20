@@ -3,6 +3,10 @@
   margin: 4px;
   width: 300px;
   height: 220px;
+  background-color: #dcdfe2;
+  border: none;
+  position: relative;
+  top: 20%;
 }
 .item .container {
   display: flex;
@@ -11,7 +15,7 @@
   justify-content: center;
 }
 .item:hover {
-  background-color: #cecece;
+  background-color: #646e7e;
 }
 .score {
   float: right;

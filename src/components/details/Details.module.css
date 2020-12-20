@@ -6,10 +6,13 @@
   height: 15px;
   width: 15px;
 }
+.page {
+  height: 100vh;
+  display: flex;
+}
 .container {
   width: 80%;
-  opacity: 0.97;
-  margin: 50px 100px 50px;
+  margin: 85px 100px 50px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -17,13 +20,9 @@
 .card {
   border-radius: 30px;
   width: 45%;
-  height: 100%;
   margin: 0 auto;
   text-align: center;
-}
-.content {
-  text-align: center;
-  font-weight: bold;
+  background-color: #dcdfe2;
 }
 .score {
   font-size: 2em;
@@ -37,7 +36,7 @@
   margin: 0 auto;
 }
 .button {
-  background-color: #001529;
+  background-color: #131722;
   border: none;
   font-size: 2em;
   height: 80%;
@@ -56,11 +55,22 @@
   text-align: center;
   position: relative;
   bottom: 25px;
+  font-weight: bold;
 }
 .featured {
   margin: 0 10% 2px 10% ;
   width: 80%;
   height: 30px;
   border-radius: 30px;
+  background-color: #dcdfe2;
+  border-color: #646e7e;
+}
+.head {
+  height: 9vh;
+  padding-top: 10px;
+  background-color: #131722;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
 }
 /*# sourceMappingURL=Details.module.css.map */
