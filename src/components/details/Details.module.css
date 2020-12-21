@@ -73,4 +73,16 @@
   width: 100%;
   z-index: 100;
 }
+.result {
+  font-size: 1.2em;
+  text-align: center;
+  position: relative;
+  bottom: 25px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-around;
+}
+.result a {
+  color: #131722;
+}
 /*# sourceMappingURL=Details.module.css.map */

@@ -103,3 +103,29 @@ export interface IEvents {
     detail: string
     comments?: string
 }
+
+export interface ITable {
+    all: IPlayed
+    away: IPlayed
+    description: string
+    forme: string
+    goalsDiff: number
+    group: string
+    home: IPlayed
+    lastUpdate: string
+    logo: string
+    points: number
+    rank: number
+    status: string
+    teamName: string
+    team_id: number
+}
+
+interface IPlayed {
+    draw: number
+    goalsAgainst: number
+    goalsFor: number
+    lose: number
+    matchsPlayed: number
+    win: number
+}

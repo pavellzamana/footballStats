@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, Col, Row} from "antd";
+import { Card, Col } from "antd";
 import style from "../Details.module.css";
 import {IDetails, IEvents} from "../../common/types/Type";
 import {useDispatch, useSelector} from "react-redux";
@@ -39,21 +39,23 @@ const MatchDetail: React.FC = () => {
         <Card
             title={'Match details for ' +fixtureDetails.homeTeam.team_name+ ' - ' +fixtureDetails.awayTeam.team_name}
             className={style.card}>
-            <div className={style.info}>
-                <Row justify='space-between'>
-                    <Col span={12}><b>{fixtureDetails.homeTeam.team_name}</b></Col>
-                    <Col span={12}><b>{fixtureDetails.awayTeam.team_name}</b></Col>
-                </Row>
-                <Row justify='space-between'>
-                    <Col span={12}><img src={fixtureDetails.homeTeam.logo} alt={'teamLogo'}
+            <div className={style.result}>
+                <div>
+                    <NavLink to={'/team/' + fixtureDetails.homeTeam.team_id}>
+                        <Col span={24}>{fixtureDetails.homeTeam.team_name}</Col>
+                        <Col span={24}><img src={fixtureDetails.homeTeam.logo} alt={'teamLogo'}
+                                            className={style.img}/></Col>
+                        <Col span={24} className={style.score}>{fixtureDetails.goalsHomeTeam}</Col>
+                    </NavLink>
+                </div>
+                <div>
+                    <NavLink to={'/team/' + fixtureDetails.awayTeam.team_id}>
+                        <Col span={24}>{fixtureDetails.awayTeam.team_name}</Col>
+                    <Col span={24}><img src={fixtureDetails.awayTeam.logo} alt={'teamLogo'}
                                         className={style.img}/></Col>
-                    <Col span={12}><img src={fixtureDetails.awayTeam.logo} alt={'teamLogo'}
-                                        className={style.img}/></Col>
-                </Row>
-                <Row justify='space-between'>
-                    <Col span={12} className={style.score}>{fixtureDetails.goalsHomeTeam}</Col>
-                    <Col span={12} className={style.score}>{fixtureDetails.goalsAwayTeam}</Col>
-                </Row>
+                    <Col span={24} className={style.score}>{fixtureDetails.goalsAwayTeam}</Col>
+                    </NavLink>
+                </div>
             </div>
             {fixtureDetails.events ?
             <div className={style.away}>

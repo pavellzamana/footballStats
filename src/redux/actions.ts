@@ -1,14 +1,22 @@
 import {
     GET_COUNTRIES,
     GET_RESULTS,
-    GET_SEASONS,
+    GET_SEASONS, GET_TEAM_FIXTURE,
     SET_FEATURED_RESULTS,
     SET_FIXTURE_DETAILS, SET_FIXTURE_ID,
     SET_LEAGUE_ID, SET_SORT_ASC, SET_SORT_RESULTS
 } from "./types";
 import {ICountry, IMatches, ISeasons} from "../components/common/types/Type";
 import {ThunkAction} from "redux-thunk";
-import {getCountries, getFixtureDetails, getMatches, getSeasons} from "../api/Api";
+import {
+    getCountries,
+    getFixtureDetails,
+    getMatches,
+    getSeasons,
+    getStandings,
+    getTeamFixtures,
+    getTeamName
+} from "../api/Api";
 import {AnyAction} from "redux";
 import moment from "moment";
 
@@ -94,6 +102,19 @@ export const setFixture = (fixture_id: number): ThunkAction<void, {}, {}, AnyAct
             type: SET_FEATURED_RESULTS,
             featuredResults
         }
+    }
+
+export const getTeamFixture = (teamID: number): ThunkAction<void, {}, {}, AnyAction> =>
+    async (dispatch) => {
+        const response = await getTeamFixtures(teamID);
+        const name = await getTeamName(teamID);
+        const table = await getStandings(response[0].league_id);
+        dispatch({
+            type: GET_TEAM_FIXTURE,
+            payload: response,
+            name,
+            table: table
+        });
     }
 
 
