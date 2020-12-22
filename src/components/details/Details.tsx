@@ -1,11 +1,12 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/rootReducer";
-import { Layout, Button} from "antd";
+import { Layout, Button } from "antd";
 import Preloader from "../common/preloader/Preloader";
 import {setFeaturedResults, setFixture, setFixtureID} from "../../redux/actions";
 import {IDetails, IMatches} from "../common/types/Type";
 import {withRouter, useHistory} from "react-router-dom";
+
 import MatchDetail from "./MatchDetail/MatchDetail";
 import style from "./Details.module.css";
 

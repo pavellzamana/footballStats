@@ -33,3 +33,21 @@ export const getFixtureDetails = (fixtureID: number) => {
         result => result.data.api.fixtures[0]
     );
 }
+
+export const getTeamFixtures = (teamID: number) => {
+    return instance.get(`fixtures/team/${teamID}/last/30`).then(
+        result => result.data.api.fixtures
+    );
+}
+
+export const getTeamName = (teamID: number) => {
+    return instance.get(`teams/team/${teamID}`).then(
+        result => result.data.api.teams[0].name
+    );
+}
+
+export const getStandings = (leagueID: Number) => {
+    return instance.get(`leagueTable/${leagueID}`).then(
+        result => result.data.api.standings[0]
+    );
+}
