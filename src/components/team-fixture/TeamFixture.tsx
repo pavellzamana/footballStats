@@ -18,7 +18,6 @@ const Fixture: React.FC<any> = (props) => {
 	const team = useSelector<AppStateType, IDetails[]>((state) => state.team.teamFixtures);
 	const teamName = useSelector<AppStateType, string>((state) => state.team.teamName);
 	const table = useSelector<AppStateType, ITable[]>(state => state.team.table);
-
 	const setFixtureData = (id: number) => {
 		dispatch(setFixture(id));
 	};
@@ -26,7 +25,6 @@ const Fixture: React.FC<any> = (props) => {
 	useEffect(() => {
 		dispatch(getTeamFixture(teamID));
 	}, [teamID]);
-
 
 	return (
 		<div>

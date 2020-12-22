@@ -21,7 +21,6 @@ const HeaderMenu: React.FC<any> = () => {
 	const match = useSelector<AppStateType, IMatches[]>((state) => state.results.sortedMatches);
 	const sortASC = useSelector((state: AppStateType) => state.results.sortASC);
 	const resultsList = useSelector<AppStateType, IMatches[]>((state: AppStateType) => state.results.matches);
-
 	const dateFilter = (date: any, dateString: [string, string]) => {
 		const allMatchesDeepCopy: Array<IMatches> = JSON.parse(JSON.stringify(resultsList));
 		dispatch(setSort(date ? allMatchesDeepCopy.filter(val => {
@@ -29,7 +28,6 @@ const HeaderMenu: React.FC<any> = () => {
 				val.event_timestamp < Number(moment(dateString[1]).add(1, 'days').format('X'));
 		}) : resultsList));
 	};
-
 	const sortByDate = (sortField: string, sortType: boolean) => {
 		dispatch(setSortASC());
 		dispatch(setSort(match.sort((a, b) => sortType ? a[sortField] - b[sortField]
