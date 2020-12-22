@@ -27,17 +27,6 @@
   background-color: #dcdfe2;
   border-color: #646e7e;
 }
-.button {
-  background-color: #131722;
-  border: none;
-  font-size: 2em;
-  height: 80%;
-  margin-top: 6px;
-  color: white;
-}
-.button:hover {
-  background-color: #282c34;
-}
 .active {
   font-weight: bold;
 }

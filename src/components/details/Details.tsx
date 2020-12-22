@@ -5,11 +5,12 @@ import { Button, Layout } from 'antd';
 import Preloader from '../common/preloader/Preloader';
 import { setFeaturedResults, setFixture, setFixtureID } from '../../redux/actions';
 import { IDetails, IMatches } from '../common/types/Type';
-import { useHistory, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 import MatchDetail from './MatchDetail/MatchDetail';
 
 import style from './Details.module.css';
+import Return from '../common/return-button/Return';
 
 const { Header } = Layout;
 
@@ -18,7 +19,6 @@ const DetailsWithRouter: React.FC<any> = (props) => {
 	const fixtureDate = useSelector<AppStateType, string>((state: AppStateType) => state.details.eventDate);
 	const results = useSelector<AppStateType, IMatches[]>((state) => state.results.matches);
 	const dispatch = useDispatch();
-	const history = useHistory();
 	const fixID: number = props.location.pathname.replace('/details/', '');
 	const setFixtureData = (id: number) => {
 		dispatch(setFixture(id));
@@ -37,9 +37,7 @@ const DetailsWithRouter: React.FC<any> = (props) => {
 	return (
 		<div className={style.page}>
 			<Header className={style.head}>
-				<Button className={style.button} onClick={() => history.push('/')}>
-					&#60; Back to results page
-				</Button>
+				<Return />
 			</Header>
 			<div className={style.container}>
 				{fixtureDetails.event_date ? <MatchDetail /> : <Preloader />}

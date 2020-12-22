@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { Button, Card, Layout } from 'antd';
-import { NavLink, useHistory, withRouter } from 'react-router-dom';
+import { Card, Layout } from 'antd';
+import { NavLink, withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTeamFixture, setFixture } from '../../redux/actions';
 import { IDetails, ITable } from '../common/types/Type';
@@ -8,11 +8,11 @@ import { AppStateType } from '../../redux/rootReducer';
 import cn from 'classnames';
 
 import style from './TeamFixture.module.css';
+import Return from '../common/return-button/Return';
 
 const { Header } = Layout;
 
 const Fixture: React.FC<any> = (props) => {
-	const history = useHistory();
 	const teamID: number = props.location.pathname.replace('/team/', '');
 	const dispatch = useDispatch();
 	const team = useSelector<AppStateType, IDetails[]>((state) => state.team.teamFixtures);
@@ -29,7 +29,7 @@ const Fixture: React.FC<any> = (props) => {
 	return (
 		<div>
 			<Header className={style.head}>
-				<Button className={style.button} onClick={() => history.push('/')}>‹ Back to results page</Button>
+				<Return />
 			</Header>
 			<div className={style.container}>
 				<Card title='League Standings' className={style.card}>
@@ -37,11 +37,8 @@ const Fixture: React.FC<any> = (props) => {
 						<>
 							<NavLink to={'/team/' + item.team_id}>
 								<div className={style.table}>
-									<div className={cn({
-										[style.active]: item.teamName === teamName,
-									})}>
-										<img src={item.logo} alt={'teamLogo'}
-											 className={style.logo} />
+									<div className={cn({[style.active]: item.teamName === teamName})}>
+										<img src={item.logo} alt={'teamLogo'} className={style.logo} />
 										{item.teamName}
 									</div>
 									<div>
