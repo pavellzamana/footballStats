@@ -38,7 +38,7 @@
 .button:hover {
   background-color: #282c34;
 }
-.bold {
+.active {
   font-weight: bold;
 }
 .logo {

@@ -1,27 +1,27 @@
-import {GET_COUNTRIES, GET_SEASONS, SET_FIXTURE_DETAILS, SET_LEAGUE_ID} from "./types";
-import {ICountry, ISeasons} from "../components/common/types/Type";
+import { GET_COUNTRIES, GET_SEASONS, SET_FIXTURE_DETAILS, SET_LEAGUE_ID } from './types';
+import { ICountry, ISeasons } from '../components/common/types/Type';
 
-let initialState: leagueType = {
+const initialState: leagueType = {
     leagueID: undefined,
     countries: [],
-    seasons: []
-}
+    seasons: [],
+};
 
 export const leagueReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case SET_LEAGUE_ID:
-            return {...state, leagueID: action.id}
+            return { ...state, leagueID: action.id };
         case GET_COUNTRIES:
-            return {...state, countries: action.countriesList}
+            return { ...state, countries: action.countriesList };
         case GET_SEASONS:
-            return {...state, seasons: action.seasonsList}
+            return { ...state, seasons: action.seasonsList };
         case SET_FIXTURE_DETAILS: {
-            return {...state, leagueID: action.league_id}
+            return { ...state, leagueID: action.league_id };
         }
         default:
-            return state
+            return state;
     }
-}
+};
 
 export interface leagueType {
     leagueID?: number,

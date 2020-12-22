@@ -13,7 +13,7 @@ const { RangePicker } = DatePicker;
 const { TreeNode } = TreeSelect;
 const { Header } = Layout;
 
-const HeaderMenu = () => {
+const HeaderMenu: React.FC<any> = () => {
 	const dispatch = useDispatch();
 	const countiesList = useSelector<AppStateType, ICountry[]>((state: AppStateType) => state.league.countries);
 	const leagueID = useSelector<AppStateType, number>((state) => state.league.leagueID);
@@ -25,8 +25,8 @@ const HeaderMenu = () => {
 	const dateFilter = (date: any, dateString: [string, string]) => {
 		const allMatchesDeepCopy: Array<IMatches> = JSON.parse(JSON.stringify(resultsList));
 		dispatch(setSort(date ? allMatchesDeepCopy.filter(val => {
-			return val.event_timestamp > Number(moment(dateString[0]).format("X")) &&
-				val.event_timestamp < Number(moment(dateString[1]).add(1, "days").format("X"));
+			return val.event_timestamp > Number(moment(dateString[0]).format('X')) &&
+				val.event_timestamp < Number(moment(dateString[1]).add(1, 'days').format('X'));
 		}) : resultsList));
 	};
 
@@ -57,7 +57,7 @@ const HeaderMenu = () => {
 				onChange={(date, dateString) => {
 					dateFilter(date, dateString);
 				}}
-				format={"MM-DD-YYYY"}
+				format={'MM-DD-YYYY'}
 			/>
 			<TreeSelect
 				showSearch
@@ -66,27 +66,27 @@ const HeaderMenu = () => {
 					return item.title!.toLowerCase().indexOf(search.toLowerCase()) >= 0;
 				}}
 				className={style.selector}
-				placeholder="Countries and Leagues Available"
+				placeholder='Countries and Leagues Available'
 				treeDefaultExpandAll
 				onChange={changeID}
 			>
-				<TreeNode value="parent 1-0" title="Countries and Leagues Available" disabled>
+				<TreeNode value='parent 1-0' title='Countries and Leagues Available' disabled>
 					{countiesList && countiesList
 						.sort((a: ICountry, b: ICountry) => (a.country > b.country) ? 1 : -1)
 						.map((item: ICountry, i: number) =>
 							<TreeNode value={item.league_id} key={i}
-												title={item.country + ':' + item.name} />,
+									  title={item.country + ':' + item.name} />,
 						)}
 				</TreeNode>
 			</TreeSelect>
 
 			<TreeSelect
 				className={style.selector}
-				placeholder="Seasons Available"
+				placeholder='Seasons Available'
 				treeDefaultExpandAll
 				onChange={changeID}
 			>
-				<TreeNode value="parent 1-0" title="Seasons Available" disabled>
+				<TreeNode value='parent 1-0' title='Seasons Available' disabled>
 					{seasons
 						.sort((a: ISeasons, b: ISeasons) => a.season - b.season)
 						.map((item: ISeasons, i: number) =>

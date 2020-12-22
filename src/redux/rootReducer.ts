@@ -1,14 +1,14 @@
-import {combineReducers} from "redux";
-import {leagueReducer} from "./leagueReducer";
-import {resultsReducer} from "./resultsReducer";
-import {detailsReducer} from "./detailsReducer";
-import {teamReducer} from "./teamReducer";
+import { combineReducers } from 'redux';
+import { leagueReducer } from './leagueReducer';
+import { resultsReducer } from './resultsReducer';
+import { detailsReducer } from './detailsReducer';
+import { teamReducer } from './teamReducer';
 
 export const rootReducer = combineReducers({
     league: leagueReducer,
     results: resultsReducer,
     details: detailsReducer,
-    team: teamReducer
+    team: teamReducer,
 });
 
 type RootReducerType = typeof rootReducer;

@@ -5,9 +5,9 @@ import {
     SET_FEATURED_RESULTS,
     SET_FIXTURE_DETAILS, SET_FIXTURE_ID,
     SET_LEAGUE_ID, SET_SORT_ASC, SET_SORT_RESULTS
-} from "./types";
-import {ICountry, IMatches, ISeasons} from "../components/common/types/Type";
-import {ThunkAction} from "redux-thunk";
+} from './types';
+import {ICountry, IMatches, ISeasons} from '../components/common/types/Type';
+import {ThunkAction} from 'redux-thunk';
 import {
     getCountries,
     getFixtureDetails,
@@ -16,12 +16,12 @@ import {
     getStandings,
     getTeamFixtures,
     getTeamName
-} from "../api/Api";
-import {AnyAction} from "redux";
-import moment from "moment";
+} from '../api/Api';
+import {AnyAction} from 'redux';
+import moment from 'moment';
 
 
-export const setLeagueID = (id: number) => {
+export const setLeagueID: (arg: number) => void = (id) => {
     return {
         type: SET_LEAGUE_ID,
         id
@@ -54,27 +54,27 @@ export const getSeasonsList = (leagueID: number):
         });
     };
 
-export const getResults = (payload: IMatches[]) => {
+export const getResults: (arg: IMatches[]) => void = (payload) => {
     return {
         type: GET_RESULTS,
         payload
     };
 };
 
-export const setSort = (payload: IMatches[]) => {
+export const setSort: (arg: IMatches[]) => void = (payload) => {
     return {
         type: SET_SORT_RESULTS,
         payload
     };
 };
 
-export const setSortASC = () => {
+export const setSortASC: () => void = () => {
     return {
         type: SET_SORT_ASC
     };
 };
 
-export const setFixtureID: (arg0: number) => void = (fixture_id) => {
+export const setFixtureID: (arg: number) => void = (fixture_id) => {
     return {
         type: SET_FIXTURE_ID,
         fixture_id
@@ -90,7 +90,7 @@ export const setFixture = (fixture_id: number):
             type: SET_FIXTURE_DETAILS,
             fixture: fixture,
             fixture_id: fixture.fixture_id,
-            eventDate: moment.unix(fixture.event_timestamp).format("MMM Do YYYY"),
+            eventDate: moment.unix(fixture.event_timestamp).format('MMM Do YYYY'),
             league_id: fixture.league_id,
             featuredResults: fixture
         });
@@ -100,7 +100,7 @@ export const setFixture = (fixture_id: number):
         });
     };
 
-export const setFeaturedResults = (featuredResults: Array<IMatches>) => {
+export const setFeaturedResults: (arg: IMatches[]) => void = (featuredResults) => {
     return {
         type: SET_FEATURED_RESULTS,
         featuredResults
