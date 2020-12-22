@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Col } from "antd";
+import {Card, Col} from "antd";
 import style from "../Details.module.css";
 import {IDetails, IEvents} from "../../common/types/Type";
 import {useDispatch, useSelector} from "react-redux";
@@ -13,7 +13,7 @@ const MatchDetail: React.FC = () => {
     const dispatch = useDispatch();
     const setFixtureData = (id: number) => {
         dispatch(setFixture(id));
-    }
+    };
     let homeEvents: Array<IEvents>;
     let awayEvents: Array<IEvents>;
 
@@ -21,14 +21,14 @@ const MatchDetail: React.FC = () => {
         Goal: <img
             src={"https://www.pinclipart.com/picdir/big/218-2187811_thank-you-to-our-volunteers-and-sponsors-soccer.png"}
             alt={'Goal'}
-            className={style.icon}/>,
+            className={style.icon} />,
         Card: <img src={"https://upload.wikimedia.org/wikipedia/commons/f/fb/Yellow_card_icon.svg"}
                    alt={'Card'}
-                   className={style.icon}/>,
+                   className={style.icon} />,
         subst: <img src = {"http://cdn.onlinewebfonts.com/svg/img_344041.png"} alt = {'Sub'}
                     className = {style.icon}
         />
-    }
+    };
     if (fixtureDetails.events) {
         homeEvents = fixtureDetails.events.filter((event: IEvents) => event.team_id === fixtureDetails.homeTeam.team_id);
         awayEvents = fixtureDetails.events.filter((event: IEvents) => event.team_id === fixtureDetails.awayTeam.team_id);
@@ -37,49 +37,64 @@ const MatchDetail: React.FC = () => {
     return (
         <>
         <Card
-            title={'Match details for ' +fixtureDetails.homeTeam.team_name+ ' - ' +fixtureDetails.awayTeam.team_name}
+            title={"Match details for " + fixtureDetails.homeTeam.team_name + " - " + fixtureDetails.awayTeam.team_name}
             className={style.card}>
             <div className={style.result}>
                 <div>
                     <NavLink to={'/team/' + fixtureDetails.homeTeam.team_id}>
-                        <Col span={24}>{fixtureDetails.homeTeam.team_name}</Col>
-                        <Col span={24}><img src={fixtureDetails.homeTeam.logo} alt={'teamLogo'}
-                                            className={style.img}/></Col>
-                        <Col span={24} className={style.score}>{fixtureDetails.goalsHomeTeam}</Col>
+                        <Col span={24}>
+                            {fixtureDetails.homeTeam.team_name}
+                        </Col>
+                        <Col span={24}>
+                            <img src={fixtureDetails.homeTeam.logo} alt={"teamLogo"} className={style.img} />
+                        </Col>
+                        <Col span={24} className={style.score}>
+                            {fixtureDetails.goalsHomeTeam}
+                        </Col>
                     </NavLink>
                 </div>
                 <div>
                     <NavLink to={'/team/' + fixtureDetails.awayTeam.team_id}>
-                        <Col span={24}>{fixtureDetails.awayTeam.team_name}</Col>
-                    <Col span={24}><img src={fixtureDetails.awayTeam.logo} alt={'teamLogo'}
-                                        className={style.img}/></Col>
-                    <Col span={24} className={style.score}>{fixtureDetails.goalsAwayTeam}</Col>
+                        <Col span={24}>{
+                            fixtureDetails.awayTeam.team_name}
+                        </Col>
+                        <Col span={24}>
+                            <img src={fixtureDetails.awayTeam.logo} alt={"teamLogo"} className={style.img} />
+                        </Col>
+                        <Col span={24} className={style.score}>
+                            {fixtureDetails.goalsAwayTeam}
+                        </Col>
                     </NavLink>
                 </div>
             </div>
             {fixtureDetails.events ?
-            <div className={style.away}>
-                <div>{homeEvents!.map((event: IEvents) =>
-                    <Col span={24}>{event.elapsed}. {icon[`${event.type}`]} {event.type === 'subst' ?
-                        event.player + '>' + event.assist : event.player}</Col>
-                )}</div>
-                <div>{awayEvents!.map((event: IEvents) =>
-                    <Col span={24}>{event.elapsed}. {icon[`${event.type}`]} {event.type === 'subst' ?
-                        event.player + '>' + event.assist : event.player}</Col>
-                )}</div>
-            </div> : <b>Match Postponed</b>}
+              <div className={style.away}>
+                  <div>{homeEvents!.map((event: IEvents, i: number) =>
+                    <Col span={24} key={i}>
+                        {event.elapsed}. {icon[`${event.type}`]}
+                        {event.type === "subst" ? event.player + ">" + event.assist : event.player}
+                    </Col>,
+                  )}
+                  </div>
+                  <div>{awayEvents!.map((event: IEvents, i: number) =>
+                    <Col span={24} key={i}>
+                        {event.elapsed}. {icon[`${event.type}`]}
+                        {event.type === "subst" ? event.player + ">" + event.assist : event.player}
+                    </Col>,
+                  )}
+                  </div>
+              </div> :
+            <b>Match Postponed</b>}
         </Card>
-            <Card
-                title={`Featured Results`}
-                headStyle={{textAlign: "center"}} className={style.card}>
+            <Card title={"Featured Results"} headStyle={{textAlign: "center"}} className={style.card}>
                 {featuredResults.map((item: IDetails) =>
                     <>
-                        <NavLink to={'/details/' + item.fixture_id}>
+                        <NavLink to={"/details/" + item.fixture_id}>
                             <Card className={style.featured} hoverable onClick={() => setFixtureData(item.fixture_id)}>
-                                <p className={style.info}><img src={item.homeTeam.logo} alt={'teamLogo'}
-                                                               className={style.logo}/><span>
+                                <p className={style.info}><img src={item.homeTeam.logo} alt={"teamLogo"}
+                                                               className={style.logo} /><span>
                                     {item.homeTeam.team_name} {item.goalsHomeTeam}</span> -  <span>{item.goalsAwayTeam} {item.awayTeam.team_name}
-                                </span><img src={item.awayTeam.logo} alt={'teamLogo'} className={style.logo} /></p>
+                                </span><img src={item.awayTeam.logo} alt={"teamLogo"} className={style.logo} /></p>
                             </Card>
                         </NavLink>
                     </>
@@ -87,6 +102,6 @@ const MatchDetail: React.FC = () => {
             </Card>
         </>
     );
-}
+};
 
 export default MatchDetail;

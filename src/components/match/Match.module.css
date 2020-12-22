@@ -17,6 +17,9 @@
 .item:hover {
   background-color: #646e7e;
 }
+.postpone {
+  font-weight: bold;
+}
 .score {
   float: right;
 }

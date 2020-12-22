@@ -4,10 +4,6 @@ interface Team  {
     logo: string
 }
 
-interface TeamResults {
-    home: string
-    away: string
-}
 
 export interface IMatches{
     [key: string]: any
@@ -85,9 +81,9 @@ export interface IDetails {
         penalty?: string
     }
     events: IEvents
-    lineups: {}
-    statistics: {}
-    players: Array<any>
+    lineups: any
+    statistics: any
+    players: Array<string>
 }
 
 export interface IEvents {
@@ -126,6 +122,6 @@ interface IPlayed {
     goalsAgainst: number
     goalsFor: number
     lose: number
-    matchsPlayed: number
+    matchesPlayed: number
     win: number
 }

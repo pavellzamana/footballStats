@@ -25,61 +25,64 @@ export const setLeagueID = (id: number) => {
     return {
         type: SET_LEAGUE_ID,
         id
-    }
-}
+    };
+};
 
-export const getCountriesList = (): ThunkAction<void, {}, {}, AnyAction> =>
+export const getCountriesList = ():
+    ThunkAction<void, Record<string, unknown>, Record<string, unknown>, AnyAction> =>
     async (dispatch) => {
         const response = await getCountries();
         const countriesList = response.filter((item: ICountry) => {
-            return item.type === 'League'
+            return item.type === 'League';
         });
         dispatch({
             type: GET_COUNTRIES,
             countriesList
         });
-    }
+    };
 
-export const getSeasonsList = (leagueID: number): ThunkAction<void, {}, {}, AnyAction> =>
+export const getSeasonsList = (leagueID: number):
+    ThunkAction<void, Record<string, unknown>, Record<string, unknown>, AnyAction> =>
     async (dispatch) => {
         const response = await getSeasons(leagueID);
         const seasonsList = response.filter((item: ISeasons) => {
-            return item.season > 2015
+            return item.season > 2015;
         });
         dispatch({
             type: GET_SEASONS,
             seasonsList
         });
-    }
+    };
 
-export const getResults = (payload: any) => {
+export const getResults = (payload: IMatches[]) => {
     return {
         type: GET_RESULTS,
         payload
-    }
-}
+    };
+};
 
-export const setSort = (payload: any) => {
+export const setSort = (payload: IMatches[]) => {
     return {
         type: SET_SORT_RESULTS,
         payload
-    }
-}
+    };
+};
 
 export const setSortASC = () => {
     return {
         type: SET_SORT_ASC
-    }
-}
+    };
+};
 
-export const setFixtureID = (fixture_id: number) => {
+export const setFixtureID: (arg0: number) => void = (fixture_id) => {
     return {
         type: SET_FIXTURE_ID,
         fixture_id
-    }
-}
+    };
+};
 
-export const setFixture = (fixture_id: number): ThunkAction<void, {}, {}, AnyAction> =>
+export const setFixture = (fixture_id: number):
+    ThunkAction<void, Record<string, unknown>, Record<string, unknown>, AnyAction> =>
     async (dispatch) => {
         const fixture = await getFixtureDetails(fixture_id);
         const matches = await getMatches(fixture.league_id);
@@ -95,16 +98,17 @@ export const setFixture = (fixture_id: number): ThunkAction<void, {}, {}, AnyAct
             type: GET_RESULTS,
             payload: matches
         });
-    }
+    };
 
-    export const setFeaturedResults = (featuredResults: Array<IMatches>) => {
-        return {
-            type: SET_FEATURED_RESULTS,
-            featuredResults
-        }
-    }
+export const setFeaturedResults = (featuredResults: Array<IMatches>) => {
+    return {
+        type: SET_FEATURED_RESULTS,
+        featuredResults
+    };
+};
 
-export const getTeamFixture = (teamID: number): ThunkAction<void, {}, {}, AnyAction> =>
+export const getTeamFixture = (teamID: number):
+    ThunkAction<void, Record<string, unknown>, Record<string, unknown>, AnyAction> =>
     async (dispatch) => {
         const response = await getTeamFixtures(teamID);
         const name = await getTeamName(teamID);
@@ -115,7 +119,7 @@ export const getTeamFixture = (teamID: number): ThunkAction<void, {}, {}, AnyAct
             name,
             table: table
         });
-    }
+    };
 
 
 
