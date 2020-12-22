@@ -38,7 +38,7 @@ const DetailsWithRouter: React.FC<any> = (props) => {
 		<div className={style.page}>
 			<Header className={style.head}>
 				<Button className={style.button} onClick={() => history.push('/')}>
-					‹ Back to results page
+					&#60; Back to results page
 				</Button>
 			</Header>
 			<div className={style.container}>

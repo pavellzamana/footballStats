@@ -30,7 +30,8 @@ const ResultsPage: React.FC<leagueType> = () => {
 							isPostponed={item.firstHalfStart}
 							fixtureID={item.fixture_id}
 							key={i}
-						/>),
+						/>
+					)
 				)}
 			</div>
 		</div>

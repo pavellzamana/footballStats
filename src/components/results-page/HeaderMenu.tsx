@@ -15,10 +15,10 @@ const { Header } = Layout;
 
 const HeaderMenu: React.FC<any> = () => {
 	const dispatch = useDispatch();
-	const countiesList = useSelector<AppStateType, ICountry[]>((state: AppStateType) => state.league.countries);
+	const countiesList = useSelector<AppStateType, ICountry[]>((state) => state.league.countries);
 	const leagueID = useSelector<AppStateType, number>((state) => state.league.leagueID);
-	const seasons = useSelector<AppStateType, ISeasons[]>((state: AppStateType) => state.league.seasons);
-	const match = useSelector((state: AppStateType) => state.results.sortedMatches);
+	const seasons = useSelector<AppStateType, ISeasons[]>((state) => state.league.seasons);
+	const match = useSelector<AppStateType, IMatches[]>((state) => state.results.sortedMatches);
 	const sortASC = useSelector((state: AppStateType) => state.results.sortASC);
 	const resultsList = useSelector<AppStateType, IMatches[]>((state: AppStateType) => state.results.matches);
 
@@ -32,7 +32,7 @@ const HeaderMenu: React.FC<any> = () => {
 
 	const sortByDate = (sortField: string, sortType: boolean) => {
 		dispatch(setSortASC());
-		dispatch(setSort(match.sort((a: IMatches, b: IMatches) => sortType ? a[sortField] - b[sortField]
+		dispatch(setSort(match.sort((a, b) => sortType ? a[sortField] - b[sortField]
 			: b[sortField] - a[sortField])));
 	};
 
@@ -76,7 +76,8 @@ const HeaderMenu: React.FC<any> = () => {
 						.map((item: ICountry, i: number) =>
 							<TreeNode value={item.league_id} key={i}
 									  title={item.country + ':' + item.name} />,
-						)}
+						)
+					}
 				</TreeNode>
 			</TreeSelect>
 
@@ -93,7 +94,8 @@ const HeaderMenu: React.FC<any> = () => {
 							<TreeNode value={item.league_id} key={i}
 									  title={'season ' + item.season + ' - ' + (item.season + 1)}
 							/>,
-						)}
+						)
+					}
 				</TreeNode>
 			</TreeSelect>
 			<Button className={style.order} onClick={() => sortByDate('event_timestamp', !sortASC)}>

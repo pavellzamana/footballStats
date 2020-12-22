@@ -4,7 +4,6 @@ interface Team  {
     logo: string
 }
 
-
 export interface IMatches{
     [key: string]: any
     awayTeam: Team
