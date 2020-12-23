@@ -29,9 +29,7 @@ const Match: React.FC<MatchProps> = (props) => {
 			<NavLink to={'/details/' + fixture_id}>
 				<Card title={roundNo} className={style.item} hoverable onClick={() => dispatch(setFixture(fixture_id))}>
 					<div className={style.container}>
-						{(!firstHalfStart && dateEvent < moment()) &&
-						<p className={style.postpone}>Match Postponed</p>
-						}
+						{(!firstHalfStart && dateEvent < moment()) && <p className={style.postpone}>Match Postponed</p>}
 						<p>
 							<img src={homeTeamLogo} alt={'teamLogo'} className={style.team_logo} />
 							{homeTeam}
