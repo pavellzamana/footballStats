@@ -90,20 +90,18 @@ const MatchDetail: React.FC = () => {
                     <b>Match Postponed</b>}
             </Card>
             <Card title='Featured Results' headStyle={{ textAlign: 'center' }} className={style.card}>
-                {featuredResults.map((item: IDetails) =>
-                    <>
-                        <NavLink to={'/details/' + item.fixture_id}>
-                            <Card className={style.featured} hoverable onClick={() => setFixtureData(item.fixture_id)}>
-                                <p className={style.info}>
-                                    <img src={item.homeTeam.logo} alt={'teamLogo'} className={style.logo} />
-                                    {item.homeTeam.team_name} {item.goalsHomeTeam}
-                                    <span> - </span>
-                                    {item.goalsAwayTeam} {item.awayTeam.team_name}
-                                    <img src={item.awayTeam.logo} alt={'teamLogo'} className={style.logo} />
-                                </p>
-                            </Card>
-                        </NavLink>
-                    </>,
+                {featuredResults.map((item: IDetails, i: number) =>
+                    <NavLink to={'/details/' + item.fixture_id} key={i}>
+                        <Card className={style.featured} hoverable onClick={() => setFixtureData(item.fixture_id)}>
+                            <p className={style.info}>
+                                <img src={item.homeTeam.logo} alt={'teamLogo'} className={style.logo} />
+                                {item.homeTeam.team_name} {item.goalsHomeTeam}
+                                <span> - </span>
+                                {item.goalsAwayTeam} {item.awayTeam.team_name}
+                                <img src={item.awayTeam.logo} alt={'teamLogo'} className={style.logo} />
+                            </p>
+                        </Card>
+                    </NavLink>,
                 )}
             </Card>
         </>

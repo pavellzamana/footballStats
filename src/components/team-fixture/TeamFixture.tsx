@@ -33,29 +33,26 @@ const Fixture: React.FC<any> = (props) => {
 			</Header>
 			<div className={style.container}>
 				<Card title='League Standings' className={style.card}>
-					{table.map((item) =>
-						<>
-							<NavLink to={'/team/' + item.team_id}>
-								<div className={style.table}>
-									<div className={cn({[style.active]: item.teamName === teamName})}>
-										<img src={item.logo} alt={'teamLogo'} className={style.logo} />
-										{item.teamName}
-									</div>
-									<div>
-										{item.points}
-									</div>
+					{table.map((item, i: number) =>
+						<NavLink to={'/team/' + item.team_id} key={i}>
+							<div className={style.table}>
+								<div className={cn({ [style.active]: item.teamName === teamName })}>
+									<img src={item.logo} alt={'teamLogo'} className={style.logo} />
+									{item.teamName}
 								</div>
-							</NavLink>
-						</>,
+								<div>
+									{item.points}
+								</div>
+							</div>
+						</NavLink>
 					)}
 				</Card>
 
 				<Card
 					title={'Last fixtures for ' + teamName}
 					className={style.card}>
-					{team.map((item) =>
-						<>
-							<NavLink to={'/details/' + item.fixture_id}>
+					{team.map((item, i: number) =>
+							<NavLink to={'/details/' + item.fixture_id} key={i}>
 								<Card className={style.featured} hoverable
 									  onClick={() => setFixtureData(item.fixture_id)}>
 									<p className={style.info}>
@@ -66,7 +63,6 @@ const Fixture: React.FC<any> = (props) => {
 									</p>
 								</Card>
 							</NavLink>
-						</>,
 					)}
 				</Card>
 			</div>

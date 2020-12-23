@@ -69,10 +69,10 @@ const HeaderMenu: React.FC<any> = () => {
 				onChange={changeID}
 			>
 				<TreeNode value='parent 1-0' title='Countries and Leagues Available' disabled>
-					{countiesList && countiesList
-						.sort((a: ICountry, b: ICountry) => (a.country > b.country) ? 1 : -1)
-						.map((item: ICountry, i: number) =>
-							<TreeNode value={item.league_id} key={i}
+					{countiesList
+						.sort((a: ICountry, b: ICountry) => (a.country.localeCompare(b.country)))
+						.map((item: ICountry) =>
+							<TreeNode value={item.league_id}
 									  title={item.country + ':' + item.name} />,
 						)
 					}
@@ -88,8 +88,8 @@ const HeaderMenu: React.FC<any> = () => {
 				<TreeNode value='parent 1-0' title='Seasons Available' disabled>
 					{seasons
 						.sort((a: ISeasons, b: ISeasons) => a.season - b.season)
-						.map((item: ISeasons, i: number) =>
-							<TreeNode value={item.league_id} key={i}
+						.map((item: ISeasons) =>
+							<TreeNode value={item.league_id}
 									  title={'season ' + item.season + ' - ' + (item.season + 1)}
 							/>,
 						)

@@ -4,6 +4,11 @@ interface Team  {
     logo: string
 }
 
+interface ITeams {
+    home: string
+    away: string
+}
+
 export interface IMatches{
     [key: string]: any
     awayTeam: Team
@@ -50,6 +55,14 @@ export interface ICountry {
     type: string
 }
 
+interface IPlayer {
+    number: number
+    player: string
+    player_id: number
+    pos: string
+    team_id: number
+}
+
 export interface IDetails {
     fixture_id: number
     league_id: number
@@ -80,8 +93,33 @@ export interface IDetails {
         penalty?: string
     }
     events: IEvents
-    lineups: any
-    statistics: any
+    lineups: {
+        [key: string]: {
+            coach: string
+            coach_id: number
+            formation: string
+            startXI: IPlayer[]
+            substitutes: IPlayer[]
+        }
+    }
+    statistics: {
+        'Ball Possession': ITeams
+        'Blocked Shots': ITeams
+        'Corner Kicks': ITeams
+        Fouls: ITeams
+        'Goalkeeper Saves': ITeams
+        Offsides: ITeams
+        'Passes %': ITeams
+        'Passes accurate': ITeams
+        'Red Cards': ITeams
+        'Shots insidebox': ITeams
+        'Shots off Goal': ITeams
+        'Shots on Goal': ITeams
+        'Shots outsidebox': ITeams
+        'Total Shots': ITeams
+        'Total passes': ITeams
+        'Yellow Cards': ITeams
+    }
     players: Array<string>
 }
 

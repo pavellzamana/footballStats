@@ -4,10 +4,10 @@ import {
     GET_SEASONS, GET_TEAM_FIXTURE,
     SET_FEATURED_RESULTS,
     SET_FIXTURE_DETAILS, SET_FIXTURE_ID,
-    SET_LEAGUE_ID, SET_SORT_ASC, SET_SORT_RESULTS
+    SET_LEAGUE_ID, SET_SORT_ASC, SET_SORT_RESULTS,
 } from './types';
-import {ICountry, IMatches, ISeasons} from '../components/common/types/Type';
-import {ThunkAction} from 'redux-thunk';
+import { ICountry, IMatches } from '../components/common/types/Type';
+import { ThunkAction } from 'redux-thunk';
 import {
     getCountries,
     getFixtureDetails,
@@ -15,9 +15,9 @@ import {
     getSeasons,
     getStandings,
     getTeamFixtures,
-    getTeamName
+    getTeamName,
 } from '../api/Api';
-import {AnyAction} from 'redux';
+import { AnyAction } from 'redux';
 import moment from 'moment';
 
 
@@ -44,10 +44,7 @@ export const getCountriesList = ():
 export const getSeasonsList = (leagueID: number):
     ThunkAction<void, Record<string, unknown>, Record<string, unknown>, AnyAction> =>
     async (dispatch) => {
-        const response = await getSeasons(leagueID);
-        const seasonsList = response.filter((item: ISeasons) => {
-            return item.season > 2015;
-        });
+        const seasonsList = await getSeasons(leagueID);
         dispatch({
             type: GET_SEASONS,
             seasonsList
