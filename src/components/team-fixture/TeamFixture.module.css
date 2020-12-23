@@ -34,6 +34,9 @@
   width: 5%;
   height: 5%;
 }
+.icon {
+  width: 13%;
+}
 .head {
   height: 9vh;
   padding-top: 10px;

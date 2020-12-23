@@ -37,14 +37,12 @@ const Fixture: React.FC<any> = (props) => {
 						<NavLink to={'/team/' + item.team_id} key={i}>
 							<div className={style.table}>
 								<div className={cn({ [style.active]: item.teamName === teamName })}>
-									<img src={item.logo} alt={'teamLogo'} className={style.logo} />
-									{item.teamName}
+									<img src={item.logo} alt={'teamLogo'} className={style.icon} />
+									<span>{item.teamName}</span>
 								</div>
-								<div>
-									{item.points}
-								</div>
+								{item.points}
 							</div>
-						</NavLink>
+						</NavLink>,
 					)}
 				</Card>
 
@@ -52,17 +50,17 @@ const Fixture: React.FC<any> = (props) => {
 					title={'Last fixtures for ' + teamName}
 					className={style.card}>
 					{team.map((item, i: number) =>
-							<NavLink to={'/details/' + item.fixture_id} key={i}>
-								<Card className={style.featured} hoverable
-									  onClick={() => setFixtureData(item.fixture_id)}>
-									<p className={style.info}>
-										<img src={item.homeTeam.logo} alt={'teamLogo'} className={style.logo} />
-										<span>{item.homeTeam.team_name} {item.goalsHomeTeam} - </span>
-										<span>{item.goalsAwayTeam} {item.awayTeam.team_name}</span>
-										<img src={item.awayTeam.logo} alt={'teamLogo'} className={style.logo} />
-									</p>
-								</Card>
-							</NavLink>
+						<NavLink to={'/details/' + item.fixture_id} key={i}>
+							<Card className={style.featured} hoverable
+								  onClick={() => setFixtureData(item.fixture_id)}>
+								<p className={style.info}>
+									<img src={item.homeTeam.logo} alt={'teamLogo'} className={style.logo} />
+									<span>{item.homeTeam.team_name} {item.goalsHomeTeam} - </span>
+									<span>{item.goalsAwayTeam} {item.awayTeam.team_name}</span>
+									<img src={item.awayTeam.logo} alt={'teamLogo'} className={style.logo} />
+								</p>
+							</Card>
+						</NavLink>,
 					)}
 				</Card>
 			</div>
