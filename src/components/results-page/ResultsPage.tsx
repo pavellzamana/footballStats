@@ -17,21 +17,7 @@ const ResultsPage: React.FC<leagueType> = () => {
 			<HeaderMenu />
 			<div className={style.item}>
 				{match.map(
-					((item: IMatches, i: number) =>
-						<Match
-							homeTeam={item.homeTeam.team_name}
-							homeTeamLogo={item.homeTeam.logo}
-							goalsHome={item.goalsHomeTeam}
-							awayTeam={item.awayTeam.team_name}
-							awayTeamLogo={item.awayTeam.logo}
-							goalsAway={item.goalsAwayTeam}
-							date={item.event_timestamp}
-							round={item.round}
-							isPostponed={item.firstHalfStart}
-							fixtureID={item.fixture_id}
-							key={i}
-						/>
-					)
+					((item: IMatches, i: number) => <Match state={item} key={i} />),
 				)}
 			</div>
 		</div>
