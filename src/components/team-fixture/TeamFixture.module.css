@@ -43,7 +43,7 @@
   background-color: #131722;
   position: fixed;
   width: 100%;
-  z-index: 100;
+  z-index: 1;
 }
 .table {
   display: flex;
