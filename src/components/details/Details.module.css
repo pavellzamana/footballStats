@@ -28,12 +28,10 @@
   font-size: 2em;
 }
 .events {
-  font-size: 1em;
-}
-.away {
   display: flex;
   justify-content: space-around;
   margin: 0 auto;
+  font-size: 1em;
 }
 .button {
   background-color: #131722;
@@ -84,5 +82,8 @@
 }
 .result a {
   color: #131722;
+}
+.team {
+  display: grid;
 }
 /*# sourceMappingURL=Details.module.css.map */

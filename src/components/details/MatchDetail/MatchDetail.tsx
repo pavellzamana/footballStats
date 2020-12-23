@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from 'antd';
-import { IDetails, IEvents } from '../../common/types/Type';
+import { IDetails, IEvents, Team } from '../../common/types/Type';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppStateType } from '../../../redux/rootReducer';
 import { NavLink } from 'react-router-dom';
@@ -15,19 +15,17 @@ const MatchDetail: React.FC = () => {
     const setFixtureData = (id: number) => {
         dispatch(setFixture(id));
     };
-    let homeEvents: Array<IEvents>;
-    let awayEvents: Array<IEvents>;
+    let homeEvents: Array<IEvents> | undefined = undefined;
+    let awayEvents: Array<IEvents> | undefined = undefined;
+    const {homeTeam, awayTeam, goalsHomeTeam, goalsAwayTeam} = fixtureDetails;
     const icon: any = {
         Goal: <img
             src={'https://www.pinclipart.com/picdir/big/218-2187811_thank-you-to-our-volunteers-and-sponsors-soccer.png'}
-            alt={'Goal'}
-            className={style.icon} />,
+            alt={'Goal'} className={style.icon} />,
         Card: <img src={'https://upload.wikimedia.org/wikipedia/commons/f/fb/Yellow_card_icon.svg'}
-                   alt={'Card'}
-                   className={style.icon} />,
+                   alt={'Card'} className={style.icon} />,
         subst: <img src={'http://cdn.onlinewebfonts.com/svg/img_344041.png'} alt={'Sub'}
-                    className={style.icon}
-        />,
+                    className={style.icon} />,
     };
     if (fixtureDetails.events) {
         homeEvents = fixtureDetails.events.filter((event: IEvents) =>
@@ -35,6 +33,28 @@ const MatchDetail: React.FC = () => {
         awayEvents = fixtureDetails.events.filter((event: IEvents) =>
                      event.team_id === fixtureDetails.awayTeam.team_id);
     }
+    const events = (eventType: typeof homeEvents) => {
+        return (
+            <div>{eventType!.map((event: IEvents, i: number) =>
+                <div key={i}>
+                    {event.elapsed}. {icon[`${event.type}`]}
+                    {event.type === 'subst' ? event.player + '>' + event.assist : event.player}
+                </div>,
+            )}
+            </div>
+        );
+    };
+    const teams = (teamType: Team, goals: number) => {
+        return (
+            <NavLink to={'/team/' + teamType.team_id}>
+                <div className={style.team}>
+                    {teamType.team_name}
+                    <img src={teamType.logo} alt={'teamLogo'} className={style.img} />
+                    <span className={style.score}>{goals}</span>
+                </div>
+            </NavLink>
+        );
+    };
 
     return (
         <>
@@ -43,51 +63,16 @@ const MatchDetail: React.FC = () => {
                        ' - ' + fixtureDetails.awayTeam.team_name}
                 className={style.card}>
                 <div className={style.result}>
-                    <div>
-                        <NavLink to={'/team/' + fixtureDetails.homeTeam.team_id}>
-                            <div>
-                                {fixtureDetails.homeTeam.team_name}
-                            </div>
-                            <div>
-                                <img src={fixtureDetails.homeTeam.logo} alt={'teamLogo'} className={style.img} />
-                            </div>
-                            <div className={style.score}>
-                                {fixtureDetails.goalsHomeTeam}
-                            </div>
-                        </NavLink>
-                    </div>
-                    <div>
-                        <NavLink to={'/team/' + fixtureDetails.awayTeam.team_id}>
-                            <div>
-                                {fixtureDetails.awayTeam.team_name}
-                            </div>
-                            <div>
-                                <img src={fixtureDetails.awayTeam.logo} alt={'teamLogo'} className={style.img} />
-                            </div>
-                            <div className={style.score}>
-                                {fixtureDetails.goalsAwayTeam}
-                            </div>
-                        </NavLink>
-                    </div>
+                    {teams(homeTeam, goalsHomeTeam)}
+                    {teams(awayTeam, goalsAwayTeam)}
                 </div>
                 {fixtureDetails.events ?
-                    <div className={style.away}>
-                        <div>{homeEvents!.map((event: IEvents, i: number) =>
-                            <div key={i}>
-                                {event.elapsed}. {icon[`${event.type}`]}
-                                {event.type === 'subst' ? event.player + '>' + event.assist : event.player}
-                            </div>,
-                        )}
-                        </div>
-                        <div>{awayEvents!.map((event: IEvents, i: number) =>
-                            <div key={i}>
-                                {event.elapsed}. {icon[`${event.type}`]}
-                                {event.type === 'subst' ? event.player + '>' + event.assist : event.player}
-                            </div>,
-                        )}
-                        </div>
+                    <div className={style.events}>
+                        {events(homeEvents)}
+                        {events(awayEvents)}
                     </div> :
-                    <b>Match Postponed</b>}
+                    <b>Match Postponed</b>
+                }
             </Card>
             <Card title='Featured Results' headStyle={{ textAlign: 'center' }} className={style.card}>
                 {featuredResults.map((item: IDetails, i: number) =>
