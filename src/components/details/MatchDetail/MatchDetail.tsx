@@ -89,7 +89,7 @@ const MatchDetail: React.FC = () => {
                     </div> :
                     <b>Match Postponed</b>}
             </Card>
-            <Card title={'Featured Results'} headStyle={{ textAlign: 'center' }} className={style.card}>
+            <Card title='Featured Results' headStyle={{ textAlign: 'center' }} className={style.card}>
                 {featuredResults.map((item: IDetails) =>
                     <>
                         <NavLink to={'/details/' + item.fixture_id}>
