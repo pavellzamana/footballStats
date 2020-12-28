@@ -1,10 +1,10 @@
 import {
     GET_COUNTRIES,
     GET_RESULTS,
-    GET_SEASONS, GET_TEAM_FIXTURE,
+    GET_SEASONS, GET_TEAM_FIXTURE, PASSWORD_CHANGE,
     SET_FEATURED_RESULTS,
     SET_FIXTURE_DETAILS, SET_FIXTURE_ID,
-    SET_LEAGUE_ID, SET_SORT_ASC, SET_SORT_RESULTS,
+    SET_LEAGUE_ID, SET_SORT_ASC, SET_SORT_RESULTS, USERNAME_CHANGE,
 } from './types';
 import { ICountry, IMatches } from '../components/common/types/Type';
 import { ThunkAction } from 'redux-thunk';
@@ -118,8 +118,16 @@ export const getTeamFixture = (teamID: number):
         });
     };
 
+export const changeLoginData: (arg: string) => void = (payload) => {
+    return {
+        type: USERNAME_CHANGE,
+        payload
+    };
+};
 
-
-
-
-
+export const changePasswordData: (arg: string) => void = (payload) => {
+    return {
+        type: PASSWORD_CHANGE,
+        payload
+    };
+};

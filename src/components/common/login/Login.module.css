@@ -1,0 +1,67 @@
+.login {
+  display: flex;
+  margin-left: 25px;
+  position: relative;
+}
+.login .input {
+  width: 35%;
+  height: 33px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.login .input :global .ant-input {
+  background-color: #131722;
+  color: cornflowerblue;
+  border-radius: 10px;
+  border: 1px solid cornflowerblue;
+}
+.login .input :global .ant-input:hover {
+  background-color: #dcdfe2;
+}
+.login .submit {
+  background-color: #131722;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  color: cornflowerblue;
+  border: 1px solid cornflowerblue;
+}
+.login .submit:hover {
+  cursor: pointer;
+  background-color: #dcdfe2;
+}
+:global .ant-form-item-control {
+  height: 33px;
+}
+:global .ant-input-affix-wrapper {
+  background-color: #131722;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  color: cornflowerblue;
+  border: 1px solid cornflowerblue;
+}
+:global .ant-input-affix-wrapper:hover {
+  cursor: pointer;
+  background-color: #dcdfe2;
+}
+:global .ant-input-affix-wrapper .ant-input {
+  background-color: #131722;
+  color: cornflowerblue;
+}
+:global .ant-input-affix-wrapper .ant-input:hover {
+  background-color: #dcdfe2;
+}
+.common {
+  background-color: #131722;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  color: cornflowerblue;
+  border: 1px solid cornflowerblue;
+}
+.common:hover {
+  cursor: pointer;
+  background-color: #dcdfe2;
+}
+/*# sourceMappingURL=Login.module.css.map */
