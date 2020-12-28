@@ -11,3 +11,5 @@ export const SET_SORT_ASC = 'SET_SORT_ASC';
 export const GET_TEAM_FIXTURE = 'GET_TEAM_FIXTURE';
 export const USERNAME_CHANGE = 'USER/USERNAME_CHANGE';
 export const PASSWORD_CHANGE = 'USER/PASSWORD_CHANGE';
+export const LOG_IN = 'USER/LOG_IN';
+export const LOG_OUT = 'USER/LOG_OUT';

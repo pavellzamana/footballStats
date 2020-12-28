@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppStateType } from '../../redux/rootReducer';
-import { Button, Layout } from 'antd';
+import { Layout } from 'antd';
 import Preloader from '../common/preloader/Preloader';
 import { setFeaturedResults, setFixture, setFixtureID } from '../../redux/actions';
 import { IDetails, IMatches } from '../common/types/Type';

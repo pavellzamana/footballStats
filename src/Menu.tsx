@@ -7,6 +7,7 @@ import ResultsPage from './components/results-page/ResultsPage';
 import TeamFixture from './components/team-fixture/TeamFixture';
 
 import style from './Menu.module.css';
+import Registration from './components/common/registration/Registration';
 
 const { Content } = Layout;
 const Menu: React.FC = () => {
@@ -20,6 +21,8 @@ const Menu: React.FC = () => {
                            render={() => <MatchDetails />} />
                     <Route path='/team'
                            render={() => <TeamFixture />} />
+                    <Route path='/registration'
+                           render={() => <Registration />} />
                 </Switch>
             </Content>
         </Layout>

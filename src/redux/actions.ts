@@ -1,7 +1,7 @@
 import {
     GET_COUNTRIES,
     GET_RESULTS,
-    GET_SEASONS, GET_TEAM_FIXTURE, PASSWORD_CHANGE,
+    GET_SEASONS, GET_TEAM_FIXTURE, LOG_IN, LOG_OUT, PASSWORD_CHANGE,
     SET_FEATURED_RESULTS,
     SET_FIXTURE_DETAILS, SET_FIXTURE_ID,
     SET_LEAGUE_ID, SET_SORT_ASC, SET_SORT_RESULTS, USERNAME_CHANGE,
@@ -129,5 +129,18 @@ export const changePasswordData: (arg: string) => void = (payload) => {
     return {
         type: PASSWORD_CHANGE,
         payload
+    };
+};
+
+export const logIn: (arg: string) => void = (payload) => {
+    return {
+        type: LOG_IN,
+        payload
+    };
+};
+
+export const logOut: () => void = () => {
+    return {
+        type: LOG_OUT
     };
 };

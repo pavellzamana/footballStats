@@ -1,0 +1,11 @@
+.register {
+  margin: 15px auto;
+  width: 40vw;
+  border-radius: 30px;
+  text-align: center;
+  background-color: #dcdfe2;
+}
+.container {
+  height: 100vh;
+}
+/*# sourceMappingURL=Registration.module.css.map */

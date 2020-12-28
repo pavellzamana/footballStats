@@ -1,10 +1,10 @@
 .login {
   display: flex;
-  margin-left: 25px;
+  margin-left: 15px;
   position: relative;
 }
 .login .input {
-  width: 35%;
+  width: 20%;
   height: 33px;
   margin-left: 5px;
   margin-right: 5px;
@@ -30,8 +30,8 @@
   cursor: pointer;
   background-color: #dcdfe2;
 }
-:global .ant-form-item-control {
-  height: 33px;
+:global .ant-form-inline {
+  width: 500px;
 }
 :global .ant-input-affix-wrapper {
   background-color: #131722;
@@ -52,6 +52,9 @@
 :global .ant-input-affix-wrapper .ant-input:hover {
   background-color: #dcdfe2;
 }
+:global .ant-input-affix-wrapper .ant-form-item-control {
+  height: 33px;
+}
 .common {
   background-color: #131722;
   border-radius: 10px;
@@ -61,6 +64,33 @@
   border: 1px solid cornflowerblue;
 }
 .common:hover {
+  cursor: pointer;
+  background-color: #dcdfe2;
+}
+.password {
+  width: 20%;
+}
+.welcome {
+  margin-left: 15px;
+  color: cornflowerblue;
+  height: 50%;
+  padding-bottom: 15px;
+  position: relative;
+  top: 30%;
+  display: flex;
+  align-items: center;
+}
+.welcome .submit {
+  background-color: #131722;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  color: cornflowerblue;
+  border: 1px solid cornflowerblue;
+  margin-top: 30%;
+  margin-left: 10%;
+}
+.welcome .submit:hover {
   cursor: pointer;
   background-color: #dcdfe2;
 }
