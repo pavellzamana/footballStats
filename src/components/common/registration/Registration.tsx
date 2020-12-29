@@ -33,7 +33,7 @@ const Registration = () => {
 			<Header className={style.head}>
 				<Return />
 			</Header>
-			<Card title='Registration' headStyle={{ textAlign: 'center' }} className={style.register}>
+			<Card title='Registration' className={style.register}>
 				<Form
 					layout='vertical'
 					name='basic'
@@ -42,7 +42,6 @@ const Registration = () => {
 					}}
 				>
 					<Form.Item
-
 						name='username'
 						rules={[{ required: true, message: 'Please enter e-mail' }]}
 					>
@@ -52,9 +51,7 @@ const Registration = () => {
 					</Form.Item>
 
 					<Form.Item
-						name='password'
-						rules={[{ required: true, message: 'Please enter password' }]}
-
+						name='password' rules={[{ required: true, message: 'Please enter password' }]}
 					>
 						<Input.Password placeholder='Password'
 										onChange={(e) => dispatch(changePasswordData(e.target.value))}
