@@ -2,11 +2,11 @@ import React from 'react';
 import { Form, Input, Button } from 'antd';
 import * as firebase from 'firebase';
 import { useDispatch, useSelector } from 'react-redux';
-
-import style from './Login.module.css';
 import { changeLoginData, changePasswordData, logIn, logOut } from '../../../redux/actions';
 import { NavLink } from 'react-router-dom';
 import { AppStateType } from '../../../redux/rootReducer';
+
+import style from './Login.module.css';
 
 const Login: React.FC = () => {
 	const userName = useSelector<AppStateType, string>(state => state.user.email);

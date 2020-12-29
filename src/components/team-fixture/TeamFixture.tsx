@@ -6,9 +6,9 @@ import { getTeamFixture, setFixture } from '../../redux/actions';
 import { IDetails, ITable } from '../common/types/Type';
 import { AppStateType } from '../../redux/rootReducer';
 import cn from 'classnames';
+import Return from '../common/return-button/Return';
 
 import style from './TeamFixture.module.css';
-import Return from '../common/return-button/Return';
 
 const { Header } = Layout;
 

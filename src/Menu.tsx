@@ -5,9 +5,9 @@ import { Route, Switch } from 'react-router-dom';
 import MatchDetails from './components/details/Details';
 import ResultsPage from './components/results-page/ResultsPage';
 import TeamFixture from './components/team-fixture/TeamFixture';
+import Registration from './components/common/registration/Registration';
 
 import style from './Menu.module.css';
-import Registration from './components/common/registration/Registration';
 
 const { Content } = Layout;
 const Menu: React.FC = () => {

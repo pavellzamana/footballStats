@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppStateType } from '../../redux/rootReducer';
 import moment from 'moment';
 import { getMatches } from '../../api/Api';
+import Login from '../common/login/Login';
 
 import style from './ResultsPage.module.css';
-import Login from '../common/login/Login';
 
 const { RangePicker } = DatePicker;
 const { TreeNode } = TreeSelect;

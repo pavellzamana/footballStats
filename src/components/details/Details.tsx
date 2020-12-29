@@ -8,9 +8,9 @@ import { IDetails, IMatches } from '../common/types/Type';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 import MatchDetail from './MatchDetail/MatchDetail';
+import Return from '../common/return-button/Return';
 
 import style from './Details.module.css';
-import Return from '../common/return-button/Return';
 
 const { Header } = Layout;
 
