@@ -3,11 +3,11 @@ import { Button, Card, Form, Input, Layout } from 'antd';
 import { NavLink } from 'react-router-dom';
 import Return from '../return-button/Return';
 import { changeLoginData, changePasswordData } from '../../../redux/actions';
-import * as firebase from 'firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppStateType } from '../../../redux/rootReducer';
 
 import style from './Registration.module.css';
+import { registrationHandler } from '../../../firebase/handlers';
 
 const { Header } = Layout;
 
@@ -21,11 +21,9 @@ const Registration = () => {
 		setInterval(() => setServerMessage(''), 5000);
 	};
 	const register = () => {
-		firebase.default.auth().createUserWithEmailAndPassword(userName, password)
+		registrationHandler(userName, password)
 			.then(() => setMessage('Account Created'))
-			.catch(error => {
-				setMessage(error.message);
-			});
+			.catch(error => {setMessage(error.message);});
 	};
 
 	return (
