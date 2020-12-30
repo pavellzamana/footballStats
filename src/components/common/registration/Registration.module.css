@@ -1,0 +1,36 @@
+.register {
+  margin: 15px auto;
+  width: 30vw;
+  border-radius: 30px;
+  text-align: center;
+  background-color: #dcdfe2;
+}
+.container {
+  height: 100vh;
+}
+.submit {
+  background-color: #131722;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  color: cornflowerblue;
+  border: 1px solid cornflowerblue;
+}
+.submit:hover {
+  background-color: #dcdfe2;
+}
+:global .ant-input {
+  background-color: #131722;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  color: cornflowerblue;
+  border: 1px solid cornflowerblue;
+}
+:global .ant-input:hover {
+  background-color: #dcdfe2;
+}
+:global .ant-card-head {
+  text-align: center;
+}
+/*# sourceMappingURL=Registration.module.css.map */

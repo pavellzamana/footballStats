@@ -74,7 +74,7 @@ const MatchDetail: React.FC = () => {
                     <b>Match Postponed</b>
                 }
             </Card>
-            <Card title='Featured Results' headStyle={{ textAlign: 'center' }} className={style.card}>
+            <Card title='Featured Results' className={style.card}>
                 {featuredResults.map((item: IDetails, i: number) =>
                     <NavLink to={'/details/' + item.fixture_id} key={i}>
                         <Card className={style.featured} hoverable onClick={() => setFixtureData(item.fixture_id)}>

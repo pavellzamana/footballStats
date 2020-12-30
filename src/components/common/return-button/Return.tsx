@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button } from 'antd';
-import style from './Return.module.css';
 import { useHistory } from 'react-router-dom';
+
+import style from './Return.module.css';
 
 const Return: React.FC<any> = () => {
 	const history = useHistory();

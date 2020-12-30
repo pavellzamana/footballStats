@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppStateType } from '../../redux/rootReducer';
 import moment from 'moment';
 import { getMatches } from '../../api/Api';
+import Login from '../common/login/Login';
 
 import style from './ResultsPage.module.css';
 
@@ -99,6 +100,7 @@ const HeaderMenu: React.FC<any> = () => {
 			<Button className={style.order} onClick={() => sortByDate('event_timestamp', !sortASC)}>
 				Sort by Date: {sortASC ? '\u2193' : '\u2191'}
 			</Button>
+			<Login />
 		</Header>
 	);
 };

@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppStateType } from '../../redux/rootReducer';
-import { Button, Layout } from 'antd';
+import { Layout } from 'antd';
 import Preloader from '../common/preloader/Preloader';
 import { setFeaturedResults, setFixture, setFixtureID } from '../../redux/actions';
 import { IDetails, IMatches } from '../common/types/Type';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 import MatchDetail from './MatchDetail/MatchDetail';
+import Return from '../common/return-button/Return';
 
 import style from './Details.module.css';
-import Return from '../common/return-button/Return';
 
 const { Header } = Layout;
 

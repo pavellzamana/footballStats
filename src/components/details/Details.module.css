@@ -86,4 +86,7 @@
 .team {
   display: grid;
 }
+:global .ant-card-head {
+  text-align: center;
+}
 /*# sourceMappingURL=Details.module.css.map */
