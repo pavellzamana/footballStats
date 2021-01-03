@@ -16,7 +16,9 @@ const Login: React.FC = () => {
 	const dispatch = useDispatch();
 	const logInAction = () => {
 		logInHandler(userName, password)
-			.then(response => dispatch(logIn(response.user!.email!)))
+			.then(response => {
+				dispatch(logIn(response.user!.email!, response.user!.uid));
+			})
 			.catch(error => alert(error.message));
 	};
 	const logOutAction = () => {

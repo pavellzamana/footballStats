@@ -13,3 +13,5 @@ export const USERNAME_CHANGE = 'USER/USERNAME_CHANGE';
 export const PASSWORD_CHANGE = 'USER/PASSWORD_CHANGE';
 export const LOG_IN = 'USER/LOG_IN';
 export const LOG_OUT = 'USER/LOG_OUT';
+export const GET_TABLE = 'GET_TABLE';
+export const GET_FAVOURITES = 'GET_FAVOURITES';

@@ -1,7 +1,15 @@
 import { Button, DatePicker, Layout, TreeSelect } from 'antd';
 import React, { useEffect } from 'react';
 import { ICountry, IMatches, ISeasons } from '../common/types/Type';
-import { getCountriesList, getResults, getSeasonsList, setLeagueID, setSort, setSortASC } from '../../redux/actions';
+import {
+	getCountriesList,
+	getResults,
+	getSeasonsList,
+	getTable,
+	setLeagueID,
+	setSort,
+	setSortASC,
+} from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppStateType } from '../../redux/rootReducer';
 import moment from 'moment';
@@ -43,6 +51,7 @@ const HeaderMenu: React.FC<any> = () => {
 			dispatch(getResults(result));
 		});
 		dispatch(getSeasonsList(leagueID));
+		dispatch(getTable(leagueID));
 	}, [leagueID]);
 
 	const changeID = (value: number) => {

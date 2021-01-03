@@ -1,7 +1,7 @@
 import {
-    GET_COUNTRIES,
+    GET_COUNTRIES, GET_FAVOURITES,
     GET_RESULTS,
-    GET_SEASONS, GET_TEAM_FIXTURE, LOG_IN, LOG_OUT, PASSWORD_CHANGE,
+    GET_SEASONS, GET_TABLE, GET_TEAM_FIXTURE, LOG_IN, LOG_OUT, PASSWORD_CHANGE,
     SET_FEATURED_RESULTS,
     SET_FIXTURE_DETAILS, SET_FIXTURE_ID,
     SET_LEAGUE_ID, SET_SORT_ASC, SET_SORT_RESULTS, USERNAME_CHANGE,
@@ -19,6 +19,7 @@ import {
 } from '../api/Api';
 import { AnyAction } from 'redux';
 import moment from 'moment';
+import { dataPullFromDatabase } from '../firebase/handlers';
 
 
 export const setLeagueID: (arg: number) => void = (id) => {
@@ -118,6 +119,16 @@ export const getTeamFixture = (teamID: number):
         });
     };
 
+export const getTable = (leagueID: number):
+    ThunkAction<void, Record<string, unknown>, Record<string, unknown>, AnyAction> =>
+    async (dispatch) => {
+        const table = await getStandings(leagueID);
+        dispatch({
+            type: GET_TABLE,
+            table,
+        });
+    };
+
 export const changeLoginData: (arg: string) => void = (payload) => {
     return {
         type: USERNAME_CHANGE,
@@ -128,14 +139,16 @@ export const changeLoginData: (arg: string) => void = (payload) => {
 export const changePasswordData: (arg: string) => void = (payload) => {
     return {
         type: PASSWORD_CHANGE,
-        payload
+        payload,
+
     };
 };
 
-export const logIn: (arg: string) => void = (payload) => {
+export const logIn: (arg: string, arg2: string) => void = (payload, uId) => {
     return {
         type: LOG_IN,
-        payload
+        payload,
+        uId
     };
 };
 
@@ -144,3 +157,14 @@ export const logOut: () => void = () => {
         type: LOG_OUT
     };
 };
+
+export const pullFavourites = (userID: string):
+    ThunkAction<void, Record<string, unknown>, Record<string, unknown>, AnyAction> =>
+    async (dispatch) => {
+        const favourites = await dataPullFromDatabase(userID);
+        console.log(favourites);
+        dispatch({
+            type: GET_FAVOURITES,
+            favourites
+        });
+    };

@@ -5,9 +5,10 @@ import Return from '../return-button/Return';
 import { changeLoginData, changePasswordData } from '../../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppStateType } from '../../../redux/rootReducer';
+import * as firebase from 'firebase';
+import { registrationHandler, dataPushToDatabase } from '../../../firebase/handlers';
 
 import style from './Registration.module.css';
-import { registrationHandler } from '../../../firebase/handlers';
 
 const { Header } = Layout;
 
