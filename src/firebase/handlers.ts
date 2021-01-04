@@ -14,14 +14,7 @@ export const logOutHandler = () => {
 
 export const dataPushToDatabase = async (id: string, value: string) => {
 	await firebase.default.database().ref(id).push(value);
-	let response;
-	await firebase.default.database().ref(id)
-		.on('value', (elem) => {
-			if (elem.val()) {
-				response = elem.val();
-			}
-		});
-	return response;
+	await dataPullFromDatabase(id);
 };
 
 export const dataPullFromDatabase = (id: string) => {
@@ -35,8 +28,8 @@ export const dataPullFromDatabase = (id: string) => {
 	return response;
 };
 
-export const dataRemoveFromDatabase = (id: string, key: string | undefined) => {
+export const dataRemoveFromDatabase = async (id: string, key: string | undefined) => {
 	if (key) {
-		firebase.default.database().ref(id).child(key).remove();
+		await firebase.default.database().ref(id).child(key).remove();
 	}
 };

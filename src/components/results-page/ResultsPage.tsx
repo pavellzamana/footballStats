@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { IMatches, ITable } from '../common/types/Type';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppStateType } from '../../redux/rootReducer';
 import { leagueType } from '../../redux/leagueReducer';
 import Match from '../match/Match';
 import HeaderMenu from './HeaderMenu';
-
-import style from './ResultsPage.module.css';
+import { StarOutlined, StarTwoTone } from '@ant-design/icons';
 import { Card } from 'antd';
 import { NavLink } from 'react-router-dom';
-import cn from 'classnames';
-import { dataPullFromDatabase, dataPushToDatabase, dataRemoveFromDatabase } from '../../firebase/handlers';
+import { dataPushToDatabase, dataRemoveFromDatabase } from '../../firebase/handlers';
 import { pullFavourites } from '../../redux/actions';
+
+import style from './ResultsPage.module.css';
 
 const ResultsPage: React.FC<leagueType> = () => {
 	const match = useSelector((state: AppStateType) => state.results.sortedMatches);
@@ -26,13 +26,13 @@ const ResultsPage: React.FC<leagueType> = () => {
 		// @ts-ignore
 		await dataPushToDatabase(userID, name).then(dispatch(pullFavourites(userID)));
 	};
-
 	const removeFavourites = (e: any, team: string) => {
 		e.preventDefault();
 		const findKey = (team: string) => {
 				return Object.keys(favourites).find(key => favourites[key] === team);
 		};
-		dataRemoveFromDatabase(userID, findKey(team));
+		// @ts-ignore
+		dataRemoveFromDatabase(userID, findKey(team)).then(dispatch(pullFavourites(userID)));
 	};
 	return (
 		<>
@@ -48,21 +48,17 @@ const ResultsPage: React.FC<leagueType> = () => {
 						<NavLink to={'/team/' + item.team_id} key={i}>
 							<div className={style.table}>
 								<div className={style.team}>
-									{isAuth &&
-									<button onClick={(e) => {
-										favouritesHandler(e, item.teamName);
-									}}>
-										+
-									</button>
 
-									}
-									{isAuth &&
-									<button onClick={(e) => {
-										removeFavourites(e, item.teamName);
-									}}>
-										-
-									</button>
-
+									{(isAuth) &&
+									<>
+										{/*@ts-ignore*/}
+										{favourites && Object.values(favourites).find((name: string) => name === item.teamName) ?
+											<StarTwoTone twoToneColor='#FFFF00'
+														 onClick={(e) => {removeFavourites(e, item.teamName);}} />
+											:
+											<StarOutlined onClick={(e) => {favouritesHandler(e, item.teamName);}} />
+										}
+									</>
 									}
 									<img src={item.logo} alt={'teamLogo'} className={style.icon} />
 									<span>{item.teamName}</span>

@@ -30,6 +30,7 @@ const HeaderMenu: React.FC<any> = () => {
 	const match = useSelector<AppStateType, IMatches[]>((state) => state.results.sortedMatches);
 	const sortASC = useSelector((state: AppStateType) => state.results.sortASC);
 	const resultsList = useSelector<AppStateType, IMatches[]>((state: AppStateType) => state.results.matches);
+
 	const dateFilter = (date: any, dateString: [string, string]) => {
 		const allMatchesDeepCopy: Array<IMatches> = JSON.parse(JSON.stringify(resultsList));
 		dispatch(setSort(date ? allMatchesDeepCopy.filter(val => {
