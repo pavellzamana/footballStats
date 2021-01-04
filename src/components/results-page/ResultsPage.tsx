@@ -21,15 +21,15 @@ const ResultsPage: React.FC<leagueType> = () => {
 	const userID = useSelector<AppStateType, string>(state => state.user.userID);
 	const favourites = useSelector((state: AppStateType) => state.user.favourites);
 	const dispatch = useDispatch();
-	const favouritesHandler = async(e: any, name: string) => {
+	const favouritesHandler = async(e: any, team: [string, number, string]) => {
 		e.preventDefault();
 		// @ts-ignore
-		await dataPushToDatabase(userID, name).then(dispatch(pullFavourites(userID)));
+		await dataPushToDatabase(userID, team).then(dispatch(pullFavourites(userID)));
 	};
 	const removeFavourites = (e: any, team: string) => {
 		e.preventDefault();
 		const findKey = (team: string) => {
-				return Object.keys(favourites).find(key => favourites[key] === team);
+				return Object.keys(favourites).find(key => favourites[key][0] === team);
 		};
 		// @ts-ignore
 		dataRemoveFromDatabase(userID, findKey(team)).then(dispatch(pullFavourites(userID)));
@@ -52,11 +52,14 @@ const ResultsPage: React.FC<leagueType> = () => {
 									{(isAuth) &&
 									<>
 										{/*@ts-ignore*/}
-										{favourites && Object.values(favourites).find((name: string) => name === item.teamName) ?
+										{favourites && Object.values(favourites).find((name: [string, number]) =>
+											name[0] === item.teamName) ?
 											<StarTwoTone twoToneColor='#FFFF00'
 														 onClick={(e) => {removeFavourites(e, item.teamName);}} />
 											:
-											<StarOutlined onClick={(e) => {favouritesHandler(e, item.teamName);}} />
+											<StarOutlined onClick={(e) => {
+												favouritesHandler(e, [item.teamName, item.team_id, item.logo]);}}
+											/>
 										}
 									</>
 									}

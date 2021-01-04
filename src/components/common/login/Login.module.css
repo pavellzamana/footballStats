@@ -94,4 +94,17 @@
   cursor: pointer;
   background-color: #dcdfe2;
 }
+.logo {
+  height: 25px;
+}
+.container {
+  width: 15%;
+  display: flex;
+  margin-left: 15px;
+  justify-content: center;
+  margin-top: -15px;
+  align-items: flex-start;
+  object-fit: contain;
+  flex-wrap: wrap;
+}
 /*# sourceMappingURL=Login.module.css.map */

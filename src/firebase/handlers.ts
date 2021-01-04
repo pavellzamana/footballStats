@@ -12,7 +12,7 @@ export const logOutHandler = () => {
 	return firebase.default.auth().signOut();
 };
 
-export const dataPushToDatabase = async (id: string, value: string) => {
+export const dataPushToDatabase = async (id: string, value: [string, number, string]) => {
 	await firebase.default.database().ref(id).push(value);
 	await dataPullFromDatabase(id);
 };
