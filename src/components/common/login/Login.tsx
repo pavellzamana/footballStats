@@ -24,7 +24,7 @@ const Login: React.FC = () => {
 
 	if (favourites) {
 		// @ts-ignore
-		favouritesArray.push(Object.values(favourites));
+		favouritesArray.push(...Object.values(favourites));
 	}
 	const dispatch = useDispatch();
 	const logInAction = () => {
@@ -96,13 +96,12 @@ const Login: React.FC = () => {
 					</Form.Item>
 				</div>
 				<div className={style.container}>
-				{favouritesArray[0].length > 0 &&
-					favouritesArray[0].map((item, i) =>
+					{favouritesArray.map((item, i) =>
 						<NavLink to={'/team/' + item[1]} key={i}>
+							{/*@ts-ignore*/}
 							<img src={item[2]} className={style.logo} alt={item[0]} />
-						</NavLink>
-					)
-				}
+						</NavLink>)
+					}
 				</div>
 			</>
 	);

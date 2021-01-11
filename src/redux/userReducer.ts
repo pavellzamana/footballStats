@@ -18,7 +18,7 @@ export const userReducer = (state = initialState, action: any) => {
 		case LOG_IN:
 			return { ...state, loggedUser: action.payload, isAuth: true, userID: action.uId};
 		case LOG_OUT:
-			return { ...state, loggedUser: '', isAuth: false, userID: ''};
+			return { ...state, loggedUser: '', isAuth: false, userID: undefined};
 		case GET_FAVOURITES:
 			return {...state, favourites: action.favourites};
 		default:
