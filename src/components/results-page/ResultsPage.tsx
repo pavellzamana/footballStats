@@ -21,12 +21,12 @@ const ResultsPage: React.FC<leagueType> = () => {
 	const userID = useSelector<AppStateType, string>(state => state.user.userID);
 	const favourites = useSelector((state: AppStateType) => state.user.favourites);
 	const dispatch = useDispatch();
-	const favouritesHandler = async(e: any, team: [string, number, string]) => {
+	const favouritesHandler = async(e: React.SyntheticEvent, team: [string, number, string]) => {
 		e.preventDefault();
 		// @ts-ignore
-		await dataPushToDatabase(userID, team).then(dispatch(pullFavourites(userID)));
+		dataPushToDatabase(userID, team).then(dispatch(pullFavourites(userID)));
 	};
-	const removeFavourites = (e: any, team: string) => {
+	const removeFavourites = (e: React.SyntheticEvent, team: string) => {
 		e.preventDefault();
 		const findKey = (team: string) => {
 				return Object.keys(favourites).find(key => favourites[key][0] === team);

@@ -22,7 +22,7 @@ import moment from 'moment';
 import { dataPullFromDatabase } from '../firebase/handlers';
 
 
-export const setLeagueID: (arg: number) => void = (id) => {
+export const setLeagueID: (id: number) => void = (id) => {
     return {
         type: SET_LEAGUE_ID,
         id
@@ -52,14 +52,14 @@ export const getSeasonsList = (leagueID: number):
         });
     };
 
-export const getResults: (arg: IMatches[]) => void = (payload) => {
+export const getResults: (payload: IMatches[]) => void = (payload) => {
     return {
         type: GET_RESULTS,
         payload
     };
 };
 
-export const setSort: (arg: IMatches[]) => void = (payload) => {
+export const setSort: (payload: IMatches[]) => void = (payload) => {
     return {
         type: SET_SORT_RESULTS,
         payload
@@ -72,7 +72,7 @@ export const setSortASC: () => void = () => {
     };
 };
 
-export const setFixtureID: (arg: number) => void = (fixture_id) => {
+export const setFixtureID: (fixture_id: number) => void = (fixture_id) => {
     return {
         type: SET_FIXTURE_ID,
         fixture_id
@@ -98,7 +98,7 @@ export const setFixture = (fixture_id: number):
         });
     };
 
-export const setFeaturedResults: (arg: IMatches[]) => void = (featuredResults) => {
+export const setFeaturedResults: (featuredResults: IMatches[]) => void = (featuredResults) => {
     return {
         type: SET_FEATURED_RESULTS,
         featuredResults
@@ -129,14 +129,14 @@ export const getTable = (leagueID: number):
         });
     };
 
-export const changeLoginData: (arg: string) => void = (payload) => {
+export const changeLoginData: (payload: string) => void = (payload) => {
     return {
         type: USERNAME_CHANGE,
         payload
     };
 };
 
-export const changePasswordData: (arg: string) => void = (payload) => {
+export const changePasswordData: (payload: string) => void = (payload) => {
     return {
         type: PASSWORD_CHANGE,
         payload,
@@ -144,7 +144,7 @@ export const changePasswordData: (arg: string) => void = (payload) => {
     };
 };
 
-export const logIn: (arg: string, arg2: string) => void = (payload, uId) => {
+export const logIn: (payload: string, uId: string) => void = (payload, uId) => {
     return {
         type: LOG_IN,
         payload,
@@ -162,7 +162,6 @@ export const pullFavourites = (userID: string):
     ThunkAction<void, Record<string, unknown>, Record<string, unknown>, AnyAction> =>
     async (dispatch) => {
         const favourites = await dataPullFromDatabase(userID);
-        console.log(favourites);
         dispatch({
             type: GET_FAVOURITES,
             favourites

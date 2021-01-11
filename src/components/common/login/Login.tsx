@@ -8,16 +8,23 @@ import { logInHandler, logOutHandler } from '../../../firebase/handlers';
 
 import style from './Login.module.css';
 
+interface IFavourites {
+	[p: string]: [string, number, string]
+}
+
 const Login: React.FC = () => {
 	const userName = useSelector<AppStateType, string>(state => state.user.email);
 	const password = useSelector<AppStateType, string>(state => state.user.password);
 	const isAuth = useSelector<AppStateType, boolean | undefined>(state => state.user.isAuth);
 	const currentUser = useSelector<AppStateType, string>(state => state.user.loggedUser);
 	const userID = useSelector<AppStateType, string>(state => state.user.userID);
-	const favourites = useSelector((state: AppStateType) => state.user.favourites);
-	let favouritesArray: [string, number, string][] = [];
+	const favourites = useSelector<AppStateType, IFavourites[]>
+						((state: AppStateType) => state.user.favourites);
+	const favouritesArray: Array<[string, number, string]|[]>[] = [];
+
 	if (favourites) {
-		favouritesArray = Object.values(favourites);
+		// @ts-ignore
+		favouritesArray.push(Object.values(favourites));
 	}
 	const dispatch = useDispatch();
 	const logInAction = () => {
@@ -30,8 +37,9 @@ const Login: React.FC = () => {
 	const logOutAction = () => {
 		logOutHandler().then(() => dispatch(logOut()));
 	};
-	// @ts-ignore
-	useEffect(() => dispatch(pullFavourites(userID)), [userID]);
+	useEffect(() => {
+		dispatch(pullFavourites(userID));
+	}, [userID]);
 
 	return (
 		(!isAuth) ?
@@ -88,8 +96,8 @@ const Login: React.FC = () => {
 					</Form.Item>
 				</div>
 				<div className={style.container}>
-				{favouritesArray.length > 0 &&
-					favouritesArray!.map((item, i) =>
+				{favouritesArray[0].length > 0 &&
+					favouritesArray[0].map((item, i) =>
 						<NavLink to={'/team/' + item[1]} key={i}>
 							<img src={item[2]} className={style.logo} alt={item[0]} />
 						</NavLink>

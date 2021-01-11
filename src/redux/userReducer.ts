@@ -32,5 +32,5 @@ export interface userType {
 	isAuth?: boolean
 	loggedUser?: string
 	userID?: string
-	favourites?: [string, number, string]
+	favourites?: [string, number, string][]
 }
