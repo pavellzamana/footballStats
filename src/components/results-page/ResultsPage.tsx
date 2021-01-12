@@ -12,6 +12,7 @@ import { dataPushToDatabase, dataRemoveFromDatabase } from '../../firebase/handl
 import { pullFavourites } from '../../redux/actions';
 
 import style from './ResultsPage.module.css';
+import { IFavourites } from '../common/login/Login';
 
 const ResultsPage: React.FC<leagueType> = () => {
 	const match = useSelector((state: AppStateType) => state.results.sortedMatches);
@@ -21,18 +22,15 @@ const ResultsPage: React.FC<leagueType> = () => {
 	const userID = useSelector<AppStateType, string>(state => state.user.userID);
 	const favourites = useSelector((state: AppStateType) => state.user.favourites);
 	const dispatch = useDispatch();
-	const favouritesHandler = async(e: React.SyntheticEvent, team: [string, number, string]) => {
+	const favouritesHandler = async(e: React.SyntheticEvent, team: IFavourites) => {
 		e.preventDefault();
 		// @ts-ignore
 		dataPushToDatabase(userID, team).then(dispatch(pullFavourites(userID)));
 	};
 	const removeFavourites = (e: React.SyntheticEvent, team: string) => {
 		e.preventDefault();
-		const findKey = (team: string) => {
-				return Object.keys(favourites).find(key => favourites[key][0] === team);
-		};
 		// @ts-ignore
-		dataRemoveFromDatabase(userID, findKey(team)).then(dispatch(pullFavourites(userID)));
+		dataRemoveFromDatabase(userID, Object.keys(favourites).find(key => favourites[key].teamName === team)).then(dispatch(pullFavourites(userID)));
 	};
 	return (
 		<>
@@ -52,13 +50,17 @@ const ResultsPage: React.FC<leagueType> = () => {
 									{(isAuth) &&
 									<>
 										{/*@ts-ignore*/}
-										{favourites && Object.values(favourites).find((name: [string, number]) =>
-											name[0] === item.teamName) ?
+										{favourites && Object.values(favourites).find((name: IFavourites) =>
+											name.teamName === item.teamName) ?
 											<StarTwoTone twoToneColor='#FFFF00'
 														 onClick={(e) => {removeFavourites(e, item.teamName);}} />
 											:
 											<StarOutlined onClick={(e) => {
-												favouritesHandler(e, [item.teamName, item.team_id, item.logo]);}}
+												favouritesHandler(e, {
+													teamName: item.teamName,
+													teamID: item.team_id,
+													teamLogo: item.logo
+												});}}
 											/>
 										}
 									</>

@@ -8,8 +8,11 @@ import { logInHandler, logOutHandler } from '../../../firebase/handlers';
 
 import style from './Login.module.css';
 
-interface IFavourites {
-	[p: string]: [string, number, string]
+export interface IFavourites {
+	[p: string]: string|number
+	teamName: string
+	teamID: number
+	teamLogo: string
 }
 
 const Login: React.FC = () => {
@@ -20,7 +23,7 @@ const Login: React.FC = () => {
 	const userID = useSelector<AppStateType, string>(state => state.user.userID);
 	const favourites = useSelector<AppStateType, IFavourites[]>
 						((state: AppStateType) => state.user.favourites);
-	const favouritesArray: Array<[string, number, string]|[]>[] = [];
+	const favouritesArray: Array<IFavourites>|[] = [];
 
 	if (favourites) {
 		// @ts-ignore
@@ -96,10 +99,11 @@ const Login: React.FC = () => {
 					</Form.Item>
 				</div>
 				<div className={style.container}>
+					{/*@ts-ignore*/}
 					{favouritesArray.map((item, i) =>
 						<NavLink to={'/team/' + item[1]} key={i}>
 							{/*@ts-ignore*/}
-							<img src={item[2]} className={style.logo} alt={item[0]} />
+							<img src={item.teamLogo} className={style.logo} alt={item.teamName} />
 						</NavLink>)
 					}
 				</div>

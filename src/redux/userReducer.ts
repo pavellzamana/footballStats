@@ -32,5 +32,9 @@ export interface userType {
 	isAuth?: boolean
 	loggedUser?: string
 	userID?: string
-	favourites?: [string, number, string][]
+	favourites?: {
+		teamName: string
+		teamID: number
+		teamLogo: string
+	}
 }

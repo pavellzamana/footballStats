@@ -1,4 +1,5 @@
 import * as firebase from 'firebase';
+import { IFavourites } from '../components/common/login/Login';
 
 export const registrationHandler = (userName: string, password: string) => {
 	return firebase.default.auth().createUserWithEmailAndPassword(userName, password);
@@ -12,7 +13,7 @@ export const logOutHandler = () => {
 	return firebase.default.auth().signOut();
 };
 
-export const dataPushToDatabase = async (id: string, value: [string, number, string]) => {
+export const dataPushToDatabase = async (id: string, value: IFavourites) => {
 	await firebase.default.database().ref(id).push(value);
 	await dataPullFromDatabase(id);
 };
