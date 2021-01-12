@@ -11,7 +11,7 @@
       "prefer-single"
     ],
     "no-console": 1,
-    "no-debugger": 2,
+    "no-debugger": 1,
     "react/jsx-curly-spacing": 2,
     "semi-style": 2,
     "curly": 1,

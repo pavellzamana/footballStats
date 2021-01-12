@@ -1,7 +1,15 @@
 import { Button, DatePicker, Layout, TreeSelect } from 'antd';
 import React, { useEffect } from 'react';
 import { ICountry, IMatches, ISeasons } from '../common/types/Type';
-import { getCountriesList, getResults, getSeasonsList, setLeagueID, setSort, setSortASC } from '../../redux/actions';
+import {
+	getCountriesList,
+	getResults,
+	getSeasonsList,
+	getTable,
+	setLeagueID,
+	setSort,
+	setSortASC,
+} from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppStateType } from '../../redux/rootReducer';
 import moment from 'moment';
@@ -22,6 +30,7 @@ const HeaderMenu: React.FC<any> = () => {
 	const match = useSelector<AppStateType, IMatches[]>((state) => state.results.sortedMatches);
 	const sortASC = useSelector((state: AppStateType) => state.results.sortASC);
 	const resultsList = useSelector<AppStateType, IMatches[]>((state: AppStateType) => state.results.matches);
+
 	const dateFilter = (date: any, dateString: [string, string]) => {
 		const allMatchesDeepCopy: Array<IMatches> = JSON.parse(JSON.stringify(resultsList));
 		dispatch(setSort(date ? allMatchesDeepCopy.filter(val => {
@@ -43,6 +52,7 @@ const HeaderMenu: React.FC<any> = () => {
 			dispatch(getResults(result));
 		});
 		dispatch(getSeasonsList(leagueID));
+		dispatch(getTable(leagueID));
 	}, [leagueID]);
 
 	const changeID = (value: number) => {

@@ -45,7 +45,7 @@ export const getTeamName = (teamID: number) => {
     );
 };
 
-export const getStandings = (leagueID: number) => {
+export const getStandings = (leagueID = 2790) => {
     return instance.get('leagueTable/' + leagueID).then(
         result => result.data.api.standings[0]
     );

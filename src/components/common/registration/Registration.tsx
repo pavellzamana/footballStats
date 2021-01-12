@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Button, Card, Form, Input, Layout } from 'antd';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import Return from '../return-button/Return';
 import { changeLoginData, changePasswordData } from '../../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppStateType } from '../../../redux/rootReducer';
+import * as firebase from 'firebase';
+import { registrationHandler, dataPushToDatabase } from '../../../firebase/handlers';
 
 import style from './Registration.module.css';
-import { registrationHandler } from '../../../firebase/handlers';
 
 const { Header } = Layout;
 
@@ -16,13 +17,18 @@ const Registration = () => {
 	const password = useSelector<AppStateType, string>(state => state.user.password);
 	const dispatch = useDispatch();
 	const [serverMessage, setServerMessage] = useState('');
+	const history = useHistory();
+
 	const setMessage: (arg: string) => void = (response) => {
 		setServerMessage(response);
 		setInterval(() => setServerMessage(''), 5000);
 	};
 	const register = () => {
 		registrationHandler(userName, password)
-			.then(() => setMessage('Account Created'))
+			.then(() => {
+				setMessage('Account Created. Please wait, you will be redirected to main page');
+				setTimeout(() => history.push('/'), 5000);
+			})
 			.catch(error => {setMessage(error.message);});
 	};
 

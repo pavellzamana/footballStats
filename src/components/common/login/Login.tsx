@@ -1,27 +1,42 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Form, Input, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeLoginData, changePasswordData, logIn, logOut } from '../../../redux/actions';
+import { changeLoginData, changePasswordData, logIn, logOut, pullFavourites } from '../../../redux/actions';
 import { NavLink } from 'react-router-dom';
 import { AppStateType } from '../../../redux/rootReducer';
 import { logInHandler, logOutHandler } from '../../../firebase/handlers';
 
 import style from './Login.module.css';
+import { IFavourites, IFavouritesObject } from '../types/Type';
+
+
 
 const Login: React.FC = () => {
 	const userName = useSelector<AppStateType, string>(state => state.user.email);
 	const password = useSelector<AppStateType, string>(state => state.user.password);
 	const isAuth = useSelector<AppStateType, boolean | undefined>(state => state.user.isAuth);
 	const currentUser = useSelector<AppStateType, string>(state => state.user.loggedUser);
+	const userID = useSelector<AppStateType, string>(state => state.user.userID);
+	const favourites = useSelector<AppStateType, IFavouritesObject>
+						((state: AppStateType) => state.user.favourites);
+	const favouritesArray: IFavourites[] = [];
+	if (favourites) {
+		favouritesArray.push(...Object.values(favourites));
+	}
 	const dispatch = useDispatch();
 	const logInAction = () => {
 		logInHandler(userName, password)
-			.then(response => dispatch(logIn(response.user!.email!)))
+			.then(response => {
+				dispatch(logIn(response.user!.email!, response.user!.uid));
+			})
 			.catch(error => alert(error.message));
 	};
 	const logOutAction = () => {
 		logOutHandler().then(() => dispatch(logOut()));
 	};
+	useEffect(() => {
+		dispatch(pullFavourites(userID));
+	}, [userID]);
 
 	return (
 		(!isAuth) ?
@@ -69,13 +84,22 @@ const Login: React.FC = () => {
 				</Form>
 			</div>
 			:
-			<div className={style.welcome}>Welcome {currentUser}
-				<Form.Item>
-					<Button type='primary' htmlType='submit' className={style.submit} onClick={logOutAction}>
-						Log Out
-					</Button>
-				</Form.Item>
-			</div>
+			<>
+				<div className={style.welcome}>Welcome {currentUser}
+					<Form.Item>
+						<Button type='primary' htmlType='submit' className={style.submit} onClick={logOutAction}>
+							Log Out
+						</Button>
+					</Form.Item>
+				</div>
+				<div className={style.container}>
+					{favouritesArray.map((item, i) =>
+						<NavLink to={'/team/' + item.teamID} key={i}>
+							<img src={item.teamLogo} className={style.logo} alt={item.teamName} />
+						</NavLink>)
+					}
+				</div>
+			</>
 	);
 };
 

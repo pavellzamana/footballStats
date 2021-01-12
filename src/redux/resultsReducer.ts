@@ -1,5 +1,6 @@
 import { GET_RESULTS, SET_SORT_ASC, SET_SORT_RESULTS } from './types';
 import { IMatches } from '../components/common/types/Type';
+import { AnyAction } from 'redux';
 
 const resultsInitialState: resultsType = {
 	matches: [],
@@ -7,7 +8,7 @@ const resultsInitialState: resultsType = {
 	sortASC: true,
 };
 
-export const resultsReducer = (state = resultsInitialState, action: any) => {
+export const resultsReducer = (state = resultsInitialState, action: AnyAction) => {
 	switch (action.type) {
 		case GET_RESULTS:
 			return { ...state, matches: action.payload, sortedMatches: action.payload };

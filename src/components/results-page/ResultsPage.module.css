@@ -54,6 +54,7 @@
   padding-left: 5%;
   padding-right: 5%;
   margin-left: 10px;
+  width: 70%;
 }
 .order {
   background-color: #131722;
@@ -82,5 +83,36 @@
 .calendar:hover {
   cursor: pointer;
   background-color: #dcdfe2;
+}
+.container {
+  display: flex;
+}
+.card {
+  border-radius: 30px;
+  width: 25%;
+  margin: 10% 20px 20px;
+  text-align: center;
+  background-color: #dcdfe2;
+  z-index: 1;
+  position: fixed;
+  left: 70%;
+}
+.icon {
+  width: 11%;
+}
+.table {
+  display: flex;
+  justify-content: space-between;
+  height: 30px;
+  width: 90%;
+  color: #131722;
+}
+.table .logo {
+  height: 100%;
+  width: 13%;
+}
+.team {
+  display: flex;
+  align-items: center;
 }
 /*# sourceMappingURL=ResultsPage.module.css.map */
