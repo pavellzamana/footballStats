@@ -7,7 +7,6 @@ import {
     SET_LEAGUE_ID, SET_SORT_ASC, SET_SORT_RESULTS, USERNAME_CHANGE,
 } from './types';
 import { ICountry, IMatches } from '../components/common/types/Type';
-import { ThunkAction } from 'redux-thunk';
 import {
     getCountries,
     getFixtureDetails,
@@ -17,7 +16,7 @@ import {
     getTeamFixtures,
     getTeamName,
 } from '../api/Api';
-import { AnyAction } from 'redux';
+import { Dispatch } from 'redux';
 import moment from 'moment';
 import { dataPullFromDatabase } from '../firebase/handlers';
 
@@ -29,9 +28,8 @@ export const setLeagueID: (id: number) => void = (id) => {
     };
 };
 
-export const getCountriesList = ():
-    ThunkAction<void, Record<string, unknown>, Record<string, unknown>, AnyAction> =>
-    async (dispatch) => {
+export const getCountriesList = () =>
+    async (dispatch: Dispatch) => {
         const response = await getCountries();
         const countriesList = response.filter((item: ICountry) => {
             return item.type === 'League';
@@ -42,9 +40,8 @@ export const getCountriesList = ():
         });
     };
 
-export const getSeasonsList = (leagueID: number):
-    ThunkAction<void, Record<string, unknown>, Record<string, unknown>, AnyAction> =>
-    async (dispatch) => {
+export const getSeasonsList = (leagueID: number) =>
+    async (dispatch: Dispatch) => {
         const seasonsList = await getSeasons(leagueID);
         dispatch({
             type: GET_SEASONS,
@@ -79,9 +76,8 @@ export const setFixtureID: (fixture_id: number) => void = (fixture_id) => {
     };
 };
 
-export const setFixture = (fixture_id: number):
-    ThunkAction<void, Record<string, unknown>, Record<string, unknown>, AnyAction> =>
-    async (dispatch) => {
+export const setFixture = (fixture_id: number) =>
+    async (dispatch: Dispatch) => {
         const fixture = await getFixtureDetails(fixture_id);
         const matches = await getMatches(fixture.league_id);
         dispatch({
@@ -105,9 +101,8 @@ export const setFeaturedResults: (featuredResults: IMatches[]) => void = (featur
     };
 };
 
-export const getTeamFixture = (teamID: number):
-    ThunkAction<void, Record<string, unknown>, Record<string, unknown>, AnyAction> =>
-    async (dispatch) => {
+export const getTeamFixture = (teamID: number) =>
+    async (dispatch: Dispatch) => {
         const response = await getTeamFixtures(teamID);
         const name = await getTeamName(teamID);
         const table = await getStandings(response[0].league_id);
@@ -119,9 +114,8 @@ export const getTeamFixture = (teamID: number):
         });
     };
 
-export const getTable = (leagueID: number):
-    ThunkAction<void, Record<string, unknown>, Record<string, unknown>, AnyAction> =>
-    async (dispatch) => {
+export const getTable = (leagueID: number) =>
+    async (dispatch: Dispatch) => {
         const table = await getStandings(leagueID);
         dispatch({
             type: GET_TABLE,
@@ -158,9 +152,8 @@ export const logOut: () => void = () => {
     };
 };
 
-export const pullFavourites = (userID: string):
-    ThunkAction<void, Record<string, unknown>, Record<string, unknown>, AnyAction> =>
-    async (dispatch) => {
+export const pullFavourites = (userID: string)  =>
+    async (dispatch: Dispatch)  => {
         const favourites = await dataPullFromDatabase(userID);
         dispatch({
             type: GET_FAVOURITES,

@@ -23,10 +23,9 @@ const Login: React.FC = () => {
 	const userID = useSelector<AppStateType, string>(state => state.user.userID);
 	const favourites = useSelector<AppStateType, IFavourites[]>
 						((state: AppStateType) => state.user.favourites);
-	const favouritesArray: Array<IFavourites>|[] = [];
+	const favouritesArray = [];
 
 	if (favourites) {
-		// @ts-ignore
 		favouritesArray.push(...Object.values(favourites));
 	}
 	const dispatch = useDispatch();
@@ -99,10 +98,8 @@ const Login: React.FC = () => {
 					</Form.Item>
 				</div>
 				<div className={style.container}>
-					{/*@ts-ignore*/}
 					{favouritesArray.map((item, i) =>
 						<NavLink to={'/team/' + item[1]} key={i}>
-							{/*@ts-ignore*/}
 							<img src={item.teamLogo} className={style.logo} alt={item.teamName} />
 						</NavLink>)
 					}
