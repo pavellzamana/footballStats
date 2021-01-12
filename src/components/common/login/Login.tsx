@@ -7,12 +7,9 @@ import { AppStateType } from '../../../redux/rootReducer';
 import { logInHandler, logOutHandler } from '../../../firebase/handlers';
 
 import style from './Login.module.css';
+import { IFavourites, IFavouritesObject } from '../types/Type';
 
-export interface IFavourites {
-	teamName: string
-	teamID: number
-	teamLogo: string
-}
+
 
 const Login: React.FC = () => {
 	const userName = useSelector<AppStateType, string>(state => state.user.email);
@@ -20,10 +17,9 @@ const Login: React.FC = () => {
 	const isAuth = useSelector<AppStateType, boolean | undefined>(state => state.user.isAuth);
 	const currentUser = useSelector<AppStateType, string>(state => state.user.loggedUser);
 	const userID = useSelector<AppStateType, string>(state => state.user.userID);
-	const favourites = useSelector<AppStateType, IFavourites[]>
+	const favourites = useSelector<AppStateType, IFavouritesObject>
 						((state: AppStateType) => state.user.favourites);
-	const favouritesArray = [];
-
+	const favouritesArray: IFavourites[] = [];
 	if (favourites) {
 		favouritesArray.push(...Object.values(favourites));
 	}

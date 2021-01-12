@@ -1,5 +1,5 @@
 import React from 'react';
-import { IMatches, ITable } from '../common/types/Type';
+import { IFavourites, IFavouritesObject, IMatches, ITable } from '../common/types/Type';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppStateType } from '../../redux/rootReducer';
 import { leagueType } from '../../redux/leagueReducer';
@@ -12,7 +12,6 @@ import { dataPushToDatabase, dataRemoveFromDatabase } from '../../firebase/handl
 import { pullFavourites } from '../../redux/actions';
 
 import style from './ResultsPage.module.css';
-import { IFavourites } from '../common/login/Login';
 
 const ResultsPage: React.FC<leagueType> = () => {
 	const match = useSelector((state: AppStateType) => state.results.sortedMatches);
@@ -20,7 +19,7 @@ const ResultsPage: React.FC<leagueType> = () => {
 	const table = useSelector<AppStateType, ITable[]>(state => state.team.table);
 	const isAuth = useSelector<AppStateType, boolean|undefined>(state => state.user.isAuth);
 	const userID = useSelector<AppStateType, string>(state => state.user.userID);
-	const favourites = useSelector((state: AppStateType) => state.user.favourites);
+	const favourites = useSelector<AppStateType, IFavouritesObject>((state) => state.user.favourites);
 	const dispatch = useDispatch();
 	const favouritesHandler = async(e: React.SyntheticEvent, team: IFavourites) => {
 		e.preventDefault();
@@ -31,6 +30,14 @@ const ResultsPage: React.FC<leagueType> = () => {
 		dataRemoveFromDatabase(userID, Object.keys(favourites).find(key => favourites[key].teamName === team))
 			.then(() => dispatch(pullFavourites(userID)));
 	};
+	const favouritesArray: IFavourites[] = [];
+	if (favourites) {
+		favouritesArray.push(...Object.values(favourites));
+	}
+	const isFavouriteTeam: (team: string) => boolean = (team) => {
+		return !!favouritesArray.find((name) => name.teamName === team);
+	};
+
 	return (
 		<>
 			<HeaderMenu />
@@ -48,9 +55,7 @@ const ResultsPage: React.FC<leagueType> = () => {
 
 									{(isAuth) &&
 									<>
-										{/*@ts-ignore*/}
-										{favourites && Object.values(favourites).find((name: IFavourites) =>
-											name.teamName === item.teamName) ?
+										{favourites && isFavouriteTeam(item.teamName) ?
 											<StarTwoTone twoToneColor='#FFFF00'
 														 onClick={(e) => {removeFavourites(e, item.teamName);}} />
 											:

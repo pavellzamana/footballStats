@@ -162,3 +162,13 @@ interface IPlayed {
     matchesPlayed: number
     win: number
 }
+
+export interface IFavouritesObject {
+    [p:string]: IFavourites
+}
+
+export interface IFavourites {
+    teamName: string
+    teamID: number
+    teamLogo: string
+}

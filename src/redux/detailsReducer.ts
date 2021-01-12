@@ -1,4 +1,5 @@
 import { SET_DETAILS, SET_FEATURED_RESULTS, SET_FIXTURE_DETAILS, SET_FIXTURE_ID } from './types';
+import { AnyAction } from 'redux';
 
 
 const initialState: detailsType = {
@@ -8,7 +9,7 @@ const initialState: detailsType = {
 	featuredResults: [],
 };
 
-export const detailsReducer = (state = initialState, action: any) => {
+export const detailsReducer = (state = initialState, action: AnyAction) => {
 	switch (action.type) {
 		case SET_DETAILS:
 			return { ...state, fixture_id: action.fixture_id, eventDate: action.eventDate };
