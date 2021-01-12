@@ -9,7 +9,6 @@ import { logInHandler, logOutHandler } from '../../../firebase/handlers';
 import style from './Login.module.css';
 
 export interface IFavourites {
-	[p: string]: string|number
 	teamName: string
 	teamID: number
 	teamLogo: string
@@ -99,7 +98,7 @@ const Login: React.FC = () => {
 				</div>
 				<div className={style.container}>
 					{favouritesArray.map((item, i) =>
-						<NavLink to={'/team/' + item[1]} key={i}>
+						<NavLink to={'/team/' + item.teamID} key={i}>
 							<img src={item.teamLogo} className={style.logo} alt={item.teamName} />
 						</NavLink>)
 					}
