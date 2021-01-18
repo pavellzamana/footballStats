@@ -31,7 +31,7 @@ export const userReducer = (state = initialState, action: AnyAction) => {
 export interface userType {
 	email?: string
 	password?: string
-	isAuth?: boolean
+	isAuth: boolean
 	loggedUser?: string
 	userID?: string
 	favourites?: IFavouritesObject[]

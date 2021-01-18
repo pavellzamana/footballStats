@@ -22,7 +22,7 @@ const { RangePicker } = DatePicker;
 const { TreeNode } = TreeSelect;
 const { Header } = Layout;
 
-const HeaderMenu: React.FC<any> = () => {
+const HeaderMenu: React.FC = () => {
 	const dispatch = useDispatch();
 	const countiesList = useSelector<AppStateType, ICountry[]>((state) => state.league.countries);
 	const leagueID = useSelector<AppStateType, number>((state) => state.league.leagueID);

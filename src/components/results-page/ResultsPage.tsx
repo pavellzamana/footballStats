@@ -69,7 +69,7 @@ const ResultsPage: React.FC<leagueType> = () => {
 										}
 									</>
 									}
-									<img src={item.logo} alt={'teamLogo'} className={style.icon} />
+									<img src={item.logo} alt='teamLogo' className={style.icon} />
 									<span>{item.teamName}</span>
 								</div>
 								{item.points}
