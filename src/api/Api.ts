@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import { IMatches } from '../components/common/types/Type';
+import { IMatches } from './types/type';
 
 const instance: AxiosInstance = axios.create({
     headers: {

@@ -169,6 +169,6 @@ export interface IFavouritesObject {
 
 export interface IFavourites {
     teamName: string
-    teamID: number
-    teamLogo: string
+    team_id: number
+    logo: string
 }

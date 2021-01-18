@@ -17,7 +17,7 @@
   border: 1px solid cornflowerblue;
 }
 .submit:hover {
-  background-color: #dcdfe2;
+  background-color: #282c34;
 }
 :global .ant-input {
   background-color: #131722;
@@ -28,7 +28,7 @@
   border: 1px solid cornflowerblue;
 }
 :global .ant-input:hover {
-  background-color: #dcdfe2;
+  background-color: #282c34;
 }
 :global .ant-card-head {
   text-align: center;

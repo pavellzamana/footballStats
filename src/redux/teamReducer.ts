@@ -1,4 +1,4 @@
-import { IMatches, ITable } from '../components/common/types/Type';
+import { IMatches, ITable } from '../api/types/type';
 import { GET_TABLE, GET_TEAM_FIXTURE } from './types';
 import { AnyAction } from 'redux';
 

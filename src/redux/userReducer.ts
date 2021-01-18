@@ -1,5 +1,5 @@
 import { GET_FAVOURITES, LOG_IN, LOG_OUT, PASSWORD_CHANGE, USERNAME_CHANGE } from './types';
-import { IFavouritesObject } from '../components/common/types/Type';
+import { IFavouritesObject } from '../api/types/type';
 import { AnyAction } from 'redux';
 
 const initialState: userType = {

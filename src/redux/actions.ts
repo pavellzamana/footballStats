@@ -1,3 +1,4 @@
+import { Dispatch } from 'redux';
 import {
     GET_COUNTRIES, GET_FAVOURITES,
     GET_RESULTS,
@@ -6,7 +7,7 @@ import {
     SET_FIXTURE_DETAILS, SET_FIXTURE_ID,
     SET_LEAGUE_ID, SET_SORT_ASC, SET_SORT_RESULTS, USERNAME_CHANGE,
 } from './types';
-import { ICountry, IMatches } from '../components/common/types/Type';
+import { ICountry, IMatches } from '../api/types/type';
 import {
     getCountries,
     getFixtureDetails,
@@ -16,7 +17,6 @@ import {
     getTeamFixtures,
     getTeamName,
 } from '../api/Api';
-import { Dispatch } from 'redux';
 import moment from 'moment';
 import { dataPullFromDatabase } from '../firebase/handlers';
 

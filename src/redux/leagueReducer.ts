@@ -1,5 +1,5 @@
 import { GET_COUNTRIES, GET_SEASONS, SET_FIXTURE_DETAILS, SET_LEAGUE_ID } from './types';
-import { ICountry, ISeasons } from '../components/common/types/Type';
+import { ICountry, ISeasons } from '../api/types/type';
 import { AnyAction } from 'redux';
 
 const initialState: leagueType = {

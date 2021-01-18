@@ -1,5 +1,5 @@
 import { GET_RESULTS, SET_SORT_ASC, SET_SORT_RESULTS } from './types';
-import { IMatches } from '../components/common/types/Type';
+import { IMatches } from '../api/types/type';
 import { AnyAction } from 'redux';
 
 const resultsInitialState: resultsType = {

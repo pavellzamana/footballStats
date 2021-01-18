@@ -1,6 +1,5 @@
-import { Button, DatePicker, Layout, TreeSelect } from 'antd';
 import React, { useEffect } from 'react';
-import { ICountry, IMatches, ISeasons } from '../common/types/Type';
+import { useDispatch, useSelector } from 'react-redux';
 import {
 	getCountriesList,
 	getResults,
@@ -10,11 +9,12 @@ import {
 	setSort,
 	setSortASC,
 } from '../../redux/actions';
-import { useDispatch, useSelector } from 'react-redux';
 import { AppStateType } from '../../redux/rootReducer';
-import moment from 'moment';
+import Login from '../Login/Login';
 import { getMatches } from '../../api/Api';
-import Login from '../common/login/Login';
+import { ICountry, IMatches, ISeasons } from '../../api/types/type';
+import moment from 'moment';
+import { Button, DatePicker, Layout, TreeSelect } from 'antd';
 
 import style from './ResultsPage.module.css';
 
@@ -66,13 +66,13 @@ const HeaderMenu: React.FC = () => {
 				onChange={(date, dateString) => {
 					dateFilter(date, dateString);
 				}}
-				format={'MM-DD-YYYY'}
+				format='MM-DD-YYYY'
 			/>
 			<TreeSelect
 				showSearch
 				filterTreeNode={(search, item) => {
 					// @ts-ignore
-					return item.title!.toLowerCase().indexOf(search.toLowerCase()) >= 0;
+					return item.title.toLowerCase().indexOf(search.toLowerCase()) >= 0;
 				}}
 				className={style.selector}
 				placeholder='Countries and Leagues Available'

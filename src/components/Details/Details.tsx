@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppStateType } from '../../redux/rootReducer';
-import { Layout } from 'antd';
-import Preloader from '../common/preloader/Preloader';
-import { setFeaturedResults, setFixture, setFixtureID } from '../../redux/actions';
-import { IDetails, IMatches } from '../common/types/Type';
 import { withRouter } from 'react-router-dom';
-import moment from 'moment';
+import { AppStateType } from '../../redux/rootReducer';
+import { setFeaturedResults, setFixture, setFixtureID } from '../../redux/actions';
+import Preloader from '../common/Preloader/Preloader';
 import MatchDetail from './MatchDetail/MatchDetail';
-import Return from '../common/return-button/Return';
+import Return from '../common/Return-button/Return';
+import moment from 'moment';
+import { Layout } from 'antd';
+import { IDetails, IMatches } from '../../api/types/type';
 
 import style from './Details.module.css';
 
@@ -19,7 +19,7 @@ const DetailsWithRouter: React.FC<any> = (props) => {
 	const fixtureDate = useSelector<AppStateType, string>((state: AppStateType) => state.details.eventDate);
 	const results = useSelector<AppStateType, IMatches[]>((state) => state.results.matches);
 	const dispatch = useDispatch();
-	const fixID: number = props.location.pathname.replace('/details/', '');
+	const fixID: number = props.location.pathname.replace('/Details/', '');
 	const setFixtureData = (id: number) => {
 		dispatch(setFixture(id));
 	};
