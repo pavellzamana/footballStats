@@ -8,7 +8,6 @@ import {
     SET_FIXTURE_DETAILS, SET_FIXTURE_ID,
     SET_LEAGUE_ID, SET_SORT_ASC, SET_SORT_RESULTS,
 } from './types';
-import { ICountry, IMatches } from '../api/types/type';
 import {
     getCountries,
     getFixtureDetails,
@@ -19,7 +18,7 @@ import {
     getTeamName,
 } from '../api/api';
 import { dataPullFromDatabase } from '../firebase/handlers';
-
+import { ICountry, IMatches } from '../api/types/type';
 
 export const setLeagueID: (id: number) => void = (id) => {
     return {

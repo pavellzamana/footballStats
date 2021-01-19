@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
-import { IMatches, ITable } from '../api/types/type';
 import { GET_TABLE, GET_TEAM_FIXTURE } from './types';
+import { IMatches, ITable } from '../api/types/type';
 
 const resultsInitialState: teamType = {
 	teamFixtures: [],

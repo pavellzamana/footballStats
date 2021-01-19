@@ -1,6 +1,7 @@
+import { AnyAction } from 'redux';
 import { GET_RESULTS, SET_SORT_ASC, SET_SORT_RESULTS } from './types';
 import { IMatches } from '../api/types/type';
-import { AnyAction } from 'redux';
+
 
 const resultsInitialState: resultsType = {
 	matches: [],

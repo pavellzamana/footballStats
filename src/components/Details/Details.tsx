@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import moment from 'moment';
 import { Layout } from 'antd';
+import moment from 'moment';
 import Preloader from '../common/Preloader/Preloader';
 import MatchDetail from './MatchDetail/MatchDetail';
 import Return from '../common/Return-button/Return';

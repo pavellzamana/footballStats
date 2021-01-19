@@ -14,7 +14,7 @@ const Login: React.FC = () => {
 	const currentUser = useSelector<AppStateType, string>(state => state.user.loggedUser);
 	const userID = useSelector<AppStateType, string>(state => state.user.userID);
 	const favourites = useSelector<AppStateType, IFavouritesObject>
-	((state: AppStateType) => state.user.favourites);
+						((state) => state.user.favourites);
 	const [form] = Form.useForm();
 	const favouritesArray: IFavourites[] = [];
 	const history = useHistory();
