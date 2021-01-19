@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { AppStateType } from '../../redux/rootReducer';
 import { logIn, logOut, pullFavourites } from '../../redux/actions';
 import { logInHandler, logOutHandler } from '../../firebase/handlers';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, notification } from 'antd';
 import { IFavourites, IFavouritesObject } from '../../api/types/type';
 
 import style from './Login.module.css';
@@ -21,6 +21,13 @@ const Login: React.FC = () => {
 	if (favourites) {
 		favouritesArray.push(...Object.values(favourites));
 	}
+	const openNotification: (arg: string) => void = (message) => {
+		notification.open({
+			duration: 6,
+			message: 'Something went wrong',
+			description: message,
+		});
+	};
 	const dispatch = useDispatch();
 	const logInAction = () => {
 		const email = form.getFieldValue('email');
@@ -30,7 +37,7 @@ const Login: React.FC = () => {
 				if (!response || !response.user || !response.user.email || !response.user.uid) return;
 				dispatch(logIn(response.user.email, response.user.uid));
 			})
-			.catch(error => alert(error.message));
+			.catch(error => openNotification(error.message));
 	};
 	const logOutAction = () => {
 		logOutHandler().then(() => dispatch(logOut()));
@@ -43,7 +50,7 @@ const Login: React.FC = () => {
 		requirePassword: [{ required: true, message: 'Please enter password' }]
 	};
 
-	return !isAuth ?
+	return (!isAuth ?
 		(
 			<div className={style.login}>
 				<Form layout='inline' name='basic' form={form}>
@@ -84,9 +91,8 @@ const Login: React.FC = () => {
 						 onClick={() => history.push('/team/' + item.team_id)} />)
 				}
 			</div>
-		</>);
-
+		</>)
+	);
 };
-
 
 export default Login;
