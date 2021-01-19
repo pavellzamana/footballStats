@@ -1,11 +1,10 @@
-import { SET_DETAILS, SET_FEATURED_RESULTS, SET_FIXTURE_DETAILS, SET_FIXTURE_ID } from './types';
 import { AnyAction } from 'redux';
-
+import { SET_DETAILS, SET_FEATURED_RESULTS, SET_FIXTURE_DETAILS, SET_FIXTURE_ID } from './types';
 
 const initialState: detailsType = {
-	fixture_id: null,
+	fixture_id: undefined,
 	fixture: [],
-	eventDate: '',
+	eventDate: undefined,
 	featuredResults: [],
 };
 
@@ -30,8 +29,8 @@ export const detailsReducer = (state = initialState, action: AnyAction) => {
 };
 
 export interface detailsType {
-	fixture_id?: number | null,
-	fixture?: [],
+	fixture_id?: number,
+	fixture: [],
 	eventDate?: string,
-	featuredResults?: []
+	featuredResults: []
 }

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Return from '../common/Return-button/Return';
 import { logIn } from '../../redux/actions';
 import { logInHandler, registrationHandler } from '../../firebase/handlers';
-import Return from '../common/Return-button/Return';
 import { Button, Card, Form, Input, Layout } from 'antd';
 
 import style from './Registration.module.css';

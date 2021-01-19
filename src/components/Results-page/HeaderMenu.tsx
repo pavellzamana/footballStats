@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Button, DatePicker, Layout, TreeSelect } from 'antd';
+import moment from 'moment';
+import Login from '../Login/Login';
+import { getMatches } from '../../api/api';
 import {
 	getCountriesList,
 	getResults,
@@ -10,11 +14,7 @@ import {
 	setSortASC,
 } from '../../redux/actions';
 import { AppStateType } from '../../redux/rootReducer';
-import Login from '../Login/Login';
-import { getMatches } from '../../api/Api';
 import { ICountry, IMatches, ISeasons } from '../../api/types/type';
-import moment from 'moment';
-import { Button, DatePicker, Layout, TreeSelect } from 'antd';
 
 import style from './ResultsPage.module.css';
 

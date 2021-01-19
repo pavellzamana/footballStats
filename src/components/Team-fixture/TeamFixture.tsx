@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useHistory } from 'react-router-dom';
-import { getTeamFixture, setFixture } from '../../redux/actions';
-import Return from '../common/Return-button/Return';
 import { Card, Layout } from 'antd';
 import cn from 'classnames';
-import { IDetails, ITable } from '../../api/types/type';
+import Return from '../common/Return-button/Return';
+import { getTeamFixture, setFixture } from '../../redux/actions';
 import { AppStateType } from '../../redux/rootReducer';
+import { IDetails, ITable } from '../../api/types/type';
 
 import style from './TeamFixture.module.css';
 

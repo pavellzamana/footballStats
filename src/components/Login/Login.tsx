@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { AppStateType } from '../../redux/rootReducer';
+import { Form, Input, Button, notification } from 'antd';
 import { logIn, logOut, pullFavourites } from '../../redux/actions';
 import { logInHandler, logOutHandler } from '../../firebase/handlers';
-import { Form, Input, Button, notification } from 'antd';
+import { AppStateType } from '../../redux/rootReducer';
 import { IFavourites, IFavouritesObject } from '../../api/types/type';
 
 import style from './Login.module.css';

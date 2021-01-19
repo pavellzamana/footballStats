@@ -1,9 +1,9 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { setFixture } from '../../redux/actions';
-import moment, { Moment } from 'moment';
 import { Space, Card } from 'antd';
+import moment, { Moment } from 'moment';
 import { IMatches } from '../../api/types/type';
 
 import style from './Match.module.css';

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppStateType } from '../../../redux/rootReducer';
 import { useHistory } from 'react-router-dom';
-import { setFixture } from '../../../redux/actions';
 import { Card } from 'antd';
+import { AppStateType } from '../../../redux/rootReducer';
+import { setFixture } from '../../../redux/actions';
 import { IDetails, IEvents, Team } from '../../../api/types/type';
 
 import style from '../Details.module.css';

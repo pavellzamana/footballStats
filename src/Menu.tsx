@@ -11,7 +11,6 @@ import style from './Menu.module.css';
 
 const { Content } = Layout;
 const Menu: React.FC = () => {
-
     return (
         <Layout>
             <Content className={style.content_item}>

@@ -24,7 +24,7 @@ export const resultsReducer = (state = resultsInitialState, action: AnyAction) =
 };
 
 export interface resultsType {
-	matches?: Array<IMatches>
-	sortedMatches?: Array<IMatches>
-	sortASC?: boolean
+	matches: IMatches[]
+	sortedMatches: IMatches[]
+	sortASC: boolean
 }
