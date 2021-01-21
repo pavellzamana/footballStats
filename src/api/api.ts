@@ -1,5 +1,4 @@
 import axios, { AxiosInstance } from 'axios';
-import { IMatches } from '../components/common/types/Type';
 
 const instance: AxiosInstance = axios.create({
     headers: {
@@ -36,7 +35,7 @@ export const getFixtureDetails = (fixtureID: number) => {
 
 export const getTeamFixtures = (teamID: number) => {
     return instance.get('fixtures/team/' + teamID + '/last/30').then(
-        result => result.data.api.fixtures.filter((item: IMatches) => item.league.name !== 'FA Cup')
+        result => result.data.api.fixtures
     );
 };
 

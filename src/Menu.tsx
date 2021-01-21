@@ -1,11 +1,11 @@
 import React from 'react';
-import 'antd/dist/antd.css';
-import { Layout } from 'antd';
 import { Route, Switch } from 'react-router-dom';
-import MatchDetails from './components/details/Details';
-import ResultsPage from './components/results-page/ResultsPage';
-import TeamFixture from './components/team-fixture/TeamFixture';
-import Registration from './components/common/registration/Registration';
+import { Layout } from 'antd';
+import 'antd/dist/antd.css';
+import MatchDetails from './components/Details/Details';
+import ResultsPage from './components/Results-page/ResultsPage';
+import TeamFixture from './components/Team-fixture/TeamFixture';
+import Registration from './components/Registration/Registration';
 
 import style from './Menu.module.css';
 

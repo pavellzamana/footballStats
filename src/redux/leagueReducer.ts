@@ -1,6 +1,6 @@
-import { GET_COUNTRIES, GET_SEASONS, SET_FIXTURE_DETAILS, SET_LEAGUE_ID } from './types';
-import { ICountry, ISeasons } from '../components/common/types/Type';
 import { AnyAction } from 'redux';
+import { GET_COUNTRIES, GET_SEASONS, SET_FIXTURE_DETAILS, SET_LEAGUE_ID } from './types';
+import { ICountry, ISeasons } from '../api/types/type';
 
 const initialState: leagueType = {
     leagueID: undefined,
@@ -26,7 +26,7 @@ export const leagueReducer = (state = initialState, action: AnyAction) => {
 
 export interface leagueType {
     leagueID?: number,
-    countries?: Array<ICountry>,
-    seasons?: Array<ISeasons>
+    countries?: ICountry[],
+    seasons?: ISeasons[]
 }
 

@@ -1,10 +1,10 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Space, Card } from 'antd';
 import moment, { Moment } from 'moment';
-import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { setFixture } from '../../redux/actions';
-import { IMatches } from '../common/types/Type';
+import { IMatches } from '../../api/types/type';
 
 import style from './Match.module.css';
 
@@ -23,26 +23,28 @@ const Match: React.FC<MatchProps> = (props) => {
 	const dateString: string = dateEvent.format('MMM Do YYYY');
 	const roundNo: string = round.replace('Regular Season -', 'Date: ' + dateString + 'Matchday:');
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	return (
 		<Space direction='vertical'>
-			<NavLink to={'/details/' + fixture_id}>
-				<Card title={roundNo} className={style.item} hoverable onClick={() => dispatch(setFixture(fixture_id))}>
-					<div className={style.container}>
-						{(!firstHalfStart && dateEvent < moment()) && <p className={style.postpone}>Match Postponed</p>}
-						<p>
-							<img src={homeTeamLogo} alt={'teamLogo'} className={style.team_logo} />
-							{homeTeam}
-							<span className={style.score}>{goalsHomeTeam}</span>
-						</p>
-						<p>
-							<img src={awayTeamLogo} alt={'teamLogo'} className={style.team_logo} />
-							{awayTeam}
-							<span className={style.score}>{goalsAwayTeam}</span>
-						</p>
-					</div>
-				</Card>
-			</NavLink>
+			<Card title={roundNo} className={style.item} hoverable onClick={() => {
+				dispatch(setFixture(fixture_id));
+				history.push('/Details/' + fixture_id);
+			}}>
+				<div className={style.container}>
+					{(!firstHalfStart && dateEvent < moment()) && <p className={style.postpone}>Match Postponed</p>}
+					<p>
+						<img src={homeTeamLogo} alt='teamLogo' className={style.team_logo} />
+						{homeTeam}
+						<span className={style.score}>{goalsHomeTeam}</span>
+					</p>
+					<p>
+						<img src={awayTeamLogo} alt='teamLogo' className={style.team_logo} />
+						{awayTeam}
+						<span className={style.score}>{goalsAwayTeam}</span>
+					</p>
+				</div>
+			</Card>
 		</Space>
 	);
 };

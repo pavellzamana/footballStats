@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import { applyMiddleware, createStore } from 'redux';
-import { rootReducer } from './redux/rootReducer';
-import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import { BrowserRouter } from 'react-router-dom';
+import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
 import * as firebase from 'firebase';
 import { firebaseConfig } from './firebase/config';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import App from './App';
+import { rootReducer } from './redux/rootReducer';
 
 import './index.css';
 

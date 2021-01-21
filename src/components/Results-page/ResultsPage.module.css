@@ -15,7 +15,7 @@
 }
 :global .ant-select-single:not(.ant-select-customize-input) .ant-select-selector:hover {
   cursor: pointer;
-  background-color: #dcdfe2;
+  background-color: #3e424e;
 }
 :global .ant-select {
   color: #d9d9d9;
@@ -44,7 +44,7 @@
 }
 .common:hover {
   cursor: pointer;
-  background-color: #dcdfe2;
+  background-color: #3e424e;
 }
 .item {
   display: flex;
@@ -67,7 +67,7 @@
 }
 .order:hover {
   cursor: pointer;
-  background-color: #dcdfe2;
+  background-color: #3e424e;
 }
 .calendar {
   background-color: #131722;
@@ -82,7 +82,7 @@
 }
 .calendar:hover {
   cursor: pointer;
-  background-color: #dcdfe2;
+  background-color: #3e424e;
 }
 .container {
   display: flex;
@@ -114,5 +114,8 @@
 .team {
   display: flex;
   align-items: center;
+}
+.team:hover {
+  cursor: pointer;
 }
 /*# sourceMappingURL=ResultsPage.module.css.map */

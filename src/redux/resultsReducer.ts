@@ -1,6 +1,7 @@
-import { GET_RESULTS, SET_SORT_ASC, SET_SORT_RESULTS } from './types';
-import { IMatches } from '../components/common/types/Type';
 import { AnyAction } from 'redux';
+import { GET_RESULTS, SET_SORT_ASC, SET_SORT_RESULTS } from './types';
+import { IMatches } from '../api/types/type';
+
 
 const resultsInitialState: resultsType = {
 	matches: [],
@@ -24,7 +25,7 @@ export const resultsReducer = (state = resultsInitialState, action: AnyAction) =
 };
 
 export interface resultsType {
-	matches?: Array<IMatches>
-	sortedMatches?: Array<IMatches>
-	sortASC?: boolean
+	matches: IMatches[]
+	sortedMatches: IMatches[]
+	sortASC: boolean
 }

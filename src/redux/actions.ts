@@ -1,12 +1,13 @@
+import { Dispatch } from 'redux';
+import moment from 'moment';
 import {
     GET_COUNTRIES, GET_FAVOURITES,
     GET_RESULTS,
-    GET_SEASONS, GET_TABLE, GET_TEAM_FIXTURE, LOG_IN, LOG_OUT, PASSWORD_CHANGE,
+    GET_SEASONS, GET_TABLE, GET_TEAM_FIXTURE, LOG_IN, LOG_OUT,
     SET_FEATURED_RESULTS,
     SET_FIXTURE_DETAILS, SET_FIXTURE_ID,
-    SET_LEAGUE_ID, SET_SORT_ASC, SET_SORT_RESULTS, USERNAME_CHANGE,
+    SET_LEAGUE_ID, SET_SORT_ASC, SET_SORT_RESULTS,
 } from './types';
-import { ICountry, IMatches } from '../components/common/types/Type';
 import {
     getCountries,
     getFixtureDetails,
@@ -15,11 +16,9 @@ import {
     getStandings,
     getTeamFixtures,
     getTeamName,
-} from '../api/Api';
-import { Dispatch } from 'redux';
-import moment from 'moment';
+} from '../api/api';
 import { dataPullFromDatabase } from '../firebase/handlers';
-
+import { ICountry, IMatches } from '../api/types/type';
 
 export const setLeagueID: (id: number) => void = (id) => {
     return {
@@ -122,21 +121,6 @@ export const getTable = (leagueID: number) =>
             table,
         });
     };
-
-export const changeLoginData: (payload: string) => void = (payload) => {
-    return {
-        type: USERNAME_CHANGE,
-        payload
-    };
-};
-
-export const changePasswordData: (payload: string) => void = (payload) => {
-    return {
-        type: PASSWORD_CHANGE,
-        payload,
-
-    };
-};
 
 export const logIn: (payload: string, uId: string) => void = (payload, uId) => {
     return {

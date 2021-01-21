@@ -1,5 +1,5 @@
 import * as firebase from 'firebase';
-import { IFavourites } from '../components/common/types/Type';
+import { IFavourites } from '../api/types/type';
 
 export const registrationHandler = (userName: string, password: string) => {
 	return firebase.default.auth().createUserWithEmailAndPassword(userName, password);
